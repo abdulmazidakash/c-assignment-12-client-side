@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div className="navbar fixed max-w-screen-xl mx-auto z-50 bg-opacity-30 bg-gradient-to-tr from-sky-800 to-slate-800 backdrop-blur-md text-white shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">ScholarShipHub</a>
+        <a className="btn btn-ghost normal-case text-xl font-bold">ScholarShipHub</a>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
@@ -13,7 +13,7 @@ const Navbar = () => {
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full border-2 border-bg-white">
               <img
                 alt="User Avatar"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"

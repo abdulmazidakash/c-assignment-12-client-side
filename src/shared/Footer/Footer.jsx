@@ -53,7 +53,7 @@ const Footer = () => {
             <p className="mt-4 text-gray-300">
               123 Scholar Street, Dhaka, Bangladesh
             </p>
-            <p className="text-gray-300">Email: support@scholarhub.com</p>
+            <p className="text-gray-300">Email: support@scholarshiphub.com</p>
             <p className="text-gray-300">Phone: +880 123-456-7890</p>
             <div className="flex space-x-4 mt-4">
               <a
