@@ -4,6 +4,7 @@ import {
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 
 
@@ -20,6 +21,10 @@ import Login from "../pages/Login/Login";
         {
           path: 'login',
           element: <Login></Login>,
+        },
+        {
+          path: 'register',
+          element: <Register></Register>,
         }
       
       ]

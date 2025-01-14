@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+	const {user, logOut} = useContext(AuthContext);
+
+	const handleSignOUt = ()=>{
+		logOut()
+		  .then(()=>{
+			toast.success(`signOUt successful ${user?.displayName}`)
+		  })
+		  .catch(()=>{
+			toast.error(`not successful signOUt ${user?.displayName}`)
+		  })
+	  }
+
   return (
     <div className="navbar fixed max-w-screen-xl mx-auto z-50 bg-opacity-30 bg-gradient-to-tr from-sky-800 to-slate-800 backdrop-blur-md text-white shadow-lg">
       <div className="flex-1">
@@ -36,9 +50,14 @@ const Navbar = () => {
             <li>
               <button className="hover:bg-sky-700 rounded-lg">Dashboard</button>
             </li>
-            <li>
+			
+			{user ? <><li>
+              <button onClick={handleSignOUt}  className="hover:bg-red-600 rounded-lg">Logout</button>
+            </li></> : <><li>
               <Link to={'/login'} className="hover:bg-green-600 rounded-lg">Login</Link>
-            </li>
+            </li></>}
+            
+            
           </ul>
         </div>
       </div>
