@@ -15,7 +15,6 @@ const SocialLogin = () => {
 	const from = location?.state || '/';
 
 	const handleGoogleLogin = () => {
-		// গুগল লগইন ফাংশনালিটি এখানে যুক্ত করতে হবে
 	
 		googleSignIn()
 		  .then(res =>{

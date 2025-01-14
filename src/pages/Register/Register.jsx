@@ -20,7 +20,7 @@ const Register = () => {
 
     console.table({ name, email, password, photo });
 
-    // পাসওয়ার্ড ভ্যালিডেশন
+
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
     if (!passwordRegex.test(password)) {

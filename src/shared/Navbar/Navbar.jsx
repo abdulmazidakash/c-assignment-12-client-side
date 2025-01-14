@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { FaUserCircle, FaUserGraduate } from "react-icons/fa";
 
 const Navbar = () => {
 	const {user, logOut} = useContext(AuthContext);
@@ -29,10 +30,10 @@ const Navbar = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full border-2 border-bg-white">
-              <img
+              {user ? <img
                 alt="User Avatar"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+                src={user?.photoURL}
+              /> : <FaUserCircle className="text-4xl" />}
             </div>
           </div>
           <ul
@@ -40,7 +41,7 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-opacity-90 bg-gradient-to-tr from-sky-900 to-slate-900 text-white font-semibold rounded-box mt-3 w-52 p-2 shadow-lg"
           >
             <li>
-              <button className="hover:bg-sky-700 rounded-lg">Home</button>
+              <Link to={'/'} className="hover:bg-sky-700 rounded-lg">Home</Link>
             </li>
             <li>
               <button className="hover:bg-sky-700 rounded-lg">
