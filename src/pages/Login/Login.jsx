@@ -5,6 +5,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
 
@@ -109,7 +110,7 @@ const handleForgetPassword = () => {
         </form>
 
           {/* social login component  */}
-          {/* <SocialLogin></SocialLogin> */}
+          <SocialLogin></SocialLogin>
 
         <p className="text-center mt-4">
           Don’t have an account?{" "}

@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -102,7 +103,7 @@ const Register = () => {
         </form>
 
         {/* social login component */}
-        {/* <SocialLogin></SocialLogin> */}
+        <SocialLogin></SocialLogin>
 
         <p className="text-center mt-4">
           Already have an account?{" "}
