@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const signIn = (email, password) => {
+    const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -37,6 +37,12 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
+    }
+
+     //forget password reset
+     const forgetPasswordUser = (email) =>{
+        setLoading(true);
+        return sendPasswordResetEmail(auth, email);
     }
 
     useEffect(() => {
@@ -70,10 +76,11 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
-        signIn,
+        signInUser,
         googleSignIn,
         logOut,
-        updateUserProfile
+        updateUserProfile,
+        forgetPasswordUser
     }
 
     return (
