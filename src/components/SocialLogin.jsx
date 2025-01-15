@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import { saveUser } from '../utilities/utilities';
 
 
 const SocialLogin = () => {
@@ -19,6 +20,10 @@ const SocialLogin = () => {
 		googleSignIn()
 		  .then(res =>{
 			console.log(res?.user);
+			//save user in db
+			saveUser({ ...res?.user, displayName: res?.user?.displayName, photoURL: res?.user?.photoURL });
+
+			
 			toast.success(`Google login successful! ${res?.user?.displayName}`);
 			navigate(from);
 		  })

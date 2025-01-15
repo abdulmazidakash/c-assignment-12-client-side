@@ -35,7 +35,7 @@ const Register = () => {
       );
       return;
     }
-    toast.success("Registration successful!");
+    // toast.success("Registration successful!");
 
   //   createUser(email, password)
   //     .then((result) => {
@@ -58,15 +58,16 @@ const Register = () => {
   try {
     //2. User Registration
     const result = await createUser(email, password)
+    // console.log(result)
 
     //3. Save username & profile photo
-    await updateUserProfile( name, photoURL)
-    console.log(result)
+    const updateUser = await updateUserProfile( name, photoURL)
+    console.log('update user profile', updateUser);
 
     //save the user info in db if the user in new
     navigate('/')
    await saveUser({...result?.user, displayName: name, photoURL})
-    toast.success('SignUp Successful')
+    toast.success(`SignUp Successful ${name}`)
   } catch (err) {
     console.log(err)
     toast.error(err?.message)

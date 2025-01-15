@@ -8,6 +8,8 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
+
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
@@ -46,8 +48,14 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, async currentUser => {
             setUser(currentUser);
+
+            // //save user info in db
+            // const user = await axiosPublic.post(`/users/${currentUser?.email}`
+            // )
+            // console.log(user.data);
+
             console.log(`current user---✔  ${currentUser?.email}`);
             if (currentUser) {
 

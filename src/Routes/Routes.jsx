@@ -8,8 +8,6 @@ import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage";
 
 
-
-
   export const router = createBrowserRouter([
     {
       path: "/",

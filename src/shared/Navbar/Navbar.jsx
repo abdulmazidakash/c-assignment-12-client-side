@@ -31,6 +31,7 @@ const Navbar = () => {
           >
             <div className="w-10 rounded-full border-2 border-bg-white">
               {user ? <img
+              referrerPolicy={"no-referrer"}
                 alt="User Avatar"
                 src={user?.photoURL}
               /> : <FaUserCircle className="text-4xl" />}
