@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../Layout/DashboardLayout";
+import AddScholarship from "../pages/Dashboard/Common/AddScholarship";
+import Profile from "../pages/Dashboard/Common/Profile";
 
 
   export const router = createBrowserRouter([
@@ -36,8 +38,12 @@ import DashboardLayout from "../Layout/DashboardLayout";
       children: [
         {
           path: 'add-scholarship',
-          element: <h2></h2>,
-        }
+          element: <AddScholarship/>,
+        },
+        {
+          path: 'profile',
+          element: <Profile/>,
+        },
       ]
     }
   ]);

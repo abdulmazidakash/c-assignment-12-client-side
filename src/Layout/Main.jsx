@@ -6,7 +6,9 @@ import Footer from '../shared/Footer/Footer';
 const Main = () => {
 	return (
 		<div>
+			<div className='w-full'>
 			<Navbar/>
+			</div>
 			<div className='pt-20'>
 			<Outlet/>
 			</div>
