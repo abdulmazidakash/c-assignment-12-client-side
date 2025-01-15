@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 
   export const router = createBrowserRouter([
@@ -27,6 +28,16 @@ import ErrorPage from "../pages/ErrorPage";
           element: <Register></Register>,
         }
       
+      ]
+    },
+    {
+      path: '/dashboard',
+      element: <DashboardLayout/>,
+      children: [
+        {
+          path: 'add-scholarship',
+          element: <h2></h2>,
+        }
       ]
     }
   ]);

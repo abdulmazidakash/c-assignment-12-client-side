@@ -50,7 +50,7 @@ const Navbar = () => {
               </button>
             </li>
             <li>
-              <button className="hover:bg-sky-700 rounded-lg">Dashboard</button>
+              <Link to={'/dashboard'} className="hover:bg-sky-700 rounded-lg">Dashboard</Link>
             </li>
 			
 			{user ? <><li>
