@@ -1,109 +1,76 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
 import { BiImageAdd } from 'react-icons/bi';
+import { format, parseISO } from 'date-fns';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAuth from '../../../hooks/useAuth';
 
 const AddScholarship = () => {
-  const [scholarship, setScholarship] = useState({
-    scholarshipName: '',
-    universityName: '',
-    universityCountry: '',
-    universityCity: '',
-    universityRank: '',
-    subjectCategory: 'Agriculture',
-    scholarshipCategory: 'Full fund',
-    degree: 'Diploma',
-    tuitionFees: '',
-    applicationFees: '',
-    serviceCharge: '',
-    applicationDeadline: '',
-    postDate: '',
-    postedUserEmail: '',
-    universityImage: '',
-  });
+ 
+	const axiosPublic = useAxiosPublic();
+	const {user} = useAuth();
+	const [scholarship, setScholarship] = useState();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setScholarship((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const form = e.target;
+	  
+		const scholarshipName = form.scholarshipName.value;
+		const universityName = form.universityName.value;
+		const universityCountry = form.universityCountry.value;
+		const universityCity = form.universityCity.value;
+		const universityRank = form.universityRank.value;
+		const applicationFees = parseFloat(form.applicationFees.value);
+		const serviceCharge = parseFloat(form.serviceCharge.value);
+		const applicationDeadline = format(parseISO(form.applicationDeadline.value), 'yyyy-MM-dd');
+    const postDate = format(parseISO(form.postDate.value), 'yyyy-MM-dd');
+		const postedUserEmail = user?.email;
 
-  const handleImageUpload = async (e) => {
-    const imageFile = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', imageFile);
-
-    try {
-      const response = await axios.post(
-        `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`,
-        formData
-      );
-      if (response.data.success) {
-        setScholarship((prev) => ({
-          ...prev,
-          universityImage: response.data.data.display_url,
-        }));
-        toast.success('Image uploaded successfully!');
-      } else {
-        toast.error('Image upload failed!');
-      }
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      toast.error('Error uploading image!');
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Validate required fields
-    if (
-      !scholarship.scholarshipName ||
-      !scholarship.universityName ||
-      !scholarship.universityCountry ||
-      !scholarship.universityCity ||
-      !scholarship.universityRank ||
-      !scholarship.applicationFees ||
-      !scholarship.serviceCharge ||
-      !scholarship.applicationDeadline ||
-      !scholarship.postDate ||
-      !scholarship.postedUserEmail
-    ) {
-      return toast.error('Please fill all required fields!');
-    }
-
-    try {
-      const response = await axios.post('https://your-database-api/scholarships', scholarship);
-      if (response.status === 200 || response.status === 201) {
-        toast.success('Scholarship added successfully!');
-        setScholarship({
-          scholarshipName: '',
-          universityName: '',
-          universityCountry: '',
-          universityCity: '',
-          universityRank: '',
-          subjectCategory: 'Agriculture',
-          scholarshipCategory: 'Full fund',
-          degree: 'Diploma',
-          tuitionFees: '',
-          applicationFees: '',
-          serviceCharge: '',
-          applicationDeadline: '',
-          postDate: '',
-          postedUserEmail: '',
-          universityImage: '',
-        });
-      } else {
-        toast.error('Failed to add scholarship!');
-      }
-    } catch (error) {
-      console.error('Error adding scholarship:', error);
-      toast.error('Error adding scholarship!');
-    }
-  };
+		console.table({scholarshipName, universityName, universityCountry, universityCity, universityRank, applicationFees, serviceCharge, applicationDeadline, postDate, postedUserEmail});
+	  
+		if (
+		  !scholarshipName ||
+		  !universityName ||
+		  !universityCountry ||
+		  !universityCity ||
+		  !universityRank ||
+		  !applicationFees ||
+		  !serviceCharge ||
+		  !applicationDeadline ||
+		  !postDate ||
+		  !postedUserEmail
+		) {
+		  return toast.error('Please fill all required fields!');
+		}
+	  
+		try {
+		  const response = await axiosPublic.post(`/scholarships`, {
+			scholarshipName,
+			universityName,
+			universityCountry,
+			universityCity,
+			universityRank,
+			applicationFees,
+			serviceCharge,
+			applicationDeadline,
+			postDate,
+			postedUserEmail,
+		  });
+	  
+		  if (response.status === 200 || response.status === 201) {
+			toast.success('Scholarship added successfully!');
+			form.reset();
+			setScholarship({});
+		  } else {
+			toast.error('Failed to add scholarship!');
+		  }
+		} catch (error) {
+		  console.error('Error adding scholarship:', error);
+		  toast.error('Error adding scholarship!');
+		}
+	  };
+	  
 
   return (
     <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6 my-10">
@@ -117,8 +84,6 @@ const AddScholarship = () => {
           <input
             type="text"
             name="scholarshipName"
-            value={scholarship.scholarshipName}
-            onChange={handleChange}
             className="input input-bordered w-full"
             placeholder="Enter scholarship name"
           />
@@ -131,8 +96,7 @@ const AddScholarship = () => {
             <input
               type="text"
               name="universityName"
-              value={scholarship.universityName}
-              onChange={handleChange}
+    
               className="input input-bordered w-full"
               placeholder="Enter university name"
             />
@@ -142,8 +106,7 @@ const AddScholarship = () => {
             <input
               type="text"
               name="universityCountry"
-              value={scholarship.universityCountry}
-              onChange={handleChange}
+  
               className="input input-bordered w-full"
               placeholder="Enter country name"
             />
@@ -157,8 +120,7 @@ const AddScholarship = () => {
             <input
               type="text"
               name="universityCity"
-              value={scholarship.universityCity}
-              onChange={handleChange}
+        
               className="input input-bordered w-full"
               placeholder="Enter city name"
             />
@@ -168,8 +130,7 @@ const AddScholarship = () => {
             <input
               type="number"
               name="universityRank"
-              value={scholarship.universityRank}
-              onChange={handleChange}
+      
               className="input input-bordered w-full"
               placeholder="Enter rank"
             />
@@ -182,8 +143,7 @@ const AddScholarship = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Subject Category</label>
             <select
               name="subjectCategory"
-              value={scholarship.subjectCategory}
-              onChange={handleChange}
+          
               className="select select-bordered w-full"
             >
               <option>Agriculture</option>
@@ -195,8 +155,7 @@ const AddScholarship = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Scholarship Category</label>
             <select
               name="scholarshipCategory"
-              value={scholarship.scholarshipCategory}
-              onChange={handleChange}
+            
               className="select select-bordered w-full"
             >
               <option>Full fund</option>
@@ -208,8 +167,7 @@ const AddScholarship = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
             <select
               name="degree"
-              value={scholarship.degree}
-              onChange={handleChange}
+              
               className="select select-bordered w-full"
             >
               <option>Diploma</option>
@@ -224,10 +182,9 @@ const AddScholarship = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Tuition Fees (Optional)</label>
             <input
-              type="text"
+              type="number"
               name="tuitionFees"
-              value={scholarship.tuitionFees}
-              onChange={handleChange}
+             
               className="input input-bordered w-full"
               placeholder="Enter amount"
             />
@@ -235,10 +192,9 @@ const AddScholarship = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Application Fees *</label>
             <input
-              type="text"
+              type="number"
               name="applicationFees"
-              value={scholarship.applicationFees}
-              onChange={handleChange}
+              
               className="input input-bordered w-full"
               placeholder="Enter amount"
             />
@@ -246,10 +202,9 @@ const AddScholarship = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Service Charge *</label>
             <input
-              type="text"
+              type="number"
               name="serviceCharge"
-              value={scholarship.serviceCharge}
-              onChange={handleChange}
+             
               className="input input-bordered w-full"
               placeholder="Enter amount"
             />
@@ -262,19 +217,20 @@ const AddScholarship = () => {
           <div className="flex items-center space-x-4">
             <input
               type="file"
-              onChange={handleImageUpload}
+			  name='image'
+           
               accept="image/*"
               className="file-input file-input-bordered"
             />
             <BiImageAdd className="text-2xl text-gray-500" />
           </div>
-          {scholarship.universityImage && (
+          {/* {scholarship.universityImage && (
             <img
               src={scholarship.universityImage}
               alt="Uploaded"
               className="w-20 h-20 mt-2 rounded-lg"
             />
-          )}
+          )} */}
         </div>
 
         {/* Dates */}
@@ -284,8 +240,7 @@ const AddScholarship = () => {
             <input
               type="date"
               name="applicationDeadline"
-              value={scholarship.applicationDeadline}
-              onChange={handleChange}
+            
               className="input input-bordered w-full"
             />
           </div>
@@ -294,8 +249,7 @@ const AddScholarship = () => {
             <input
               type="date"
               name="postDate"
-              value={scholarship.postDate}
-              onChange={handleChange}
+             
               className="input input-bordered w-full"
             />
           </div>
@@ -307,8 +261,9 @@ const AddScholarship = () => {
           <input
             type="email"
             name="postedUserEmail"
-            value={scholarship.postedUserEmail}
-            onChange={handleChange}
+			value={user?.email}
+			readOnly
+            
             className="input input-bordered w-full"
             placeholder="Enter email"
           />
