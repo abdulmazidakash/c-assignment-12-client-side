@@ -3,7 +3,6 @@ import toast  from "react-hot-toast";
 import { FaUser, FaLock } from "react-icons/fa";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 

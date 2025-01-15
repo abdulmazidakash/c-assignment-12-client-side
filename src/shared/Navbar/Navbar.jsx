@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="navbar fixed max-w-screen-xl mx-auto z-50 bg-opacity-30 bg-gradient-to-tr from-sky-800 to-slate-800 backdrop-blur-md text-white shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl font-bold">ScholarShipHub</a>
+        <Link to={'/'} className="btn btn-ghost normal-case text-xl font-bold">ScholarShipHub</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

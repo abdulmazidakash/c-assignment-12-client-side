@@ -4,21 +4,27 @@ import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
+import { imageUpload, saveUser } from "../../utilities/utilities";
+import { BsFileEarmarkImageFill } from "react-icons/bs";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
+    const image = form.image.files[0];
+    // const formData = new FormData()
+    // formData.append('image', image)
 
-    console.table({ name, email, password, photo });
+    const photoURL = await imageUpload(image)
+
+    console.table({ name, email, password, image });
 
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
@@ -31,20 +37,42 @@ const Register = () => {
     }
     toast.success("Registration successful!");
 
-    createUser(email, password)
-      .then((result) => {
-        console.log(result?.user);
+  //   createUser(email, password)
+  //     .then((result) => {
+  //       console.log(result?.user);
 
-		updateUserProfile(name, photo)
-			.then(() =>{
-				console.log('user profile updated');
-				e.target.reset();
-				navigate('/')
-			})
+	// 	updateUserProfile(name, photo)
+	// 		.then( async () =>{
+	// 			console.log('user profile updated');
+  //         //save the user info in db if the user in new
+  //    await saveUser({...result?.user, displayName: name, photoURL})
+	// 			e.target.reset();
+	// 			navigate('/')
+	// 		})
 
-      })
-      .catch((err) => console.log(err.message));
-  };
+  //     })
+  //     .catch((err) => console.log(err.message));
+  // };
+
+  
+  try {
+    //2. User Registration
+    const result = await createUser(email, password)
+
+    //3. Save username & profile photo
+    await updateUserProfile( name, photoURL)
+    console.log(result)
+
+    //save the user info in db if the user in new
+    navigate('/')
+   await saveUser({...result?.user, displayName: name, photoURL})
+    toast.success('SignUp Successful')
+  } catch (err) {
+    console.log(err)
+    toast.error(err?.message)
+  }
+}
+
 
   return (
     <div className="flex items-center justify-center bg-gradient-to-tr from-slate-950  via-cyan-950 to-rose-800 text-white rounded-lg p-6 container mx-auto my-8">
@@ -66,11 +94,13 @@ const Register = () => {
           <div className="mb-4">
             <label className="block mb-2">Enter your photoURL</label>
             <div className="flex items-center bg-white/20 p-2 rounded">
-              <FaImage className="mr-2 text-purple-400" />
+              <BsFileEarmarkImageFill className="mr-2 text-purple-400" />
               <input
-                type="text"
-                placeholder="Your photoURL"
-                name="photo"
+              required
+              type='file'
+              id='image'
+              name='image'
+              accept='image/*'
                 className="bg-transparent outline-none w-full text-white"
               />
             </div>
