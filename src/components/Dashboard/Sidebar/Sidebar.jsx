@@ -9,14 +9,25 @@ import StudentMenu from './Menu/StudentMenu';
 import ModeratorMenu from './Menu/ModeratorMenu';
 import AdminMenu from './Menu/AdminMenu';
 import MenuItem from './Menu/MenuItem';
+import toast from 'react-hot-toast';
 
 const Sidebar = () => {
-  const { logOut } = useAuth();
+  const { user, logOut} = useAuth();
   const [isActive, setActive] = useState(false);
 
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+	const handleSignOUt = ()=>{
+		logOut()
+		  .then(()=>{
+			toast.success(`signOUt successful ${user?.displayName}`)
+		  })
+		  .catch(()=>{
+			toast.error(`not successful signOUt ${user?.displayName}`)
+		  })
+	  }
 
   return (
     <>
@@ -58,13 +69,13 @@ const Sidebar = () => {
 
         <div>
           <hr className="border-blue-300" />
-          <MenuItem
+          {/* <MenuItem
             icon={FcSettings}
             label='Profile'
             address='/dashboard/profile'
-          />
+          /> */}
           <button
-            onClick={logOut}
+            onClick={handleSignOUt} 
             className="flex w-full items-center px-4 py-2 mt-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition duration-300"
           >
             <GrLogout className='w-5 h-5' />

@@ -8,7 +8,7 @@ import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
 
-  const { signInUser, forgetPasswordUser} = useContext(AuthContext);
+  const { signInUser, forgetPasswordUser, loading, user} = useContext(AuthContext);
   const emailRef = useRef();
   // console.log(location);
   const navigate = useNavigate()

@@ -7,19 +7,24 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
 import DatePicker from 'react-datepicker';
 import { imageUpload, shortImageName } from '../../../utilities/utilities';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const AddScholarship = () => {
  
-	const axiosPublic = useAxiosPublic();
+	const axiosSecure = useAxiosSecure();
 	const {user} = useAuth();
-  // const [startDate, setStartDate] = useState(new Date());
   const [uploadImage, setUploadImage] = useState({image: { name: 'upload button'},});
-
+  const [loading, setLoading] = useState(false);
+  
 	// const [scholarship, setScholarship] = useState();
-  // const [startDate, setStartDate] = useState(new Date())
+  // const [startDate, setStartDate] = useState(new Date());
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+    setLoading(true);
+    
+
 		const form = e.target;
 	  
 		const scholarshipName = form.scholarshipName.value;
@@ -32,28 +37,47 @@ const AddScholarship = () => {
 		const serviceCharge = parseFloat(form.serviceCharge.value);
 		const applicationDeadline = form.applicationDeadline.value;
     const postDate = form.postDate.value;
+    const subjectCategory = form.subjectCategory.value;
+    const scholarshipCategory = form.scholarshipCategory.value;
+    const degreeCategory = form.degreeCategory.value;
+
     
 		// const applicationDeadline = format(parseISO(form.applicationDeadline.value), 'yyyy-MM-dd');
     // const deadline = startDate
     // const postDate = format(parseISO(form.postDate.value), 'yyyy-MM-dd');
     
-		const postedUserEmail = user?.email;
     const image = form.image.files[0];
     const imageUrl = await imageUpload(image);
+		const postedUserEmail = user?.email;
+
+    //posted moderator info
+
+    const moderator = {
+      name: user?.displayName,
+      image: user?.photoURL,
+      email: user?.email,
+    }
+    
+    //create scholarship data object
 
 		const scholarshipData = {
       scholarshipName, 
       universityName, 
+      image: imageUrl,
       universityCountry, 
       universityCity, 
       universityRank,
+      subjectCategory,
+      scholarshipCategory,
+      degreeCategory,
       tuitionFees, 
       applicationFees, 
       serviceCharge, 
       applicationDeadline, 
       postDate, 
       postedUserEmail , 
-      imageUrl};
+      moderator,
+    };
 
     console.table(scholarshipData);
 
@@ -94,9 +118,12 @@ const AddScholarship = () => {
 		) {
 		  return toast.error('Please fill all required fields!');
 		}
+
+    //save plant in db
 	  
 		try {
-		  const response = await axiosPublic.post(`/scholarships`, scholarshipData);
+		  const response = await axiosSecure.post(`/scholarships`, scholarshipData);
+      console.log(response.data);
 	  
 		  if (response.status === 200 || response.status === 201) {
 			toast.success('Scholarship added successfully!');
@@ -108,7 +135,9 @@ const AddScholarship = () => {
 		} catch (error) {
 		  console.error('Error adding scholarship:', error);
 		  toast.error('Error adding scholarship!');
-		}
+		} finally{
+      setLoading(false);
+    }
 	  };
 	  
 
@@ -206,7 +235,7 @@ const AddScholarship = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
             <select
-              name="degree"
+              name="degreeCategory"
               
               className="select select-bordered w-full"
             >

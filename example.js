@@ -15,3 +15,17 @@
             </span>
           )} */}
 
+          router.get('/top-scholarships', async (req, res) => {
+            try {
+              const scholarships = await Scholarship.find()
+                .sort({ applicationFees: 1, scholarshipPostDate: -1 }) // Low fees, most recent first
+                .limit(10); // Limit results to top 10
+          
+              res.status(200).json(scholarships);
+            } catch (error) {
+              console.error(error);
+              res.status(500).json({ message: 'Failed to fetch top scholarships', error });
+            }
+          });
+          
+

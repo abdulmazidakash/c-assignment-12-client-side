@@ -1,0 +1,79 @@
+import React from 'react';
+import { MdLocationOn } from "react-icons/md";
+import { AiOutlineCalendar, AiFillStar } from "react-icons/ai";
+
+const ScholarshipCard = ({scholarship}) => {
+
+	const {
+
+		universityName, 
+		image,
+		universityCountry, 
+		universityCity, 
+		subjectCategory,
+		scholarshipCategory,
+		applicationFees, 
+		applicationDeadline,
+	} = scholarship || {};
+	return (
+		<div>
+			<div className="card w-full max-w-md bg-white shadow-xl rounded-lg overflow-hidden border border-gray-300 mx-auto md:mx-4 my-4 transition-transform transform hover:scale-105">
+      {/* University Image */}
+      <img
+        src={image}
+        alt={`${universityName} logo`}
+        className="w-full h-40 object-cover"
+      />
+
+      {/* Card Content */}
+      <div className="p-4">
+        {/* University Name */}
+        <h2 className="card-title text-lg font-bold text-gray-800 mb-2">
+          {universityName}
+        </h2>
+
+        {/* Scholarship Category */}
+        <p className="text-sm text-gray-500 mb-2">
+          <span className="font-semibold">Category:</span> {scholarshipCategory}
+        </p>
+
+        {/* University Location */}
+        <p className="text-sm text-gray-500 flex items-center mb-2">
+          <MdLocationOn className="text-blue-500 mr-1" />
+          {universityCity}, {universityCountry}
+        </p>
+
+        {/* Application Deadline */}
+        <p className="text-sm text-gray-500 flex items-center mb-2">
+          <AiOutlineCalendar className="text-red-500 mr-1" />
+          <span className="font-semibold">Deadline:</span> {applicationDeadline}
+        </p>
+
+        {/* Subject Category */}
+        <p className="text-sm text-gray-500 mb-2">
+          <span className="font-semibold">Subject:</span> {subjectCategory}
+        </p>
+
+        {/* Application Fees */}
+        <p className="text-sm text-gray-500 mb-2">
+          <span className="font-semibold">Application Fees:</span> $
+          {applicationFees}
+        </p>
+
+        {/* Rating */}
+        <div className="flex items-center mb-4">
+          <AiFillStar className="text-yellow-500" />
+          <span className="ml-1 text-sm font-semibold">5</span>
+        </div>
+
+        {/* Details Button */}
+        <div className="card-actions justify-end">
+          <button className="btn btn-primary w-full">View Details</button>
+        </div>
+      </div>
+    </div>
+		</div>
+	);
+};
+
+export default ScholarshipCard;

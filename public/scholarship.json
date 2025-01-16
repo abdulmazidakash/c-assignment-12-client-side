@@ -1,0 +1,88 @@
+[
+	{
+	  "scholarshipName": "Global Agriculture Scholarship",
+	  "universityName": "University of Cambridge",
+	  "universityImage": "https://i.ibb.co/example1.jpg", // Image URL hosted on ImgBB
+	  "universityCountry": "United Kingdom",
+	  "universityCity": "Cambridge",
+	  "universityWorldRank": 2,
+	  "subjectCategory": "Agriculture", // Options: Agriculture, Engineering, Doctor
+	  "scholarshipCategory": "Partial", // Options: Full fund, Partial, Self-fund
+	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
+	  "tuitionFees": 20000, // Optional field
+	  "applicationFees": 50,
+	  "serviceCharge": 250,
+	  "applicationDeadline": "2025-06-15",
+	  "scholarshipPostDate": "2025-01-10",
+	  "postedUserEmail": "moderator2@example.com"
+	},
+	{
+	  "scholarshipName": "Engineering Excellence Scholarship",
+	  "universityName": "Stanford University",
+	  "universityImage": "https://i.ibb.co/example2.jpg", // Image URL hosted on ImgBB
+	  "universityCountry": "United States",
+	  "universityCity": "Stanford",
+	  "universityWorldRank": 3,
+	  "subjectCategory": "Engineering", // Options: Agriculture, Engineering, Doctor
+	  "scholarshipCategory": "Full fund", // Options: Full fund, Partial, Self-fund
+	  "degree": "Bachelor", // Options: Diploma, Bachelor, Masters
+	  "tuitionFees": null, // Optional field
+	  "applicationFees": 75,
+	  "serviceCharge": 400,
+	  "applicationDeadline": "2025-08-01",
+	  "scholarshipPostDate": "2025-01-15",
+	  "postedUserEmail": "moderator3@example.com"
+	},
+	{
+	  "scholarshipName": "Medical Research Fellowship",
+	  "universityName": "Johns Hopkins University",
+	  "universityImage": "https://i.ibb.co/example3.jpg", // Image URL hosted on ImgBB
+	  "universityCountry": "United States",
+	  "universityCity": "Baltimore",
+	  "universityWorldRank": 6,
+	  "subjectCategory": "Doctor", // Options: Agriculture, Engineering, Doctor
+	  "scholarshipCategory": "Self-fund", // Options: Full fund, Partial, Self-fund
+	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
+	  "tuitionFees": 30000, // Optional field
+	  "applicationFees": 120,
+	  "serviceCharge": 500,
+	  "applicationDeadline": "2025-09-10",
+	  "scholarshipPostDate": "2025-01-12",
+	  "postedUserEmail": "moderator4@example.com"
+	},
+	{
+	  "scholarshipName": "Diploma in Agricultural Science",
+	  "universityName": "University of Sydney",
+	  "universityImage": "https://i.ibb.co/example4.jpg", // Image URL hosted on ImgBB
+	  "universityCountry": "Australia",
+	  "universityCity": "Sydney",
+	  "universityWorldRank": 20,
+	  "subjectCategory": "Agriculture", // Options: Agriculture, Engineering, Doctor
+	  "scholarshipCategory": "Partial", // Options: Full fund, Partial, Self-fund
+	  "degree": "Diploma", // Options: Diploma, Bachelor, Masters
+	  "tuitionFees": 10000, // Optional field
+	  "applicationFees": 40,
+	  "serviceCharge": 150,
+	  "applicationDeadline": "2025-07-20",
+	  "scholarshipPostDate": "2025-01-08",
+	  "postedUserEmail": "moderator5@example.com"
+	},
+	{
+	  "scholarshipName": "Tech Leaders Scholarship",
+	  "universityName": "Massachusetts Institute of Technology",
+	  "universityImage": "https://i.ibb.co/example5.jpg", // Image URL hosted on ImgBB
+	  "universityCountry": "United States",
+	  "universityCity": "Cambridge",
+	  "universityWorldRank": 4,
+	  "subjectCategory": "Engineering", // Options: Agriculture, Engineering, Doctor
+	  "scholarshipCategory": "Full fund", // Options: Full fund, Partial, Self-fund
+	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
+	  "tuitionFees": null, // Optional field
+	  "applicationFees": 90,
+	  "serviceCharge": 350,
+	  "applicationDeadline": "2025-10-01",
+	  "scholarshipPostDate": "2025-01-14",
+	  "postedUserEmail": "moderator6@example.com"
+	}
+  ]
+  

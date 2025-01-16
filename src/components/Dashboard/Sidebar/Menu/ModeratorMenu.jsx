@@ -9,9 +9,9 @@ function ModeratorMenu() {
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
       <div className="">
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
+       <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship" icon={FaPlusSquare} />
         <MenuItem label="Manage Scholarships" address="/moderator-scholarships" icon={FaClipboardCheck} />
         <MenuItem label="All Reviews" address="/moderator-reviews" icon={FaStarHalfAlt} />
-       <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship" icon={FaPlusSquare} />
       </div>
     </div>
   );
