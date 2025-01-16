@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdLocationOn } from "react-icons/md";
 import { AiOutlineCalendar, AiFillStar } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 const ScholarshipCard = ({scholarship}) => {
 
@@ -14,6 +15,7 @@ const ScholarshipCard = ({scholarship}) => {
 		scholarshipCategory,
 		applicationFees, 
 		applicationDeadline,
+		_id
 	} = scholarship || {};
 	return (
 		<div>
@@ -68,7 +70,7 @@ const ScholarshipCard = ({scholarship}) => {
 
         {/* Details Button */}
         <div className="card-actions justify-end">
-          <button className="btn btn-primary w-full">View Details</button>
+          <Link to={`/scholarships/${_id}`} className="btn btn-primary w-full">View Details</Link>
         </div>
       </div>
     </div>

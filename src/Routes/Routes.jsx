@@ -10,6 +10,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AddScholarship from "../pages/Dashboard/Common/AddScholarship";
 import Profile from "../pages/Dashboard/Common/Profile";
 import PrivateRoute from "./PrivateRoute";
+import ScholarshipDetails from "../pages/ScholarshipDetails/ScholarshipDetails";
 
 
   export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ import PrivateRoute from "./PrivateRoute";
           path: 'profile',
           element: <Profile/>,
         },
+        {
+          path: 'scholarships/:id',
+          element: <ScholarshipDetails/>,
+        }
       ]
     }
   ]);
