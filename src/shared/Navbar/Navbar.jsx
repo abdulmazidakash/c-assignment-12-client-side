@@ -46,9 +46,9 @@ const Navbar = () => {
               <Link to={'/'} className="hover:bg-sky-700 rounded-lg">Home</Link>
             </li>
             <li>
-              <button className="hover:bg-sky-700 rounded-lg">
+              <Link to={'/allScholarship'} className="hover:bg-sky-700 rounded-lg">
                 All Scholarship
-              </button>
+              </Link>
             </li>
             <li>
               <Link to={'/dashboard'} className="hover:bg-sky-700 rounded-lg">Dashboard</Link>
