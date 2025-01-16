@@ -5,12 +5,18 @@ import { format, parseISO } from 'date-fns';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
+import DatePicker from 'react-datepicker';
+import { imageUpload, shortImageName } from '../../../utilities/utilities';
 
 const AddScholarship = () => {
  
 	const axiosPublic = useAxiosPublic();
 	const {user} = useAuth();
-	const [scholarship, setScholarship] = useState();
+  // const [startDate, setStartDate] = useState(new Date());
+  const [uploadImage, setUploadImage] = useState({image: { name: 'upload button'},});
+
+	// const [scholarship, setScholarship] = useState();
+  // const [startDate, setStartDate] = useState(new Date())
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -20,15 +26,60 @@ const AddScholarship = () => {
 		const universityName = form.universityName.value;
 		const universityCountry = form.universityCountry.value;
 		const universityCity = form.universityCity.value;
-		const universityRank = form.universityRank.value;
+		const universityRank = parseInt(form.universityRank.value);
+		const tuitionFees = parseFloat(form.tuitionFees.value);
 		const applicationFees = parseFloat(form.applicationFees.value);
 		const serviceCharge = parseFloat(form.serviceCharge.value);
-		const applicationDeadline = format(parseISO(form.applicationDeadline.value), 'yyyy-MM-dd');
-    const postDate = format(parseISO(form.postDate.value), 'yyyy-MM-dd');
+		const applicationDeadline = form.applicationDeadline.value;
+    const postDate = form.postDate.value;
+    
+		// const applicationDeadline = format(parseISO(form.applicationDeadline.value), 'yyyy-MM-dd');
+    // const deadline = startDate
+    // const postDate = format(parseISO(form.postDate.value), 'yyyy-MM-dd');
+    
 		const postedUserEmail = user?.email;
+    const image = form.image.files[0];
+    const imageUrl = await imageUpload(image);
 
-		console.table({scholarshipName, universityName, universityCountry, universityCity, universityRank, applicationFees, serviceCharge, applicationDeadline, postDate, postedUserEmail});
-	  
+		const scholarshipData = {
+      scholarshipName, 
+      universityName, 
+      universityCountry, 
+      universityCity, 
+      universityRank,
+      tuitionFees, 
+      applicationFees, 
+      serviceCharge, 
+      applicationDeadline, 
+      postDate, 
+      postedUserEmail , 
+      imageUrl};
+
+    console.table(scholarshipData);
+
+    
+    
+    
+    // // 3. offered deadline is within sellers deadline validation
+    // if (compareAsc(new Date(startDate), new Date(deadline)) === 1)
+    //   return toast.error('Offer a date within deadline')
+
+    // 1. Deadline crossed validation
+    // if (compareAsc(new Date(), new Date(deadline)) === 1)
+    //   return toast.error('Deadline Crossed, Bidding Forbidden!')
+    
+    // 2. Price within maximum price range validation
+    // if (price > max_price)
+    //   return toast.error('Offer less or at least equal to maximum price!')
+    
+    
+    // 0. Check bid permissions validation
+    // if (user?.email === buyer?.email)
+    //   return toast.error('Action not permitted!');
+
+
+
+
 		if (
 		  !scholarshipName ||
 		  !universityName ||
@@ -45,23 +96,12 @@ const AddScholarship = () => {
 		}
 	  
 		try {
-		  const response = await axiosPublic.post(`/scholarships`, {
-			scholarshipName,
-			universityName,
-			universityCountry,
-			universityCity,
-			universityRank,
-			applicationFees,
-			serviceCharge,
-			applicationDeadline,
-			postDate,
-			postedUserEmail,
-		  });
+		  const response = await axiosPublic.post(`/scholarships`, scholarshipData);
 	  
 		  if (response.status === 200 || response.status === 201) {
 			toast.success('Scholarship added successfully!');
 			form.reset();
-			setScholarship({});
+
 		  } else {
 			toast.error('Failed to add scholarship!');
 		  }
@@ -179,6 +219,7 @@ const AddScholarship = () => {
 
         {/* Tuition Fees */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* tuition fees  */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Tuition Fees (Optional)</label>
             <input
@@ -189,6 +230,7 @@ const AddScholarship = () => {
               placeholder="Enter amount"
             />
           </div>
+          {/* application fees  */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Application Fees *</label>
             <input
@@ -199,6 +241,7 @@ const AddScholarship = () => {
               placeholder="Enter amount"
             />
           </div>
+          {/* service Charge  */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Service Charge *</label>
             <input
@@ -212,7 +255,7 @@ const AddScholarship = () => {
         </div>
 
         {/* Image Upload */}
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">University Logo/Image *</label>
           <div className="flex items-center space-x-4">
             <input
@@ -224,19 +267,60 @@ const AddScholarship = () => {
             />
             <BiImageAdd className="text-2xl text-gray-500" />
           </div>
-          {/* {scholarship.universityImage && (
+          {scholarship.universityImage && (
             <img
               src={scholarship.universityImage}
               alt="Uploaded"
               className="w-20 h-20 mt-2 rounded-lg"
             />
-          )} */}
-        </div>
+          )}
+        </div> */}
+
+          {/* Image */}
+          <div className=' p-4  w-full  m-auto rounded-lg flex-grow'>
+              <div className='file_upload px-5 py-3 relative border-4  border-gray-300 rounded-lg'>
+                <div className='flex flex-col w-max mx-auto text-center'>
+                  <label>
+                    <input
+                      onChange={e =>
+                        setUploadImage({
+                          image: e.target.files[0],
+                          url: URL.createObjectURL(e.target.files[0]),
+                        })
+                      }
+                      className='text-sm cursor-pointer w-36 hidden'
+                      type='file'
+                      name='image'
+                      id='image'
+                      accept='image/*'
+                      hidden
+                    />
+                    <div className='bg-blue-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-blue-500'>
+                      {/* {uploadImage?.image?.name} */}
+                      {shortImageName(uploadImage?.image)}
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            {uploadImage && uploadImage?.image?.size && (
+              <div className='flex gap-5 items-center'>
+                <img className='w-20' src={uploadImage?.url} alt='' />
+                <p>Image Size: {uploadImage?.image?.size} Bytes</p>
+              </div>
+            )}
 
         {/* Dates */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Application Deadline *</label>
+            {/* Date Picker Input Field */}
+            {/* <DatePicker
+                className='border p-2 rounded-md'
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+              /> */}
+
             <input
               type="date"
               name="applicationDeadline"
@@ -246,10 +330,21 @@ const AddScholarship = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Scholarship Post Date *</label>
+
+              {/* Date Picker Input Field */}
+              {/* <DatePicker
+                className='border p-2 rounded-md'
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+              /> */}
+
+
             <input
               type="date"
               name="postDate"
-             
+              defaultValue={new Date()}
+              // selected={startDate}
+              // onChange={date => setStartDate(date)}
               className="input input-bordered w-full"
             />
           </div>
