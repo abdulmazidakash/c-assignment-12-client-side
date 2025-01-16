@@ -1,9 +1,15 @@
 import React from 'react';
 import { FiCamera } from 'react-icons/fi';
 import useAuth from '../../../hooks/useAuth';
+import useScholarship from '../../../hooks/useScholarship';
+import LoadingSpinner from '../../../shared/LoadingSpinner';
 
 const Profile = () => {
   const {user} = useAuth();
+  const {scholarship, isLoading} = useScholarship();
+
+  if(isLoading) return <LoadingSpinner/>
+  console.log(scholarship);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-12">

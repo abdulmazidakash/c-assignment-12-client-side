@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "add-scholarship", element: <AddScholarship /> },
       { path: "profile", element: <Profile /> },
-      { path: "payment", element: <Payment/> },
+      { path: "payment/:id", element: <Payment/> },
     ],
   },
   

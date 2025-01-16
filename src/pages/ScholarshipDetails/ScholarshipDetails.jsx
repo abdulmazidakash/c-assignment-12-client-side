@@ -8,12 +8,13 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const ScholarshipDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
 
-  const { data: scholarship, isLoading } = useQuery({
+  const { data: scholarship= {}, isLoading } = useQuery({
     queryKey: ['scholarship', id],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/scholarships/${id}`);
@@ -54,7 +55,7 @@ const ScholarshipDetails = () => {
   } = scholarship || {};
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner/> ;
   }
 
   return (
@@ -75,7 +76,7 @@ const ScholarshipDetails = () => {
           {universityName || 'Unknown University'}
         </h1>
         <Link
-          to={`/dashboard/payment`}
+          to={`/dashboard/payment/${id}`}
           className="btn bg-[#13405E] text-white px-6 py-2 rounded-md flex items-center gap-2"
         >
           <MdSchool />
