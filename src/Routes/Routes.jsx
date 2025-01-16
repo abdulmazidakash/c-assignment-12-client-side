@@ -9,6 +9,7 @@ import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddScholarship from "../pages/Dashboard/Common/AddScholarship";
 import Profile from "../pages/Dashboard/Common/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 
   export const router = createBrowserRouter([
@@ -34,7 +35,9 @@ import Profile from "../pages/Dashboard/Common/Profile";
     },
     {
       path: '/dashboard',
-      element: <DashboardLayout/>,
+      element: <PrivateRoute>
+        <DashboardLayout/>
+      </PrivateRoute>,
       children: [
         {
           path: 'add-scholarship',

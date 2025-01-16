@@ -2,18 +2,21 @@ import React, { useContext, useRef } from "react";
 import toast  from "react-hot-toast";
 import { FaUser, FaLock } from "react-icons/fa";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
 
   const { signInUser, forgetPasswordUser} = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
   const emailRef = useRef();
-  const from = location?.state || '/';
   // console.log(location);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || '/'
+  
+  if (loading) return <span className="loading loading-ring loading-lg"></span>
+  if (user) return <Navigate to={from} replace={true} />
 
 
 const handleSignInUser = e =>{
@@ -30,7 +33,7 @@ const handleSignInUser = e =>{
   .then(result =>{
     // console.log(result);
     console.log('sign in', result?.user?.email);
-
+    navigate(from, { replace: true })
     toast.success(`Login Successful ${result?.user?.email}`)
     navigate(from);
   })
