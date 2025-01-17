@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import ScholarshipCard from '../../components/ScholarshipCard';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const AllScholarship = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activePage, setActivePage] = useState(0); // Active pagination index
+  const swiperRef = useRef(null); // Swiper reference
   const axiosPublic = useAxiosPublic();
 
   // Fetch scholarships using TanStack Query
@@ -23,6 +28,29 @@ const AllScholarship = () => {
     scholarship.scholarshipCategory.toLowerCase().includes(searchQuery.toLowerCase()) ||
     scholarship.subjectCategory.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Handle pagination controls
+  const handleBulletClick = (index) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index);
+      setActivePage(index);
+    }
+  };
+
+  const handleSlideChange = (swiper) => {
+    setActivePage(swiper.activeIndex);
+  };
+
+  // Create paginated slides (3 scholarships per slide)
+  const slides = Array.from({ length: Math.ceil(filteredScholarships.length / 3) }, (_, index) => (
+    <SwiperSlide key={index}>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1  gap-6 pr-8">
+        {filteredScholarships.slice(index * 3, index * 3 + 3).map((scholarship) => (
+          <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
+        ))}
+      </div>
+    </SwiperSlide>
+  ));
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -42,33 +70,50 @@ const AllScholarship = () => {
       </div>
 
       {/* Loading and Error States */}
-      {isLoading && (
-        <p className="text-center text-gray-600">Loading scholarships...</p>
-      )}
+      {isLoading && <LoadingSpinner/>}
       {isError && (
         <p className="text-center text-red-500">Failed to load scholarships. Please try again later.</p>
       )}
 
-      {/* Scholarship Cards */}
+      {/* Scholarship Cards with Swiper Pagination */}
       {!isLoading && filteredScholarships.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredScholarships.map((scholarship) => (
-            <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
-          ))}
+        <div>
+          <Swiper
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={handleSlideChange}
+            className="mySwiper"
+          >
+            {slides}
+          </Swiper>
+
+          {/* Custom Pagination */}
+          <div className="flex justify-center gap-4 mt-4 border-t-4 p-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleBulletClick(index)}
+                className={`text-lg hover:text-blue-700 btn btn-sm btn-circle btn-outline mb-8 border-t-4 ${
+                  activePage === index ? 'btn-info' : 'text-orange-500'
+                }`}
+              >
+                <FaCircle />
+              </button>
+            ))}
+          </div>
         </div>
       ) : (
-        // No Results Message
-        !isLoading && (
-          <div className="text-center mt-6">
-            <img
-              src="https://via.placeholder.com/400x300?text=No+Scholarships+Available"
-              alt="No scholarships available"
-              className="mx-auto mb-4"
-            />
-            <p className="text-lg text-gray-600">
-              No scholarships found. Please try a different search.
-            </p>
-          </div>
+       // No Results Message
+		!isLoading && (
+			<div className="text-center mt-6">
+			<div className=" text-center">
+				<FaExclamationTriangle className="text-yellow-300 text-8xl py-6 animate-bounce mx-auto" />
+			</div>
+			<p className="text-lg text-gray-600">
+				No scholarships found. Please try a different search.
+			</p>
+			</div>
+		
+  
         )
       )}
     </div>
