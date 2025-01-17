@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { FaCheckCircle } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../../hooks/useAuth';
 
@@ -12,6 +12,7 @@ const ApplyScholarship = () => {
 	const axiosSecure = useAxiosSecure();
 	const {user} = useAuth();
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const { data: scholarship = {}, isLoading } = useQuery({
 		queryKey: ['scholarship', id],
@@ -76,6 +77,7 @@ const ApplyScholarship = () => {
 			Swal.fire('Success', 'You have successfully applied for the scholarship!', 'success');
 			
 			//todo: navigate my application page
+			navigate(`/dashboard/my-application`)
 
 		  }
 		} catch (error) {

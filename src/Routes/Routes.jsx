@@ -13,6 +13,7 @@ import ScholarshipDetails from "../pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../pages/Payment/Payment";
 import ApplyScholarship from "../pages/Dashboard/Student/ApplyScholarship/ApplyScholarship";
 import AllScholarship from "../pages/AllScholarship/AllScholarship";
+import MyApplication from "../pages/Dashboard/Student/MyApplication/MyApplication";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "payment/:id", element: <Payment/> },
       { path: "applyScholarship/:id", element: <ApplyScholarship/> },
+      { path: "my-application", element: <MyApplication/> },
     ],
   },
   

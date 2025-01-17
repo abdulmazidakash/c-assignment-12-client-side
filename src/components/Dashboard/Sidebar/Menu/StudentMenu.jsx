@@ -9,7 +9,7 @@ function StudentMenu() {
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
       <div className="">
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUser} />
-        <MenuItem label="My Applications" address="/my-applications" icon={FaFileAlt} />
+        <MenuItem label="My Applications" address="/dashboard/my-application" icon={FaFileAlt} />
         <MenuItem label="My Reviews" address="/my-reviews" icon={FaStar} />
       </div>
     </div>
