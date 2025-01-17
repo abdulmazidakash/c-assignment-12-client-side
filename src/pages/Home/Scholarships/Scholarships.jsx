@@ -27,7 +27,7 @@ const Scholarships = () => {
 
 			 {/* Section Header */}
 			 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">
-          🚀 Top Scholarships
+          		🚀 Top Scholarships
         	</h2>
 
 			 {scholarships && scholarships.length > 0 ? 

@@ -29,8 +29,8 @@ const ApplyScholarship = () => {
 		const formData = new FormData(e.target);
 		const applicationData = {
 		  phone: formData.get('phone'),
-		  photo: formData.get('photo'),
-		  address: {
+		  photo: formData.get('photo').name,
+		  studentAddress: {
 			village: formData.get('village'),
 			district: formData.get('district'),
 			country: formData.get('country'),
@@ -39,23 +39,44 @@ const ApplyScholarship = () => {
 		  degree: formData.get('degree'),
 		  sscResult: formData.get('sscResult'),
 		  hscResult: formData.get('hscResult'),
-		  studyGap: formData.get('studyGap') || null,
-		  universityName: scholarship.universityName,
-		  scholarshipCategory: scholarship.scholarshipCategory,
-		  subjectCategory: scholarship.subjectCategory,
-		  userName: user?.displayName,
-		  userEmail: user?.email,
-		  userId: scholarship._id,
-		  scholarshipId: scholarship._id,
-		  appliedDate: new Date().toISOString(),
+		  studyGap: formData.get('studyGap') || null,  //optional
+		  universityName: scholarship.universityName,  //read-only
+		  scholarshipCategory: scholarship.scholarshipCategory, //read-only
+		  subjectCategory: scholarship.subjectCategory,  //read-only
+
+		  //user or student related information
+		  student: {
+			userName: user?.displayName,
+			userEmail: user?.email,
+			userId: scholarship._id,
+			scholarshipId: scholarship._id,
+			appliedDate: new Date().toISOString().split('T')[0],
+			status: 'pending',
+		  },
+
+		  //my application page information
+		  myApplicationInfo: {
+			universityCity: scholarship?.universityCity,
+			universityCountry: scholarship?.universityCountry,
+			applicationFees: scholarship?.applicationFees,
+			serviceCharge: scholarship?.serviceCharge,
+
+		  }
+
+
 		};
 
 		console.table(applicationData);
 	
 		try {
+			//save data in db
 		  const response = await axiosSecure.post('/apply-scholarship', applicationData);
+		  console.log(response.data);
 		  if (response.data.insertedId) {
 			Swal.fire('Success', 'You have successfully applied for the scholarship!', 'success');
+			
+			//todo: navigate my application page
+
 		  }
 		} catch (error) {
 		  toast.error('Failed to submit the application.');
