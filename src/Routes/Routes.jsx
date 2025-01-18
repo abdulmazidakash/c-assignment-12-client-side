@@ -14,6 +14,7 @@ import Payment from "../pages/Payment/Payment";
 import ApplyScholarship from "../pages/Dashboard/Student/ApplyScholarship/ApplyScholarship";
 import AllScholarship from "../pages/AllScholarship/AllScholarship";
 import MyApplication from "../pages/Dashboard/Student/MyApplication/MyApplication";
+import EditMyApplication from "../pages/Dashboard/Student/EditMyApplication/EditMyApplication";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
       { path: "payment/:id", element: <Payment/> },
       { path: "applyScholarship/:id", element: <ApplyScholarship/> },
       { path: "my-application", element: <MyApplication/> },
+      { path: "edit-my-application/:id", element: <EditMyApplication/> },
     ],
   },
   

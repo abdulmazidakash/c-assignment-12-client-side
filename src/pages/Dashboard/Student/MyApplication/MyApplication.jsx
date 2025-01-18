@@ -8,34 +8,10 @@ import useAuth from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const MyApplication = () => {
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      universityName: "Harvard University",
-      address: "Cambridge, MA, USA",
-      feedback: "Excellent application",
-      subjectCategory: "Engineering",
-      appliedDegree: "Master's",
-      applicationFees: "$150",
-      serviceCharge: "$20",
-      status: "pending",
-    },
-    {
-      id: 2,
-      universityName: "Oxford University",
-      address: "Oxford, UK",
-      feedback: "Review in process",
-      subjectCategory: "Arts",
-      appliedDegree: "Bachelor's",
-      applicationFees: "$100",
-      serviceCharge: "$15",
-      status: "processing",
-    },
-  ]);
 
   const axiosSecure = useAxiosSecure();
-const { user } = useAuth();
-console.log(user);
+  const { user } = useAuth();
+  console.log(user);
 
   const { data: myApplications = [], isLoading, refetch } = useQuery({
     queryKey: ['myApplications', user?.email],
@@ -49,17 +25,20 @@ console.log(user);
 
   if(isLoading) return <LoadingSpinner/>
 
-  const handleEdit = (status) => {
-    if (status === "processing") {
-      Swal.fire({
-        icon: "warning",
-        title: "Cannot Edit",
-        text: "You cannot edit an application that is being processed.",
-      });
-    }
-  };
+  // const handleEdit = (status) => {
+  //   if (status === "processing") {
+  //     Swal.fire({
+  //       icon: "warning",
+  //       title: "Cannot Edit",
+  //       text: "You cannot edit an application that is being processed.",
+  //     });
+  //   }
+  // };
+
+
 
   //handle my application delete/cancellation
+  
   const handleMyApplicationCancel = async (id) => {
     try {
       const result = await Swal.fire({
@@ -90,6 +69,10 @@ console.log(user);
       Swal.fire("Error!", "Something went wrong while canceling the application.", "error");
     }
   };
+
+  const handleMyApplicationEdit = async() =>{
+
+  }
   
 
   return (
@@ -136,6 +119,8 @@ console.log(user);
                   {app.status}
                 </td>
                 <td className="flex gap-2">
+
+                 {/* application details button  */}
                   <Link
                   to={`/scholarships/${app.student.scholarshipId}`}
                     className="btn btn-sm btn-primary flex items-center gap-1"
@@ -143,19 +128,26 @@ console.log(user);
                   >
                     <FaEye />
                   </Link>
-                  <button
+
+                  {/* application edit button  */}
+                  <Link
+                    to={`/dashboard/edit-my-application/${app._id}`}
                     className="btn btn-sm btn-secondary flex items-center gap-1"
-                    onClick={() => handleEdit(app.status)}
-                    disabled={app.status !== "pending"}
+                    // onClick={() => handleEdit(app.status)}
+                    // disabled={app.status !== "pending"}
                   >
                     <FaEdit />
-                  </button>
+                  </Link>
+
+                  {/* application cancel button  */}
                   <button
                     className="btn btn-sm btn-error flex items-center gap-1"
                     onClick={() => handleMyApplicationCancel(app._id)}
                   >
                     <FaTrashAlt />
                   </button>
+
+                  {/* application add review button  */}
                   <button
                     className="btn btn-sm btn-accent flex items-center gap-1"
                     onClick={() => alert("Add review")}
