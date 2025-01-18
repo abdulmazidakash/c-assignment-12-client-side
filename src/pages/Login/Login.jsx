@@ -5,6 +5,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
+import LoadingSpinner from "../../shared/LoadingSpinner";
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
   const location = useLocation()
   const from = location?.state?.from?.pathname || '/'
   
-  if (loading) return <span className="loading loading-ring loading-lg"></span>
+  if (loading) return <LoadingSpinner/>
   if (user) return <Navigate to={from} replace={true} />
 
 

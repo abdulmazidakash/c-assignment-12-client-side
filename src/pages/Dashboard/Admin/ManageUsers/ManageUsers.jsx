@@ -65,21 +65,34 @@ const ManageUsers = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await axiosSecure.delete(`/user/${id}`);
-      if (response.data.deletedCount > 0) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "User has been removed.",
-          icon: "success",
-          confirmButtonText: "OK",
+  const handleUserDelete = async (id) => {
+      try {
+        const result = await Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, cancel it!",
         });
+    
+        if (result.isConfirmed) {
+          // Perform delete operation if confirmed
+          await axiosSecure.delete(`/user/${id}`);
+          console.log(result);
+          
+          Swal.fire("Canceled!", "user has been canceled.", "success");
+          refetch()
+        } else {
+          // Handle cancel button click
+          Swal.fire("Cancelled", "Your user is safe.", "info");
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire("Error!", "Something went wrong while canceling the user.", "error");
       }
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-  };
+    };
 
   const filteredUsers = filterRole
     ? users.filter((user) => user.role === filterRole)
@@ -93,7 +106,7 @@ const ManageUsers = () => {
     <div className="p-4 lg:p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl lg:text-4xl font-bold text-gray-800 flex items-center gap-2">
-          <HiOutlineUsers className="text-blue-500" /> Manage Users
+          <HiOutlineUsers className="text-blue-500" /> Manage Users: {users?.length}
         </h1>
         <div className="flex items-center gap-2">
           <label className="text-gray-600 font-medium">Filter by Role:</label>
@@ -163,10 +176,10 @@ const ManageUsers = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(user._id)}
+                    onClick={() => handleUserDelete(user._id)}
                     className="btn btn-sm btn-error flex items-center gap-1"
                   >
-                    <FaTrashAlt /> Delete
+                    <FaTrashAlt />
                   </button>
                 </td>
               </tr>
