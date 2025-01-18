@@ -16,6 +16,7 @@ import AllScholarship from "../pages/AllScholarship/AllScholarship";
 import MyApplication from "../pages/Dashboard/Student/MyApplication/MyApplication";
 import EditMyApplication from "../pages/Dashboard/Student/EditMyApplication/EditMyApplication";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import Statistics from "../pages/Dashboard/Common/Statistics";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      { index: true, element: <Statistics/>},
       { path: "add-scholarship", element: <AddScholarship /> },
       { path: "profile", element: <Profile /> },
       { path: "payment/:id", element: <Payment/> },

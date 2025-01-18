@@ -22,6 +22,7 @@ const SocialLogin = () => {
 			console.log(res?.user);
 			//save user in db
 			saveUser({ ...res?.user, displayName: res?.user?.displayName, photoURL: res?.user?.photoURL });
+			// saveUser({ ...res?.user, displayName: res?.user?.displayName, photoURL: res?.user?.photoURL });
 
 			
 			toast.success(`Google login successful! ${res?.user?.displayName}`);
