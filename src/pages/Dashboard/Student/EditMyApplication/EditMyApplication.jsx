@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCheckCircle, FaEdit } from 'react-icons/fa';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../../hooks/useAuth';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 const EditMyApplication = () => {
 
+	const navigate = useNavigate();
 	const { user} = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
@@ -24,54 +25,64 @@ const EditMyApplication = () => {
   console.log(editMyApplication);
 
   const handleApplicationEdit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const applicationData = {
-      phone: formData.get('phone'),
-      photo: formData.get('photo').name,
-      studentAddress: {
-        village: formData.get('village'),
-        district: formData.get('district'),
-        country: formData.get('country'),
-      },
-      gender: formData.get('gender'),
-      degree: formData.get('degree'),
-      sscResult: formData.get('sscResult'),
-      hscResult: formData.get('hscResult'),
-      studyGap: formData.get('studyGap') || null,
-      universityName: editMyApplication.universityName,
-      scholarshipCategory: editMyApplication.scholarshipCategory,
-      subjectCategory: editMyApplication.subjectCategory,
-
-      student: {
-        userName: user?.displayName,
-        userEmail: user?.email,
-        userId: editMyApplication._id,
-        scholarshipId: editMyApplication._id,
-        appliedDate: new Date().toISOString().split('T')[0],
-      },
-
-      myApplicationInfo: {
-        universityCity: editMyApplication?.universityCity,
-        universityCountry: editMyApplication?.universityCountry,
-        applicationFees: editMyApplication?.applicationFees,
-        serviceCharge: editMyApplication?.serviceCharge,
-      },
-    };
-
-	console.log(applicationData);
-
-    try {
-      const response = await axiosSecure.patch(`/edit-my-application/${editMyApplication._id}`, applicationData);
-      if (response.data.insertedId) {
-        Swal.fire('Success', 'You have successfully updated for the scholarship!', 'success');
-        navigate(`/dashboard/my-application`);
-      }
-    } catch (error) {
-      toast.error('Failed to update the application.');
-    }
+	e.preventDefault();
+  
+	const formData = new FormData(e.target);
+	const applicationData = {
+	  phone: formData.get('phone'),
+	  photo: formData.get('photo').name,
+	  studentAddress: {
+		village: formData.get('village'),
+		district: formData.get('district'),
+		country: formData.get('country'),
+	  },
+	  gender: formData.get('gender'),
+	  degree: formData.get('degree'),
+	  sscResult: formData.get('sscResult'),
+	  hscResult: formData.get('hscResult'),
+	  studyGap: formData.get('studyGap') || null,
+	  universityName: editMyApplication.universityName,
+	  scholarshipCategory: editMyApplication.scholarshipCategory,
+	  subjectCategory: editMyApplication.subjectCategory,
+  
+	  student: {
+		userName: user?.displayName,
+		userEmail: user?.email,
+		userId: editMyApplication._id,
+		scholarshipId: editMyApplication._id,
+		appliedDate: new Date().toISOString().split('T')[0],
+	  },
+  
+	  myApplicationInfo: {
+		universityCity: editMyApplication?.universityCity,
+		universityCountry: editMyApplication?.universityCountry,
+		applicationFees: editMyApplication?.applicationFees,
+		serviceCharge: editMyApplication?.serviceCharge,
+	  },
+	};
+  
+	try {
+		const response = await axiosSecure.patch(`/edit-my-application/${editMyApplication._id}`, applicationData);
+	  
+		if (response.data.success) {
+		  if (response.data.message === 'No changes were made') {
+			toast.error(response.data.message);
+		  } else {
+			Swal.fire('Success', response.data.message, 'success');
+			navigate(`/dashboard/my-application`);
+		  }
+		} else {
+		  toast.error(response.data.message);
+		}
+	  } 
+	  catch (error) {
+		console.error('Update failed:', error);
+		console.log(error);
+		toast.error('Failed to update the application. Please try again later.');
+	  }
+	  
   };
+  
 
   return (
     <div>
