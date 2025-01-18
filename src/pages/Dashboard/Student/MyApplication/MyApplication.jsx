@@ -25,15 +25,18 @@ const MyApplication = () => {
 
   if(isLoading) return <LoadingSpinner/>
 
-  // const handleEdit = (status) => {
-  //   if (status === "processing") {
-  //     Swal.fire({
-  //       icon: "warning",
-  //       title: "Cannot Edit",
-  //       text: "You cannot edit an application that is being processed.",
-  //     });
-  //   }
-  // };
+  const handleEdit = (status, navigateTo) => {
+    if (status !== "pending") {
+      Swal.fire({
+        icon: "warning",
+        title: "Cannot Edit",
+        text: "You cannot edit an application that is being processed.",
+      });
+    } else {
+      // Navigate to the edit page for other statuses
+      window.location.href = navigateTo;
+    }
+  };
 
 
 
@@ -70,11 +73,6 @@ const MyApplication = () => {
     }
   };
 
-  const handleMyApplicationEdit = async() =>{
-
-  }
-  
-
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold text-center my-6">My Applications: {myApplications.length} </h1>
@@ -106,7 +104,7 @@ const MyApplication = () => {
                 <td>${app.myApplicationInfo.applicationFees}</td>
                 <td>${app.myApplicationInfo.serviceCharge}</td>
                 <td
-                  className={`capitalize font-semibold ${
+                  className={`font-semibold ${
                     app.status === "pending"
                       ? "text-yellow-500"
                       : app.status === "processing"
@@ -130,11 +128,14 @@ const MyApplication = () => {
                   </Link>
 
                   {/* application edit button  */}
+                
                   <Link
-                    to={`/dashboard/edit-my-application/${app._id}`}
+                    to="#"
                     className="btn btn-sm btn-secondary flex items-center gap-1"
-                    // onClick={() => handleEdit(app.status)}
-                    // disabled={app.status !== "pending"}
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default navigation
+                      handleEdit(app.status, `/dashboard/edit-my-application/${app._id}`);
+                    }}
                   >
                     <FaEdit />
                   </Link>
