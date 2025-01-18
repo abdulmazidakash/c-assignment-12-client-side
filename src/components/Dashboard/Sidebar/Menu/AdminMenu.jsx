@@ -13,7 +13,7 @@ function AdminMenu() {
         <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship"  icon={FaPlusSquare} />
         <MenuItem label="Manage Scholarships" address="/manage-scholarships" icon={FaClipboardList} />
         <MenuItem label="Manage Applications" address="/manage-applications" icon={FaTasks} />
-        <MenuItem label="Manage Users" address="/manage-users" icon={FaUsers} />
+        <MenuItem label="Manage Users" address="/dashboard/manage-users" icon={FaUsers} />
 		<MenuItem label="All Reviews" address="/moderator-reviews" icon={FaStarHalfAlt} />
       </div>
     </div>

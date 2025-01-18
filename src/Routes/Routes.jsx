@@ -15,6 +15,7 @@ import ApplyScholarship from "../pages/Dashboard/Student/ApplyScholarship/ApplyS
 import AllScholarship from "../pages/AllScholarship/AllScholarship";
 import MyApplication from "../pages/Dashboard/Student/MyApplication/MyApplication";
 import EditMyApplication from "../pages/Dashboard/Student/EditMyApplication/EditMyApplication";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ export const router = createBrowserRouter([
       { path: "applyScholarship/:id", element: <ApplyScholarship/> },
       { path: "my-application", element: <MyApplication/> },
       { path: "edit-my-application/:id", element: <EditMyApplication/> },
+      { path: "manage-users", element: <ManageUsers/> },
     ],
   },
   
