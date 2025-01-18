@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserEdit, FaClipboardCheck, FaStarHalfAlt, FaPlusSquare } from 'react-icons/fa';
+import { FaUserEdit, FaClipboardCheck, FaStarHalfAlt, FaPlusSquare, FaTasks } from 'react-icons/fa';
 import MenuItem from './MenuItem';
 
 function ModeratorMenu() {
@@ -11,6 +11,7 @@ function ModeratorMenu() {
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
        <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship" icon={FaPlusSquare} />
         <MenuItem label="Manage Scholarships" address="/moderator-scholarships" icon={FaClipboardCheck} />
+        <MenuItem label="All Applied Scholarship" address="/manage-applications" icon={FaTasks} />
         <MenuItem label="All Reviews" address="/moderator-reviews" icon={FaStarHalfAlt} />
       </div>
     </div>

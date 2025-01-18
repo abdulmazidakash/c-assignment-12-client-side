@@ -1,0 +1,7 @@
+.dropdown-content button:focus {
+	outline: none; /* Removes focus outline */
+  }
+  .dropdown-content button {
+	text-decoration: none; /* Removes underline */
+  }
+  

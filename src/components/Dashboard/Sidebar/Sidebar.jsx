@@ -10,10 +10,12 @@ import ModeratorMenu from './Menu/ModeratorMenu';
 import AdminMenu from './Menu/AdminMenu';
 import MenuItem from './Menu/MenuItem';
 import toast from 'react-hot-toast';
+import useRole from '../../../hooks/useRole';
 
 const Sidebar = () => {
   const { user, logOut} = useAuth();
   const [isActive, setActive] = useState(false);
+  const [role] = useRole();
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -54,16 +56,20 @@ const Sidebar = () => {
         } md:translate-x-0 transition duration-300 ease-in-out shadow-2xl`}
       >
         <div>
-          <div className="hidden md:flex items-center justify-center mb-6">
+          <div className="md:flex items-center justify-center mb-6">
 		  <Link to='/'>
             <button className='font-bold text-2xl btn btn-outline'>ScholarShipHub</button>
           </Link>
           </div>
 
           <nav className="flex flex-col space-y-4">
-            <StudentMenu />
+           {role === 'student' &&  <StudentMenu />}
+           {role === 'moderator' &&  <ModeratorMenu />}
+           {role === 'admin' &&  <AdminMenu />}
+
+           {/* <StudentMenu />
             <ModeratorMenu />
-            <AdminMenu />
+            <AdminMenu /> */}
           </nav>
         </div>
 
