@@ -5,6 +5,7 @@ import LoadingSpinner from "../../../../shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const MyApplication = () => {
   const [applications, setApplications] = useState([
@@ -36,15 +37,15 @@ const MyApplication = () => {
 const { user } = useAuth();
 console.log(user);
 
-  const { data: myApplication= [], isLoading, refetch } = useQuery({
-    queryKey: ['myApplication', user?.email],
+  const { data: myApplications = [], isLoading, refetch } = useQuery({
+    queryKey: ['myApplications', user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/apply-scholarship/${user?.email}`);
       return data;
     },
   });
 
-  console.log(myApplication);
+  console.log(myApplications);
 
   if(isLoading) return <LoadingSpinner/>
 
@@ -58,26 +59,42 @@ console.log(user);
     }
   };
 
-  const handleCancel = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, cancel it!",
-    }).then((result) => {
+  //handle my application delete/cancellation
+  const handleMyApplicationCancel = async (id) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, cancel it!",
+      });
+  
       if (result.isConfirmed) {
-        setApplications(applications.filter((app) => app.id !== id));
+        // Perform delete operation if confirmed
+        await axiosSecure.delete(`/my-application/${id}`);
+        
+        // Optionally update UI or state here
+        // Example: setApplications(applications.filter((app) => app.id !== id));
+        
         Swal.fire("Canceled!", "Your application has been canceled.", "success");
+        refetch()
+      } else {
+        // Handle cancel button click
+        Swal.fire("Cancelled", "Your application is safe.", "info");
       }
-    });
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error!", "Something went wrong while canceling the application.", "error");
+    }
   };
+  
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center my-6">My Applications</h1>
+      <h1 className="text-2xl font-bold text-center my-6">My Applications: {myApplications.length} </h1>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
           <thead>
@@ -95,16 +112,16 @@ console.log(user);
             </tr>
           </thead>
           <tbody>
-            {applications.map((app, index) => (
-              <tr key={app.id}>
+            {myApplications.map((app, index) => (
+              <tr key={app._id}>
                 <th>{index + 1}</th>
                 <td>{app.universityName}</td>
-                <td>{app.address}</td>
+                <td>{app.myApplicationInfo.universityCity},{app.myApplicationInfo.universityCountry}</td>
                 <td>{app.feedback}</td>
                 <td>{app.subjectCategory}</td>
-                <td>{app.appliedDegree}</td>
-                <td>{app.applicationFees}</td>
-                <td>{app.serviceCharge}</td>
+                <td>{app.degree}</td>
+                <td>${app.myApplicationInfo.applicationFees}</td>
+                <td>${app.myApplicationInfo.serviceCharge}</td>
                 <td
                   className={`capitalize font-semibold ${
                     app.status === "pending"
@@ -119,30 +136,31 @@ console.log(user);
                   {app.status}
                 </td>
                 <td className="flex gap-2">
-                  <button
+                  <Link
+                  to={`/scholarships/${app.student.scholarshipId}`}
                     className="btn btn-sm btn-primary flex items-center gap-1"
-                    onClick={() => alert("Viewing details...")}
+                    // onClick={() => alert("Viewing details...")}
                   >
-                    <FaEye /> Details
-                  </button>
+                    <FaEye />
+                  </Link>
                   <button
                     className="btn btn-sm btn-secondary flex items-center gap-1"
                     onClick={() => handleEdit(app.status)}
                     disabled={app.status !== "pending"}
                   >
-                    <FaEdit /> Edit
+                    <FaEdit />
                   </button>
                   <button
                     className="btn btn-sm btn-error flex items-center gap-1"
-                    onClick={() => handleCancel(app.id)}
+                    onClick={() => handleMyApplicationCancel(app._id)}
                   >
-                    <FaTrashAlt /> Cancel
+                    <FaTrashAlt />
                   </button>
                   <button
                     className="btn btn-sm btn-accent flex items-center gap-1"
                     onClick={() => alert("Add review")}
                   >
-                    <FaStar /> Add Review
+                    <FaStar />
                   </button>
                 </td>
               </tr>

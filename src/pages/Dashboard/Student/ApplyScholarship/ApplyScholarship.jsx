@@ -44,7 +44,8 @@ const ApplyScholarship = () => {
 		  universityName: scholarship.universityName,  //read-only
 		  scholarshipCategory: scholarship.scholarshipCategory, //read-only
 		  subjectCategory: scholarship.subjectCategory,  //read-only
-
+		  status: 'pending',
+		  
 		  //user or student related information
 		  student: {
 			userName: user?.displayName,
@@ -52,7 +53,7 @@ const ApplyScholarship = () => {
 			userId: scholarship._id,
 			scholarshipId: scholarship._id,
 			appliedDate: new Date().toISOString().split('T')[0],
-			status: 'pending',
+			
 		  },
 
 		  //my application page information
