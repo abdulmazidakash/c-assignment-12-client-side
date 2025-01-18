@@ -10,7 +10,7 @@ const Statistics = () => {
   if(isLoading) return <LoadingSpinner/>
 
   if(role === 'student') return <Navigate to={'/dashboard/my-application'} />
-  if(role === 'moderator') return <Navigate to={'/dashboard/my-inventory'} />
+  if(role === 'moderator') return <Navigate to={'/dashboard/manage-scholarship'} />
 
   return (
     <div>

@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../../../shared/LoadingSpinner";
 
 const getRandomColor = (role) => {
   const colors = {
@@ -99,7 +100,7 @@ const ManageUsers = () => {
     : users;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>;
   }
 
   return (

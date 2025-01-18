@@ -17,6 +17,7 @@ import MyApplication from "../pages/Dashboard/Student/MyApplication/MyApplicatio
 import EditMyApplication from "../pages/Dashboard/Student/EditMyApplication/EditMyApplication";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Statistics from "../pages/Dashboard/Common/Statistics";
+import ManageScholarships from "../pages/Dashboard/Common/ManageScholarship/ManageScholarship";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
       { path: "my-application", element: <MyApplication/> },
       { path: "edit-my-application/:id", element: <EditMyApplication/> },
       { path: "manage-users", element: <ManageUsers/> },
+      { path: "manage-scholarship", element: <ManageScholarships/> },
     ],
   },
   

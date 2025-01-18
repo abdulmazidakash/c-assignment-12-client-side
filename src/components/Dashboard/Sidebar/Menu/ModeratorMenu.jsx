@@ -10,9 +10,9 @@ function ModeratorMenu() {
       <div className="">
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
        <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship" icon={FaPlusSquare} />
-        <MenuItem label="Manage Scholarships" address="/moderator-scholarships" icon={FaClipboardCheck} />
-        <MenuItem label="All Applied Scholarship" address="/manage-applications" icon={FaTasks} />
-        <MenuItem label="All Reviews" address="/moderator-reviews" icon={FaStarHalfAlt} />
+        <MenuItem label="Manage Scholarships" address="/dashboard/manage-scholarship" icon={FaClipboardCheck} />
+        <MenuItem label="All Applied Scholarship" address="/dashboard/manage-applications" icon={FaTasks} />
+        <MenuItem label="All Reviews" address="/dashboard/moderator-reviews" icon={FaStarHalfAlt} />
       </div>
     </div>
   );

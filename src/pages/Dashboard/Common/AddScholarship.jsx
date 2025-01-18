@@ -8,6 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 import DatePicker from 'react-datepicker';
 import { imageUpload, shortImageName } from '../../../utilities/utilities';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router-dom';
 
 const AddScholarship = () => {
  
@@ -15,6 +16,7 @@ const AddScholarship = () => {
 	const {user} = useAuth();
   const [uploadImage, setUploadImage] = useState({image: { name: 'upload button'},});
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   
 	// const [scholarship, setScholarship] = useState();
   // const [startDate, setStartDate] = useState(new Date());
@@ -128,6 +130,8 @@ const AddScholarship = () => {
 		  if (response.status === 200 || response.status === 201) {
 			toast.success('Scholarship added successfully!');
 			form.reset();
+      
+      navigate(`/dashboard/manage-scholarship`)
 
 		  } else {
 			toast.error('Failed to add scholarship!');

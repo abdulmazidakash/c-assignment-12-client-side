@@ -9,12 +9,12 @@ function AdminMenu() {
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
       <div className="">
-         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
+        <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
         <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship"  icon={FaPlusSquare} />
-        <MenuItem label="Manage Scholarships" address="/manage-scholarships" icon={FaClipboardList} />
-        <MenuItem label="All Applied Scholarship" address="/manage-applications" icon={FaTasks} />
+        <MenuItem label="Manage Scholarships" address="/dashboard/manage-scholarship" icon={FaClipboardList} />
+        <MenuItem label="All Applied Scholarship" address="/dashboard/manage-applications" icon={FaTasks} />
         <MenuItem label="Manage Users" address="/dashboard/manage-users" icon={FaUsers} />
-		<MenuItem label="All Reviews" address="/moderator-reviews" icon={FaStarHalfAlt} />
+		    <MenuItem label="All Reviews" address="/dashboard/moderator-reviews" icon={FaStarHalfAlt} />
       </div>
     </div>
   );
