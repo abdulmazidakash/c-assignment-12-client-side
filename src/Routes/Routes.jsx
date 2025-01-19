@@ -18,6 +18,7 @@ import EditMyApplication from "../pages/Dashboard/Student/EditMyApplication/Edit
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import ManageScholarships from "../pages/Dashboard/Common/ManageScholarship/ManageScholarship";
+import AllAppliedScholarships from "../pages/Dashboard/Common/AllAppliedScholarships/AllAppliedScholarships";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: "edit-my-application/:id", element: <EditMyApplication/> },
       { path: "manage-users", element: <ManageUsers/> },
       { path: "manage-scholarship", element: <ManageScholarships/> },
+      { path: "all-applied-scholarship", element: <AllAppliedScholarships/> },
     ],
   },
   

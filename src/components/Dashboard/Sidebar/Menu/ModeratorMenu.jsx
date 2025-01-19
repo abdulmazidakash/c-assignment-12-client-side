@@ -11,7 +11,7 @@ function ModeratorMenu() {
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUserEdit} />
        <MenuItem label="Add Scholarship" address="/dashboard/add-scholarship" icon={FaPlusSquare} />
         <MenuItem label="Manage Scholarships" address="/dashboard/manage-scholarship" icon={FaClipboardCheck} />
-        <MenuItem label="All Applied Scholarship" address="/dashboard/manage-applications" icon={FaTasks} />
+        <MenuItem label="All Applied Scholarship" address="/dashboard/all-applied-scholarship" icon={FaTasks} />
         <MenuItem label="All Reviews" address="/dashboard/moderator-reviews" icon={FaStarHalfAlt} />
       </div>
     </div>

@@ -40,7 +40,7 @@ const ManageScholarships = () => {
   // Handle update functionality
   const handleScholarshipEdit = async (updatedData) => {
     try {
-      const response = await axiosSecure.patch(
+      const response = await axiosSecure.put(
         `/edit-manage-scholarship/${selectedScholarship._id}`,
         updatedData
       );

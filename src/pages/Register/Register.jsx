@@ -35,24 +35,7 @@ const Register = () => {
       );
       return;
     }
-    // toast.success("Registration successful!");
-
-  //   createUser(email, password)
-  //     .then((result) => {
-  //       console.log(result?.user);
-
-	// 	updateUserProfile(name, photo)
-	// 		.then( async () =>{
-	// 			console.log('user profile updated');
-  //         //save the user info in db if the user in new
-  //    await saveUser({...result?.user, displayName: name, photoURL})
-	// 			e.target.reset();
-	// 			navigate('/')
-	// 		})
-
-  //     })
-  //     .catch((err) => console.log(err.message));
-  // };
+  
 
   
   try {
