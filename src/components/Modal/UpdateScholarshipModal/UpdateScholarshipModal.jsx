@@ -1,35 +1,60 @@
 import React from "react";
+import useAuth from "../../../hooks/useAuth";
+import { imageUpload } from "../../../utilities/utilities";
 
 const UpdateScholarshipModal = ({
   selectedScholarship,
   setIsModalOpen,
-  handleApplicationEdit,
+  handleScholarshipEdit,
 }) => {
+
+  console.log(selectedScholarship);
+  const { user } = useAuth();
+
   // Form submit handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
 
-    const updatedData = {
-      scholarshipName: form.scholarshipName.value,
-      universityName: form.universityName.value,
-      universityCountry: form.universityCountry.value,
-      universityCity: form.universityCity.value,
-      universityRank: parseInt(form.universityRank.value, 10),
-      tuitionFees: parseFloat(form.tuitionFees.value),
-      applicationFees: parseFloat(form.applicationFees.value),
-      serviceCharge: parseFloat(form.serviceCharge.value),
-      applicationDeadline: form.applicationDeadline.value,
-      postDate: form.postDate.value,
-      subjectCategory: form.subjectCategory.value,
-      scholarshipCategory: form.scholarshipCategory.value,
-      degreeCategory: form.degreeCategory.value,
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const imageFile = form.image.files[0];
 
-	console.log(updatedData);
+  // Upload the image if an image file is selected
+  let uploadedImageUrl = null;
+  if (imageFile) {
+    try {
+      uploadedImageUrl = await imageUpload(imageFile); // Upload the image
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      return;
+    }
+  }
 
-    handleApplicationEdit(updatedData); // Pass data to parent for update
+  // Construct updated data
+  const updatedData = {
+    scholarshipName: form.scholarshipName.value,
+    universityName: form.universityName.value,
+    universityCountry: form.universityCountry.value,
+    universityCity: form.universityCity.value,
+    universityRank: parseInt(form.universityRank.value, 10),
+    tuitionFees: parseFloat(form.tuitionFees.value),
+    applicationFees: parseFloat(form.applicationFees.value),
+    serviceCharge: parseFloat(form.serviceCharge.value),
+    applicationDeadline: form.applicationDeadline.value,
+    postDate: form.postDate.value,
+    subjectCategory: form.subjectCategory.value,
+    scholarshipCategory: form.scholarshipCategory.value,
+    degreeCategory: form.degreeCategory.value,
+    image: uploadedImageUrl || selectedScholarship.image, // Use uploaded URL or existing image
+    postedUserEmail: form.postedUserEmail.value,
   };
+
+  console.log(updatedData);
+
+  // Call the parent's function to handle the update
+  handleScholarshipEdit(updatedData);
+};
+
+ 
 
   return (
     <div className="modal modal-open">
@@ -194,6 +219,36 @@ const UpdateScholarshipModal = ({
               required
             />
           </div>
+
+          <div className="form-control mb-4">
+          <label className="label">Upload Image</label>
+         <input
+         type="file"
+         name="image"
+         className="file-input file-input-bordered"
+         />
+        
+         <img
+           src={selectedScholarship.image}
+           alt="Preview"
+           name='image'
+           className="mt-2 w-20 h-20 object-cover"
+         />
+         </div>
+
+          {/* User Email */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Posted User Email *</label>
+          <input
+            type="email"
+            name="postedUserEmail"
+			defaultValue={user?.email}
+			readOnly
+            
+            className="input input-bordered w-full"
+            placeholder="Enter email"
+          />
+        </div>
 
           {/* Actions */}
           <div className="modal-action">

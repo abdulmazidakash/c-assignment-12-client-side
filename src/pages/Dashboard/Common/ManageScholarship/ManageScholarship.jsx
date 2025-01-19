@@ -26,7 +26,7 @@ const ManageScholarships = () => {
   });
 
   // Handle update functionality
-  const handleApplicationEdit = async (updatedData) => {
+  const handleScholarshipEdit = async (updatedData) => {
     try {
       const response = await axiosSecure.patch(
         `/edit-my-application/${selectedScholarship._id}`,
@@ -44,7 +44,11 @@ const ManageScholarships = () => {
       console.error("Error updating scholarship:", error);
       Swal.fire("Error", "Failed to update the scholarship.", "error");
     }
+
+    
   };
+
+  
 
 
   // Handle Delete Button
@@ -139,7 +143,7 @@ const ManageScholarships = () => {
 
       {isModalOpen && selectedScholarship && (
         <UpdateScholarshipModal
-          handleApplicationEdit={handleApplicationEdit}
+        handleScholarshipEdit={handleScholarshipEdit}
           selectedScholarship={selectedScholarship}
           setIsModalOpen={setIsModalOpen}
         />
