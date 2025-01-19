@@ -29,3 +29,20 @@
           });
           
 
+  
+
+          <div className="form-control mb-4">
+          <label className="label">Upload Image</label>
+         <input
+         type="file"
+         name="image"
+         onChange={handleChange}
+         className="file-input file-input-bordered"
+         />
+         {formData.image && (
+         <img
+           src={typeof formData.image === 'string' ? formData.image : URL.createObjectURL(formData.image)}
+           alt="Preview"
+           className="mt-2 w-20 h-20 object-cover"
+         />)}
+         </div>
