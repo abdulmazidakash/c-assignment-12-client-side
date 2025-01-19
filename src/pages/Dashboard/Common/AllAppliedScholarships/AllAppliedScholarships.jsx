@@ -18,12 +18,14 @@ const AllAppliedScholarships = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["appliedScholarships"],
+    queryKey: ["applyScholarships"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/applied-scholarships");
+      const { data } = await axiosSecure.get("/apply-scholarships");
       return data;
     },
   });
+
+  console.log(applications);
 
   // Handle application cancellation
   const handleCancel = async (id) => {
@@ -62,6 +64,22 @@ const AllAppliedScholarships = () => {
     }
   };
 
+  const handleStatusChange = async (id, newStatus) => {
+	try {
+	  // Make a PATCH request to update the status
+	  const response = await axiosSecure.patch(`/update-status/${id}`, { status: newStatus });
+  
+	  // Notify the user of success
+	  Swal.fire("Success!", "Application status updated successfully.", "success");
+  
+	  // Refresh the data
+	  refetch();
+	} catch (err) {
+	  Swal.fire("Error!", "Failed to update application status.", "error");
+	}
+  };
+  
+
   // Loading state
   if (isLoading) return <LoadingSpinner />;
 
@@ -76,7 +94,7 @@ const AllAppliedScholarships = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Applicant Name</th>
+              <th>Applicant Email</th>
               <th>University</th>
               <th>Degree</th>
               <th>Category</th>
@@ -88,23 +106,28 @@ const AllAppliedScholarships = () => {
             {applications.map((application, index) => (
               <tr key={application._id}>
                 <td>{index + 1}</td>
-                <td>{application.applicantName}</td>
+                <td>{application.student?.userEmail}</td>
                 <td>{application.universityName}</td>
-                <td>{application.degreeCategory}</td>
+                <td>{application.degree}</td>
                 <td>{application.scholarshipCategory}</td>
                 <td>
-                  <span
-                    className={`badge ${
-                      application.status === "pending"
-                        ? "badge-warning"
-                        : application.status === "processing"
-                        ? "badge-info"
-                        : "badge-success"
-                    }`}
-                  >
-                    {application.status}
-                  </span>
-                </td>
+					<select
+						value={application.status} // Current status of the application
+						onChange={(e) => handleStatusChange(application._id, e.target.value)} // Handle changes
+						className={`select select-bordered select-sm ${
+						application.status === "pending"
+							? "select-warning"
+							: application.status === "processing"
+							? "select-info"
+							: "select-success"
+						}`}
+					>
+						<option value="pending">Pending</option>
+						<option value="processing">Processing</option>
+						<option value="completed">Completed</option>
+					</select>
+				</td>
+
                 <td className="flex gap-2">
                   {/* Details Button */}
                   <button
@@ -149,7 +172,7 @@ const AllAppliedScholarships = () => {
               <strong>University:</strong> {selectedApplication.universityName}
             </p>
             <p>
-              <strong>Degree:</strong> {selectedApplication.degreeCategory}
+              <strong>Degree:</strong> {selectedApplication.degree}
             </p>
             <p>
               <strong>Scholarship Category:</strong>{" "}
