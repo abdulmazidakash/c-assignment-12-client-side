@@ -11,6 +11,7 @@ const ManageScholarships = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedScholarship, setSelectedScholarship] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sortOption, setSortOption] = useState("none"); // State for selected filter/sort option
 
   // Fetch scholarships using TanStack Query
   const {
@@ -23,6 +24,17 @@ const ManageScholarships = () => {
       const { data } = await axiosSecure.get("/scholarships");
       return data;
     },
+  });
+
+  // Sort and filter scholarships
+  const sortedScholarships = [...scholarships].sort((a, b) => {
+    if (sortOption === "appliedDate") {
+      return new Date(a.appliedDate) - new Date(b.appliedDate);
+    }
+    if (sortOption === "deadline") {
+      return new Date(a.applicationDeadline) - new Date(b.applicationDeadline);
+    }
+    return 0; // No sorting
   });
 
   // Handle update functionality
@@ -44,42 +56,37 @@ const ManageScholarships = () => {
       console.error("Error updating scholarship:", error);
       Swal.fire("Error", "Failed to update the scholarship.", "error");
     }
+  };
 
+   // Handle Delete Button
+   const handleScholarshipDelete = async (id) => {
+    try {
+      const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel it!",
+      });
     
-  };
-
-  
-
-
-  // Handle Delete Button
-  const handleScholarshipDelete = async (id) => {
-	try {
-	  const result = await Swal.fire({
-		title: "Are you sure?",
-		text: "You won't be able to revert this!",
-		icon: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#3085d6",
-		cancelButtonColor: "#d33",
-		confirmButtonText: "Yes, cancel it!",
-	  });
-  
-	  if (result.isConfirmed) {
-		// Perform delete operation if confirmed
-		await axiosSecure.delete(`/scholarship/${id}`);
-		console.log(result);
-		
-		Swal.fire("Canceled!", "You Scholarship has been canceled.", "success");
-		refetch()
-	  } else {
-		// Handle cancel button click
-		Swal.fire("Cancelled", "Your Scholarship is safe.", "info");
-	  }
-	} catch (err) {
-	  console.error(err);
-	  Swal.fire("Error!", "Something went wrong while canceling the Scholarship.", "error");
-	}
-  };
+      if (result.isConfirmed) {
+      // Perform delete operation if confirmed
+      await axiosSecure.delete(`/scholarship/${id}`);
+      console.log(result);
+      
+      Swal.fire("Canceled!", "You Scholarship has been canceled.", "success");
+      refetch()
+      } else {
+      // Handle cancel button click
+      Swal.fire("Cancelled", "Your Scholarship is safe.", "info");
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error!", "Something went wrong while canceling the Scholarship.", "error");
+    }
+    };
 
   // Loading state
   if (isLoading) return <LoadingSpinner />;
@@ -89,6 +96,19 @@ const ManageScholarships = () => {
       <h1 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6">
         Manage Scholarships: {scholarships.length}
       </h1>
+
+      {/* Sorting/Filtering Dropdown */}
+      <div className="flex justify-center mb-6">
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className="select select-bordered w-full max-w-xs"
+        >
+          <option value="none">Sort By</option>
+          <option value="appliedDate">Applied Date</option>
+          <option value="deadline">Scholarship Deadline</option>
+        </select>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="table w-full">
@@ -104,7 +124,7 @@ const ManageScholarships = () => {
             </tr>
           </thead>
           <tbody>
-            {scholarships.map((scholarship, index) => (
+            {sortedScholarships.map((scholarship, index) => (
               <tr key={scholarship._id}>
                 <td>{index + 1}</td>
                 <td>{scholarship.scholarshipName}</td>
@@ -143,7 +163,7 @@ const ManageScholarships = () => {
 
       {isModalOpen && selectedScholarship && (
         <UpdateScholarshipModal
-        handleScholarshipEdit={handleScholarshipEdit}
+          handleScholarshipEdit={handleScholarshipEdit}
           selectedScholarship={selectedScholarship}
           setIsModalOpen={setIsModalOpen}
         />
