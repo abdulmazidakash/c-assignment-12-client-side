@@ -41,7 +41,7 @@ const AllAppliedScholarships = () => {
       });
 
       if (result.isConfirmed) {
-        await axiosSecure.patch(`/cancel-application/${id}`);
+        await axiosSecure.patch(`/apply-scholarship/cancel/${id}`);
         Swal.fire("Cancelled!", "The application has been canceled.", "success");
         refetch();
       }
@@ -53,12 +53,13 @@ const AllAppliedScholarships = () => {
   // Handle feedback submission
   const handleSubmitFeedback = async () => {
     try {
-      await axiosSecure.patch(`/feedback/${selectedApplication._id}`, {
+      await axiosSecure.patch(`/apply-scholarship/${selectedApplication._id}/feedback`, {
         feedback,
       });
       Swal.fire("Success!", "Feedback submitted successfully.", "success");
       setIsFeedbackModalOpen(false);
       refetch();
+	  setFeedback('')
     } catch (err) {
       Swal.fire("Error!", "Failed to submit feedback.", "error");
     }
@@ -68,7 +69,7 @@ const AllAppliedScholarships = () => {
 	try {
 	  // Make a PATCH request to update the status
 	  const response = await axiosSecure.patch(`/update-status/${id}`, { status: newStatus });
-  
+		console.log(response);
 	  // Notify the user of success
 	  Swal.fire("Success!", "Application status updated successfully.", "success");
   

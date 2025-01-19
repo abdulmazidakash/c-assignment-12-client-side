@@ -74,94 +74,92 @@ const MyApplication = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center my-6">My Applications: {myApplications.length} </h1>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra w-full">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>University Name</th>
-              <th>Address</th>
-              <th>Feedback</th>
-              <th>Subject</th>
-              <th>Degree</th>
-              <th>App Fees</th>
-              <th>Service Charge</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {myApplications.map((app, index) => (
-              <tr key={app._id}>
-                <th>{index + 1}</th>
-                <td>{app.universityName}</td>
-                <td>{app.myApplicationInfo.universityCity},{app.myApplicationInfo.universityCountry}</td>
-                <td>{app.feedback}</td>
-                <td>{app.subjectCategory}</td>
-                <td>{app.degree}</td>
-                <td>${app.myApplicationInfo.applicationFees}</td>
-                <td>${app.myApplicationInfo.serviceCharge}</td>
-                <td
-                  className={`font-semibold ${
-                    app.status === "pending"
-                      ? "text-yellow-500"
-                      : app.status === "processing"
-                      ? "text-blue-500"
-                      : app.status === "completed"
-                      ? "text-green-500"
-                      : "text-red-500"
-                  }`}
-                >
-                  {app.status}
-                </td>
-                <td className="flex gap-2">
+    <div className="container mx-auto px-4 py-6">
+  <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
+    My Applications: {myApplications.length}
+  </h1>
 
-                 {/* application details button  */}
-                  <Link
-                  to={`/scholarships/${app.student.scholarshipId}`}
-                    className="btn btn-sm btn-primary flex items-center gap-1"
-                    // onClick={() => alert("Viewing details...")}
-                  >
-                    <FaEye />
-                  </Link>
+  {/* Table Wrapper */}
+  <div className="overflow-x-auto">
+    <table className="table w-full">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>University Name</th>
+          <th>Address</th>
+          <th>Feedback</th>
+          <th>Subject</th>
+          <th>Degree</th>
+          <th>App Fees</th>
+          <th>Service Charge</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {myApplications.map((app, index) => (
+          <tr key={app._id}>
+            <th>{index + 1}</th>
+            <td className="whitespace-normal">{app.universityName}</td>
+            <td className="whitespace-normal">
+              {app.myApplicationInfo.universityCity}, {app.myApplicationInfo.universityCountry}
+            </td>
+            <td>{app.feedback || "N/A"}</td>
+            <td>{app.subjectCategory}</td>
+            <td>{app.degree}</td>
+            <td>${app.myApplicationInfo.applicationFees}</td>
+            <td>${app.myApplicationInfo.serviceCharge}</td>
+            <td
+              className={`font-semibold ${
+                app.status === "pending"
+                  ? "text-yellow-500"
+                  : app.status === "processing"
+                  ? "text-blue-500"
+                  : app.status === "completed"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }`}
+            >
+              {app.status}
+            </td>
+            <td className="flex flex-wrap gap-2 justify-center items-center">
+              {/* View Details Button */}
+              <Link
+                to={`/scholarships/${app.student.scholarshipId}`}
+                className="btn btn-sm btn-primary flex items-center gap-1"
+              >
+                <FaEye />
+              </Link>
 
-                  {/* application edit button  */}
-                
-                  <Link
-                    to="#"
-                    className="btn btn-sm btn-secondary flex items-center gap-1"
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevent default navigation
-                      handleEdit(app.status, `/dashboard/edit-my-application/${app._id}`);
-                    }}
-                  >
-                    <FaEdit />
-                  </Link>
+              {/* Edit Application Button */}
+              <Link
+                to="#"
+                className="btn btn-sm btn-secondary flex items-center gap-1"
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default navigation
+                  handleEdit(app.status, `/dashboard/edit-my-application/${app._id}`);
+                }}
+              >
+                <FaEdit />
+              </Link>
 
-                  {/* application cancel button  */}
-                  <button
-                    className="btn btn-sm btn-error flex items-center gap-1"
-                    onClick={() => handleMyApplicationCancel(app._id)}
-                  >
-                    <FaTrashAlt />
-                  </button>
+              {/* Cancel Application Button */}
+              <button
+                className="btn btn-sm btn-error flex items-center gap-1"
+                onClick={() => handleMyApplicationCancel(app._id)}
+              >
+                <FaTrashAlt />
+              </button>
 
-                  {/* application add review button  */}
-                  <button
-                    className="btn btn-sm btn-accent flex items-center gap-1"
-                    onClick={() => alert("Add review")}
-                  >
-                    <FaStar />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+              
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 
