@@ -184,41 +184,46 @@ const handleSubmit = async (e) => {
             />
           </div>
 
-          {/* Subject Category */}
+           {/* Dropdowns */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <div>
-            <label className="block font-medium mb-1">Subject Category</label>
-            <input
-              type="text"
+            <label className="block text-sm font-medium text-gray-700 mb-2">Subject Category</label>
+            <select
               name="subjectCategory"
               defaultValue={selectedScholarship.subjectCategory}
-              className="input input-bordered w-full"
-              required
-            />
+          
+              className="select select-bordered w-full"
+            >
+              <option>Agriculture</option>
+              <option>Engineering</option>
+              <option>Doctor</option>
+            </select>
           </div>
-
-          {/* Scholarship Category */}
           <div>
-            <label className="block font-medium mb-1">Scholarship Category</label>
-            <input
-              type="text"
+            <label className="block text-sm font-medium text-gray-700 mb-2">Scholarship Category</label>
+            <select
               name="scholarshipCategory"
               defaultValue={selectedScholarship.scholarshipCategory}
-              className="input input-bordered w-full"
-              required
-            />
+              className="select select-bordered w-full"
+            >
+              <option>Full fund</option>
+              <option>Partial</option>
+              <option>Self-fund</option>
+            </select>
           </div>
-
-          {/* Degree Category */}
           <div>
-            <label className="block font-medium mb-1">Degree Category</label>
-            <input
-              type="text"
+            <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
+            <select
               name="degreeCategory"
               defaultValue={selectedScholarship.degreeCategory}
-              className="input input-bordered w-full"
-              required
-            />
+              className="select select-bordered w-full"
+            >
+              <option>Diploma</option>
+              <option>Bachelor</option>
+              <option>Masters</option>
+            </select>
           </div>
+        </div>
 
           <div className="form-control mb-4">
           <label className="label">Upload Image</label>
