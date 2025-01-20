@@ -13,7 +13,7 @@ function StudentMenu() {
 
         <MenuItem label="My Profile" address="/dashboard/profile" icon={FaUser} />
         <MenuItem label="My Applications" address="/dashboard/my-application" icon={FaFileAlt} />
-        <MenuItem label="My Reviews" address="/my-reviews" icon={FaStar} />
+        <MenuItem label="My Reviews" address="/dashboard/my-reviews" icon={FaStar} />
       </div>
     </div>
   );

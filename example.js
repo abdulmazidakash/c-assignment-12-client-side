@@ -46,3 +46,90 @@
            className="mt-2 w-20 h-20 object-cover"
          />)}
          </div>
+
+
+
+         ///
+
+         const express = require("express");
+const { MongoClient, ObjectId } = require("mongodb");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+const app = express();
+const PORT = 5000;
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// MongoDB Connection
+const uri = "mongodb://localhost:27017";
+const client = new MongoClient(uri);
+
+let reviewsCollection;
+
+client.connect((err) => {
+  if (err) {
+    console.error("Failed to connect to MongoDB", err);
+    return;
+  }
+  const db = client.db("reviewsDB");
+  reviewsCollection = db.collection("reviews");
+  console.log("Connected to MongoDB");
+});
+
+// Routes
+
+// Get reviews by userId
+app.get("/reviews/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const reviews = await reviewsCollection.find({ userId }).toArray();
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Add a new review
+app.post("/reviews", async (req, res) => {
+  try {
+    const review = req.body;
+    const result = await reviewsCollection.insertOne(review);
+    res.status(201).json(result.ops[0]);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Update a review by ID
+app.patch("/reviews/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const result = await reviewsCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: updatedData }
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Delete a review by ID
+app.delete("/reviews/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await reviewsCollection.deleteOne({ _id: new ObjectId(id) });
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
