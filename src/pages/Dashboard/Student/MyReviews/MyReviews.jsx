@@ -4,43 +4,36 @@ import axios from "axios";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyReviews = () => {
   const [editReview, setEditReview] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
-  const {user} = useAuth();
+  const { user } = useAuth();
   console.log(user);
 
-  // Using useQuery directly with queryFn
+  // Fetch reviews based on user email
   const {
-	data: reviews = [],
-	isLoading,
-	isError,
-	error,
-	refetch,
+    data: reviews = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
   } = useQuery({
-	queryKey: ["reviews", user?.email],
-	queryFn: async () => {
-	  const token = localStorage.getItem("accessToken");
-	  const response = await axios.get(`/reviews`, {
-		params: { email: user.email },
-		headers: {
-		  Authorization: `Bearer ${token}`,
-		},
-	  });
-	  return response.data;
-	},
-	onError: (error) => {
-	  console.error("Error fetching reviews:", error);
-	},
-	retry: false,
+    queryKey: ["reviews", user?.email],
+    queryFn: async () => {
+      const response = await axiosSecure.get(`/review?email=${user?.email}`);
+      return response.data;
+    },
+    onError: (error) => {
+      console.error("Error fetching reviews:", error);
+    },
+    retry: false,
   });
-  
-  
-  
 
-  console.log('review here -------->', reviews);
+  console.log("reviews: ", reviews);
 
   // Handle editing a review
   const handleEdit = (review) => {
@@ -52,7 +45,7 @@ const MyReviews = () => {
   const handleModalSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`/reviews/${editReview._id}`, editReview);
+      await axiosSecure.patch(`/review/${editReview._id}`, editReview);
       Swal.fire("Success!", "Review updated successfully.", "success");
       setIsModalOpen(false);
       refetch(); // Refetch reviews after the update
@@ -76,7 +69,7 @@ const MyReviews = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`/reviews/${id}`);
+        await axiosSecure.delete(`/review/${id}`);
         Swal.fire("Deleted!", "Your review has been deleted.", "success");
         refetch(); // Refetch reviews after deletion
       } catch (error) {
@@ -113,10 +106,10 @@ const MyReviews = () => {
               reviewList.map((review, index) => (
                 <tr key={review._id}>
                   <td>{index + 1}</td>
-                  <td>{review.scholarshipName}</td>
+                  <td>{review.scholarshipCategory}</td>
                   <td>{review.universityName}</td>
-                  <td>{review.comments}</td>
-                  <td>{review.date}</td>
+                  <td>{review.comment}</td>
+                  <td>{review.reviewDate}</td>
                   <td>
                     <button
                       onClick={() => handleEdit(review)}
@@ -150,15 +143,42 @@ const MyReviews = () => {
           <div className="modal-box">
             <h2 className="text-xl font-bold mb-4">Edit Review</h2>
             <form onSubmit={handleModalSubmit}>
-              <textarea
-                value={editReview?.comments || ""}
-                onChange={(e) =>
-                  setEditReview({ ...editReview, comments: e.target.value })
-                }
-                className="textarea textarea-bordered w-full"
-                rows="4"
-                required
-              />
+              <div className="mb-4">
+                <label className="block text-sm font-semibold">Scholarship Name</label>
+                <input
+                  type="text"
+                  value={editReview?.scholarshipCategory || ""}
+                  onChange={(e) =>
+                    setEditReview({ ...editReview, scholarshipCategory: e.target.value })
+                  }
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-semibold">University Name</label>
+                <input
+                  type="text"
+                  value={editReview?.universityName || ""}
+                  onChange={(e) =>
+                    setEditReview({ ...editReview, universityName: e.target.value })
+                  }
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-semibold">Review Comments</label>
+                <textarea
+                  value={editReview?.comment || ""}
+                  onChange={(e) =>
+                    setEditReview({ ...editReview, comment: e.target.value })
+                  }
+                  className="textarea textarea-bordered w-full"
+                  rows="4"
+                  required
+                />
+              </div>
               <div className="modal-action">
                 <button type="submit" className="btn btn-success">
                   Save Changes

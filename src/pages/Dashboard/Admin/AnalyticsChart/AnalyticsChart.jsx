@@ -13,6 +13,7 @@ import {
   ArcElement,
 } from "chart.js";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../../shared/LoadingSpinner";
 
 // Register ChartJS components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -31,24 +32,12 @@ const AnalyticsChart = () => {
   console.log(adminStats);
 
   if (isLoading) {
-    return <div className="text-center mt-10 text-blue-600 font-semibold">Loading data...</div>;
+    return <LoadingSpinner/>;
   }
 
   if (isError || !adminStats.subjectCategories) {
     return <div className="text-center mt-10 text-red-500 font-semibold">Error fetching data!</div>;
   }
-
-  // Chart data preparation
-  const barDataCategories = {
-    labels: Object.keys(adminStats.subjectCategories || {}),
-    datasets: [
-      {
-        label: "Scholarship Categories",
-        data: Object.values(adminStats.subjectCategories || {}),
-        backgroundColor: ["#6366F1", "#F43F5E", "#22C55E", "#EAB308", "#3B82F6"],
-      },
-    ],
-  };
 
   const barDataSubjectCategories = {
     labels: Object.keys(adminStats.subjectCategories || {}),
