@@ -164,6 +164,7 @@ const MyApplication = () => {
             setShowReviewModal(false);
             setSelectedApplication(null); // Clear selected application after closing
           }}
+          refetch={refetch}
         />
       )}
 

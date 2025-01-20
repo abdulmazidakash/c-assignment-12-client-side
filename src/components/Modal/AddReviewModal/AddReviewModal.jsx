@@ -4,7 +4,7 @@ import { FaTimes, FaStar } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
-const AddReviewModal = ({ selectedApplication, onClose }) => {
+const AddReviewModal = ({ selectedApplication, onClose, refetch }) => {
   const { universityName, scholarshipCategory,  student: { scholarshipId }, } = selectedApplication;
   const { user } = useAuth();
   const [rating, setRating] = useState("");
@@ -41,6 +41,7 @@ const AddReviewModal = ({ selectedApplication, onClose }) => {
 
     try {
       const response = await axiosSecure.post("/add-review", reviewData);
+      console.log(response);
       if (response.status === 201) {
         Swal.fire({
           icon: "success",
@@ -48,14 +49,18 @@ const AddReviewModal = ({ selectedApplication, onClose }) => {
           text: "Your review has been submitted successfully.",
         });
         onClose(); // Close the modal
+        refetch();
       }
     } catch (error) {
       console.error("Error submitting review:", error);
+      console.log(error.response.data.message);
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "An error occurred while submitting your review.",
+        text: `${error.response.data.message}`,
       });
+      onClose(); // Close the modal
+        refetch();
     }
   };
 
