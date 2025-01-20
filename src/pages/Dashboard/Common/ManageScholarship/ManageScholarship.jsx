@@ -115,6 +115,7 @@ const ManageScholarships = () => {
           <thead>
             <tr>
               <th>#</th>
+              <th>Image</th> 
               <th>Scholarship Name</th>
               <th>University</th>
               <th>Subject</th>
@@ -127,6 +128,13 @@ const ManageScholarships = () => {
             {sortedScholarships.map((scholarship, index) => (
               <tr key={scholarship._id}>
                 <td>{index + 1}</td>
+                <td>
+            <img
+              src={scholarship.image || "default-image-url.jpg"} // Default image if none provided
+              alt={scholarship.scholarshipName}
+              className="w-12 h-12 rounded-lg object-cover" // Adjust size and style
+            />
+          </td>
                 <td>{scholarship.scholarshipName}</td>
                 <td>{scholarship.universityName}</td>
                 <td>{scholarship.subjectCategory}</td>

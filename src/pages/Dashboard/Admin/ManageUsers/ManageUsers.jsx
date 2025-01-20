@@ -129,6 +129,7 @@ const ManageUsers = () => {
           <thead>
             <tr>
               <th className="text-left">#</th>
+              <th>Image</th>
               <th className="text-left">Name</th>
               <th className="text-left">Email</th>
               <th className="text-left">Role</th>
@@ -139,6 +140,13 @@ const ManageUsers = () => {
             {filteredUsers.map((user, index) => (
               <tr key={user._id}>
                 <td>{index + 1}</td>
+                <td>
+                  <img
+                    src={user.image || "/default-avatar.png"}
+                    alt={user.name || "N/A"}
+                    className="w-12 h-12 rounded-lg object-cover"
+                  />
+                </td>
                 <td>{user.name || "N/A"}</td>
                 <td>{user.email || "N/A"}</td>
                 <td>

@@ -17,7 +17,7 @@ const AllScholarship = () => {
   const { data: scholarships = [], isLoading, isError } = useQuery({
     queryKey: ['scholarships'],
     queryFn: async () => {
-      const { data } = await axiosPublic.get('/scholarships');
+      const { data } = await axiosPublic.get('/all-scholarships');
       return data;
     },
   });
@@ -42,10 +42,10 @@ const AllScholarship = () => {
   };
 
   // Create paginated slides (3 scholarships per slide)
-  const slides = Array.from({ length: Math.ceil(filteredScholarships.length / 3) }, (_, index) => (
+  const slides = Array.from({ length: Math.ceil(filteredScholarships.length / 6) }, (_, index) => (
     <SwiperSlide key={index}>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1  gap-6 pr-8">
-        {filteredScholarships.slice(index * 3, index * 3 + 3).map((scholarship) => (
+        {filteredScholarships.slice(index * 6, index * 6 + 6).map((scholarship) => (
           <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
         ))}
       </div>

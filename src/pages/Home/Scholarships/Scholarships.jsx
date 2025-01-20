@@ -9,10 +9,10 @@ const Scholarships = () => {
 	const axiosPublic = useAxiosPublic();
 
 	const { data: scholarships, isLoading} = useQuery({
-		queryKey: ['scholarships'],
+		queryKey: ['top-scholarships'],
 		queryFn: async() =>{
 			//fetch
-			const {data} = await axiosPublic.get(`/scholarships`);
+			const {data} = await axiosPublic.get(`/top-scholarships`);
 			return data;
 
 		},
@@ -23,7 +23,7 @@ const Scholarships = () => {
 	if(isLoading) return <LoadingSpinner/>
 
 	return (
-		<div>
+		<div className='container mx-auto '>
 
 			 {/* Section Header */}
 			 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">
@@ -31,7 +31,7 @@ const Scholarships = () => {
         	</h2>
 
 			 {scholarships && scholarships.length > 0 ? 
-			<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8'>
+			<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 				{scholarships.map(scholarship => <ScholarshipCard key={scholarship._id} scholarship={scholarship} />)}
 			</div>
 			: 

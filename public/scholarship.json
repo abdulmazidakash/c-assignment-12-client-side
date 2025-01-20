@@ -2,87 +2,116 @@
 	{
 	  "scholarshipName": "Global Agriculture Scholarship",
 	  "universityName": "University of Cambridge",
-	  "universityImage": "https://i.ibb.co/example1.jpg", // Image URL hosted on ImgBB
+	  "universityImage": "https://i.ibb.co/example1.jpg",
 	  "universityCountry": "United Kingdom",
 	  "universityCity": "Cambridge",
 	  "universityWorldRank": 2,
-	  "subjectCategory": "Agriculture", // Options: Agriculture, Engineering, Doctor
-	  "scholarshipCategory": "Partial", // Options: Full fund, Partial, Self-fund
-	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
-	  "tuitionFees": 20000, // Optional field
+	  "subjectCategory": "Agriculture",
+	  "scholarshipCategory": "Partial",
+	  "degree": "Masters",
+	  "tuitionFees": 20000,
 	  "applicationFees": 50,
 	  "serviceCharge": 250,
 	  "applicationDeadline": "2025-06-15",
 	  "scholarshipPostDate": "2025-01-10",
-	  "postedUserEmail": "moderator2@example.com"
+	  "postedUserEmail": "moderator2@example.com",
+	  "description": "This scholarship supports students in pursuing a Master's degree in Agriculture at the University of Cambridge, offering partial funding to cover tuition fees.",
+	  "stipend": 5000
 	},
 	{
 	  "scholarshipName": "Engineering Excellence Scholarship",
 	  "universityName": "Stanford University",
-	  "universityImage": "https://i.ibb.co/example2.jpg", // Image URL hosted on ImgBB
+	  "universityImage": "https://i.ibb.co/example2.jpg",
 	  "universityCountry": "United States",
 	  "universityCity": "Stanford",
 	  "universityWorldRank": 3,
-	  "subjectCategory": "Engineering", // Options: Agriculture, Engineering, Doctor
-	  "scholarshipCategory": "Full fund", // Options: Full fund, Partial, Self-fund
-	  "degree": "Bachelor", // Options: Diploma, Bachelor, Masters
-	  "tuitionFees": null, // Optional field
+	  "subjectCategory": "Engineering",
+	  "scholarshipCategory": "Full fund",
+	  "degree": "Bachelor",
+	  "tuitionFees": null,
 	  "applicationFees": 75,
 	  "serviceCharge": 400,
 	  "applicationDeadline": "2025-08-01",
 	  "scholarshipPostDate": "2025-01-15",
-	  "postedUserEmail": "moderator3@example.com"
+	  "postedUserEmail": "moderator3@example.com",
+	  "description": "A fully funded scholarship for exceptional students pursuing a Bachelor's degree in Engineering at Stanford University.",
+	  "stipend": 10000
 	},
 	{
 	  "scholarshipName": "Medical Research Fellowship",
 	  "universityName": "Johns Hopkins University",
-	  "universityImage": "https://i.ibb.co/example3.jpg", // Image URL hosted on ImgBB
+	  "universityImage": "https://i.ibb.co/example3.jpg",
 	  "universityCountry": "United States",
 	  "universityCity": "Baltimore",
 	  "universityWorldRank": 6,
-	  "subjectCategory": "Doctor", // Options: Agriculture, Engineering, Doctor
-	  "scholarshipCategory": "Self-fund", // Options: Full fund, Partial, Self-fund
-	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
-	  "tuitionFees": 30000, // Optional field
+	  "subjectCategory": "Doctor",
+	  "scholarshipCategory": "Self-fund",
+	  "degree": "Masters",
+	  "tuitionFees": 30000,
 	  "applicationFees": 120,
 	  "serviceCharge": 500,
 	  "applicationDeadline": "2025-09-10",
 	  "scholarshipPostDate": "2025-01-12",
-	  "postedUserEmail": "moderator4@example.com"
+	  "postedUserEmail": "moderator4@example.com",
+	  "description": "This fellowship supports students in medical research, providing access to world-class facilities at Johns Hopkins University.",
+	  "stipend": 0
 	},
 	{
 	  "scholarshipName": "Diploma in Agricultural Science",
 	  "universityName": "University of Sydney",
-	  "universityImage": "https://i.ibb.co/example4.jpg", // Image URL hosted on ImgBB
+	  "universityImage": "https://i.ibb.co/example4.jpg",
 	  "universityCountry": "Australia",
 	  "universityCity": "Sydney",
 	  "universityWorldRank": 20,
-	  "subjectCategory": "Agriculture", // Options: Agriculture, Engineering, Doctor
-	  "scholarshipCategory": "Partial", // Options: Full fund, Partial, Self-fund
-	  "degree": "Diploma", // Options: Diploma, Bachelor, Masters
-	  "tuitionFees": 10000, // Optional field
+	  "subjectCategory": "Agriculture",
+	  "scholarshipCategory": "Partial",
+	  "degree": "Diploma",
+	  "tuitionFees": 10000,
 	  "applicationFees": 40,
 	  "serviceCharge": 150,
 	  "applicationDeadline": "2025-07-20",
 	  "scholarshipPostDate": "2025-01-08",
-	  "postedUserEmail": "moderator5@example.com"
+	  "postedUserEmail": "moderator5@example.com",
+	  "description": "Partial funding for a Diploma in Agricultural Science at the University of Sydney, designed for students aspiring to excel in agriculture.",
+	  "stipend": 3000
 	},
 	{
 	  "scholarshipName": "Tech Leaders Scholarship",
 	  "universityName": "Massachusetts Institute of Technology",
-	  "universityImage": "https://i.ibb.co/example5.jpg", // Image URL hosted on ImgBB
+	  "universityImage": "https://i.ibb.co/example5.jpg",
 	  "universityCountry": "United States",
 	  "universityCity": "Cambridge",
 	  "universityWorldRank": 4,
-	  "subjectCategory": "Engineering", // Options: Agriculture, Engineering, Doctor
-	  "scholarshipCategory": "Full fund", // Options: Full fund, Partial, Self-fund
-	  "degree": "Masters", // Options: Diploma, Bachelor, Masters
-	  "tuitionFees": null, // Optional field
+	  "subjectCategory": "Engineering",
+	  "scholarshipCategory": "Full fund",
+	  "degree": "Masters",
+	  "tuitionFees": null,
 	  "applicationFees": 90,
 	  "serviceCharge": 350,
 	  "applicationDeadline": "2025-10-01",
 	  "scholarshipPostDate": "2025-01-14",
-	  "postedUserEmail": "moderator6@example.com"
+	  "postedUserEmail": "moderator6@example.com",
+	  "description": "A prestigious scholarship offering full funding for outstanding students pursuing a Master's degree in Engineering at MIT.",
+	  "stipend": 12000
 	}
-  ]
-  
+	{
+		"scholarshipName": "Turkiye Burslari Scholarship",
+		"universityName": "Istanbul University",
+		"universityImage": "https://i.ibb.co/example-turkey.jpg",
+		"universityCountry": "Turkey",
+		"universityCity": "Istanbul",
+		"universityWorldRank": 801,
+		"subjectCategory": "Engineering",
+		"scholarshipCategory": "Full fund",
+		"degree": "Masters",
+		"tuitionFees": null,
+		"applicationFees": 0,
+		"serviceCharge": 0,
+		"applicationDeadline": "2025-05-31",
+		"scholarshipPostDate": "2025-01-18",
+		"postedUserEmail": "moderator_turkey@example.com",
+		"description": "The Turkiye Burslari Scholarship provides full funding for international students to pursue a Master's degree at Istanbul University, including tuition, accommodation, and a monthly stipend.",
+		"stipend": 4000
+	  }
+	  
+]

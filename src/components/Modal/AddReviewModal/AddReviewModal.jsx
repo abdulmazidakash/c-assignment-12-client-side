@@ -6,7 +6,9 @@ import useAuth from "../../../hooks/useAuth";
 
 const AddReviewModal = ({ selectedApplication, onClose, refetch }) => {
   const { universityName, scholarshipCategory,  student: { scholarshipId }, } = selectedApplication;
+  console.log(selectedApplication);
   const { user } = useAuth();
+  console.log(user);
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
   const [reviewDate, setReviewDate] = useState(
@@ -32,6 +34,7 @@ const AddReviewModal = ({ selectedApplication, onClose, refetch }) => {
       scholarshipId,
       userName: user?.displayName,
       userEmail: user?.email,
+      userImage: user?.photoURL,
       rating,
       comment,
       reviewDate,

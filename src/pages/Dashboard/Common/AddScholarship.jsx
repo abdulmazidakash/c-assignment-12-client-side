@@ -43,6 +43,9 @@ const AddScholarship = () => {
     const scholarshipCategory = form.scholarshipCategory.value;
     const degreeCategory = form.degreeCategory.value;
 
+    const stipend = parseFloat(form.stipend.value);
+    const description = form.description.value;
+
     
 		// const applicationDeadline = format(parseISO(form.applicationDeadline.value), 'yyyy-MM-dd');
     // const deadline = startDate
@@ -79,6 +82,8 @@ const AddScholarship = () => {
       postDate, 
       postedUserEmail , 
       moderator,
+      description,
+      stipend
     };
 
     console.table(scholarshipData);
@@ -287,27 +292,27 @@ const AddScholarship = () => {
           </div>
         </div>
 
-        {/* Image Upload */}
-        {/* <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">University Logo/Image *</label>
-          <div className="flex items-center space-x-4">
-            <input
-              type="file"
-			  name='image'
-           
-              accept="image/*"
-              className="file-input file-input-bordered"
-            />
-            <BiImageAdd className="text-2xl text-gray-500" />
-          </div>
-          {scholarship.universityImage && (
-            <img
-              src={scholarship.universityImage}
-              alt="Uploaded"
-              className="w-20 h-20 mt-2 rounded-lg"
-            />
-          )}
-        </div> */}
+   {/* Stipend Input */}
+   <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Stipend (Optional)</label>
+          <input
+            type="number"
+            name="stipend"
+            className="input input-bordered w-full"
+            placeholder="Enter stipend amount"
+          />
+        </div>
+
+        {/* Description Textarea */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+          <textarea
+            name="description"
+            className="textarea textarea-bordered w-full"
+            placeholder="Enter scholarship description"
+            rows="4"
+          ></textarea>
+        </div>
 
           {/* Image */}
           <div className=' p-4  w-full  m-auto rounded-lg flex-grow'>
@@ -406,6 +411,17 @@ const AddScholarship = () => {
             <MdOutlineAddCircleOutline className="text-xl mr-2" /> Add Scholarship
           </button>
         </div>
+
+        {/* Submit Button */}
+        {/* <div className="mt-8">
+          <button
+            type="submit"
+            className="btn btn-primary w-full flex items-center justify-center"
+            disabled={loading}
+          >
+            {loading ? 'Submitting...' : <><MdOutlineAddCircleOutline className="text-xl mr-2" /> Add Scholarship</>}
+          </button>
+        </div> */}
       </form>
     </div>
   );

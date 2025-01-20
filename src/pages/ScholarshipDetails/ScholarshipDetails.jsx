@@ -22,22 +22,16 @@ const ScholarshipDetails = () => {
     },
   });
 
-  const reviews = [
-    {
-      reviewerImage: 'https://i.ibb.co/BG7TFcR/Stanford-University.jpg',
-      reviewerName: 'John Doe',
-      reviewDate: '2025-01-15',
-      rating: 4,
-      comment: 'Great opportunity and very helpful!',
+  const { data: reviews = [], refetch: refetchReviews } = useQuery({
+    queryKey: ['reviews', id],
+    queryFn: async () => {
+        const { data } = await axiosSecure.get(`/reviews/${id}`);
+        return data;
     },
-    {
-      reviewerImage: 'https://i.ibb.co/BG7TFcR/Stanford-University.jpg',
-      reviewerName: 'Jane Smith',
-      reviewDate: '2025-01-14',
-      rating: 5,
-      comment: 'Amazing experience and supportive staff!',
-    },
-  ];
+});
+
+console.log(reviews);
+
 
   const {
     universityName,
@@ -159,38 +153,40 @@ const ScholarshipDetails = () => {
           <FaRegCommentDots className="text-[#13405E]" />
           Scholarship Reviews
         </h2>
+
         {reviews.length > 0 ? (
-          <Swiper
-            modules={[Pagination]}
-            spaceBetween={20}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-          >
-            {reviews.map((review, index) => (
-              <SwiperSlide key={index}>
-                <div className="bg-white shadow-lg rounded-lg p-6 border flex items-start gap-4">
-                  <img
-                    src={review.reviewerImage}
-                    alt={review.reviewerName}
-                    className="w-16 h-16 rounded-full"
-                  />
-                  <div>
-                    <h3 className="text-lg font-bold">{review.reviewerName}</h3>
-                    <p className="text-sm text-gray-500">{review.reviewDate}</p>
-                    <div className="flex items-center text-yellow-500 mb-2">
-                      {Array.from({ length: review.rating }).map((_, i) => (
-                        <FaStar key={i} />
-                      ))}
-                    </div>
-                    <p>{review.comment}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <Swiper
+                modules={[Pagination]}
+                spaceBetween={20}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+            >
+                {reviews.map((review, index) => (
+                    <SwiperSlide key={index}>
+                        <div className="bg-white shadow-lg rounded-lg p-6 border flex items-start gap-4">
+                            <img
+                                src={review.userImage || 'https://via.placeholder.com/64'}
+                                alt={review.userName}
+                                className="w-16 h-16 rounded-full"
+                            />
+                            <div>
+                                <h3 className="text-lg font-bold">{review.userName}</h3>
+                                <p className="text-sm text-gray-500">{review.reviewDate}</p>
+                                <div className="flex items-center text-yellow-500 mb-2">
+                                    {Array.from({ length: review.rating }).map((_, i) => (
+                                        <FaStar key={i} />
+                                    ))}
+                                </div>
+                                <p>{review.comment}</p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         ) : (
-          <p>No reviews available for this scholarship.</p>
+            <p>No reviews available for this scholarship.</p>
         )}
+
       </div>
     </div>
   );

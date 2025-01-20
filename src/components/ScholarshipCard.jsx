@@ -15,11 +15,12 @@ const ScholarshipCard = ({scholarship}) => {
 		scholarshipCategory,
 		applicationFees, 
 		applicationDeadline,
-		_id
+		_id,
+    averageRating
 	} = scholarship || {};
 	return (
 		<div>
-			<div className="card w-full max-w-md bg-white shadow-xl rounded-lg overflow-hidden border border-gray-300 mx-auto md:mx-4 my-4 transition-transform transform hover:scale-105">
+			<div className="card w-full max-w-md bg-white shadow-xl rounded-lg overflow-hidden border border-gray-300 mx-auto my-4 transition-transform transform hover:scale-105">
       {/* University Image */}
       <img
         src={image}
@@ -65,7 +66,7 @@ const ScholarshipCard = ({scholarship}) => {
         {/* Rating */}
         <div className="flex items-center mb-4">
           <AiFillStar className="text-yellow-500" />
-          <span className="ml-1 text-sm font-semibold">5</span>
+          <span className="ml-1 text-sm font-semibold">{averageRating}</span>
         </div>
 
         {/* Details Button */}
