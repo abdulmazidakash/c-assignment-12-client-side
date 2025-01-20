@@ -116,7 +116,7 @@ const MyApplication = () => {
                 >
                   {app.status}
                 </td>
-                <td className="flex flex-wrap gap-2 justify-center items-center">
+                <td className="flex gap-2 justify-center items-center">
                   <Link
                     to={`/scholarships/${app.student.scholarshipId}`}
                     className="btn btn-sm btn-primary flex items-center gap-1"
