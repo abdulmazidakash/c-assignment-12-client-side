@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Bar, Pie } from "react-chartjs-2";
@@ -20,7 +20,10 @@ const fetchAnalyticsData = async () => {
 
 const AnalyticsChart = () => {
   // Use TanStack Query to fetch analytics data
-  const { data, error, isLoading } = useQuery(["analytics"], fetchAnalyticsData);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["analytics"],
+    queryFn: fetchAnalyticsData,
+  });
 
   if (isLoading) {
     return <div className="text-center mt-10">Loading...</div>;
@@ -28,6 +31,11 @@ const AnalyticsChart = () => {
 
   if (error) {
     return <div className="text-center mt-10">Error fetching analytics data</div>;
+  }
+
+  // Check if data and data.categories exist
+  if (!data || !data.categories) {
+    return <div className="text-center mt-10">No analytics data available</div>;
   }
 
   // Prepare Data for Charts

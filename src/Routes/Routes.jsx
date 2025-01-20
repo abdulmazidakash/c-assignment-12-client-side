@@ -21,6 +21,7 @@ import ManageScholarships from "../pages/Dashboard/Common/ManageScholarship/Mana
 import AllAppliedScholarships from "../pages/Dashboard/Common/AllAppliedScholarships/AllAppliedScholarships";
 import MyReviews from "../pages/Dashboard/Student/MyReviews/MyReviews";
 import AllReviews from "../pages/Dashboard/Common/AllReviews/AllReviews";
+import AnalyticsChart from "../pages/Dashboard/Admin/AnalyticsChart/AnalyticsChart";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
       { path: "all-applied-scholarship", element: <AllAppliedScholarships/> },
       { path: "my-reviews", element: <MyReviews/> },
       { path: "all-reviews", element: <AllReviews/> },
+      { path: "analytics", element: <AnalyticsChart/> },
     ],
   },
   

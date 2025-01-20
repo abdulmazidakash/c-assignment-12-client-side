@@ -15,6 +15,7 @@ function AdminMenu() {
         <MenuItem label="All Applied Scholarship" address="/dashboard/all-applied-scholarship" icon={FaTasks} />
         <MenuItem label="Manage Users" address="/dashboard/manage-users" icon={FaUsers} />
 		    <MenuItem label="All Reviews" address="/dashboard/all-reviews" icon={FaStarHalfAlt} />
+		    <MenuItem label="Analytics Chart" address="/dashboard/analytics" icon={FaStarHalfAlt} />
       </div>
     </div>
   );
