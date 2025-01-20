@@ -95,7 +95,7 @@ const MyApplication = () => {
               <tr key={app._id}>
                 <th>{index + 1}</th>
                 <td className="whitespace-normal">{app.universityName}</td>
-                <td className="whitespace-normal">
+                <td className="whitespace-nowrap">
                   {app.myApplicationInfo.universityCity}, {app.myApplicationInfo.universityCountry}
                 </td>
                 <td>{app.feedback || "N/A"}</td>
@@ -145,7 +145,7 @@ const MyApplication = () => {
                   <button
                     className="btn btn-sm btn-accent flex items-center gap-1"
                     onClick={() => {
-                      handleAddReview(app._id);
+                      handleAddReview(app);
                       setShowReviewModal(true);
                     }}
                   >
@@ -159,11 +159,7 @@ const MyApplication = () => {
 
         {showReviewModal && selectedApplication && (
         <AddReviewModal
-          scholarshipName={selectedApplication.scholarshipCategory}
-          universityName={selectedApplication.universityName}
-          universityId={selectedApplication.universityId}
-          userName={user?.name}
-          userEmail={user?.email}
+          selectedApplication={selectedApplication}
           onClose={() => {
             setShowReviewModal(false);
             setSelectedApplication(null); // Clear selected application after closing

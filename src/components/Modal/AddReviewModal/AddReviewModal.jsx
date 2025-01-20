@@ -1,76 +1,162 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
-import axios from 'axios';
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import { FaTimes, FaStar } from "react-icons/fa";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
-const AddReviewModal = ({ scholarshipName, universityName, universityId, userName, userEmail, onClose }) => {
-  const [rating, setRating] = useState(0);
-  const [reviewComment, setReviewComment] = useState('');
+const AddReviewModal = ({ selectedApplication, onClose }) => {
+  const { universityName, scholarshipCategory,  student: { scholarshipId }, } = selectedApplication;
+  const { user } = useAuth();
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
+  const [reviewDate, setReviewDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const axiosSecure = useAxiosSecure();
 
-  const handleSubmitReview = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!rating || !comment) {
+      Swal.fire({
+        icon: "warning",
+        title: "Incomplete Fields",
+        text: "Please fill out all fields before submitting.",
+      });
+      return;
+    }
+
+    const reviewData = {
+      scholarshipCategory,
+      universityName,
+      scholarshipId,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      rating,
+      comment,
+      reviewDate,
+    };
+
+    console.log(reviewData);
+
     try {
-      const review = {
-        scholarshipName,
-        universityName,
-        universityId,
-        userName,
-        userEmail,
-        rating: Number(rating), // Ensure it's stored as a number
-        reviewComment,
-        reviewDate: new Date(), // Automatically set the current date
-      };
-
-      // Make a POST request to the backend
-      await axios.post('http://localhost:5000/api/reviews', review);
-
-      Swal.fire('Success', 'Your review has been submitted!', 'success');
-      onClose(); // Close the modal after submission
+      const response = await axiosSecure.post("/add-review", reviewData);
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Review Submitted",
+          text: "Your review has been submitted successfully.",
+        });
+        onClose(); // Close the modal
+      }
     } catch (error) {
-      console.error('Error submitting review:', error);
-      Swal.fire('Error', 'Failed to submit the review.', 'error');
+      console.error("Error submitting review:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "An error occurred while submitting your review.",
+      });
     }
   };
 
   return (
-    <div className="modal fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
-      <div className="modal-content bg-white rounded-lg p-6 w-full max-w-lg">
-        <h2 className="text-xl font-bold mb-4">Add Review</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-lg h-[80vh] max-h-[90vh] overflow-y-auto p-6 relative">
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+        >
+          <FaTimes size={20} />
+        </button>
 
-        <label className="block mb-2">
-          <span>Rating (1-5):</span>
-          <input
-            type="number"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            className="block w-full border rounded p-2 mt-1"
-            min="1"
-            max="5"
-          />
-        </label>
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <FaStar className="text-yellow-500" /> Add Review
+        </h2>
 
-        <label className="block mb-4">
-          <span>Review Comment:</span>
-          <textarea
-            value={reviewComment}
-            onChange={(e) => setReviewComment(e.target.value)}
-            className="block w-full border rounded p-2 mt-1"
-            rows="4"
-          />
-        </label>
+        <form onSubmit={handleSubmit}>
+          {/* University Name */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">University Name:</label>
+            <p className="text-gray-700">{universityName}</p>
+          </div>
 
-        <div className="flex justify-end gap-2">
-          <button
-            className="btn btn-error"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button
-            className="btn btn-primary"
-            onClick={handleSubmitReview}
-          >
-            Submit
-          </button>
-        </div>
+          {/* Scholarship Name */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Scholarship Name:</label>
+            <p className="text-gray-700">{scholarshipCategory}</p>
+          </div>
+          {/* University _id */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">University Id:</label>
+            <p className="text-gray-700">{scholarshipId}</p>
+          </div>
+
+      
+
+          {/* Rating */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Rating (1-5):</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          {/* Review Comment */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Review Comment:</label>
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              className="textarea textarea-bordered w-full"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          {/* Review Date */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Review Date:</label>
+            <input
+              type="date"
+              value={reviewDate}
+              onChange={(e) => setReviewDate(e.target.value)}
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          {/* User Info */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">User Name:</label>
+            <p className="text-gray-700">{user?.displayName}</p>
+          </div>
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">User Email:</label>
+            <p className="text-gray-700">{user?.email}</p>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-end gap-2">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary">
+              Submit Review
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
