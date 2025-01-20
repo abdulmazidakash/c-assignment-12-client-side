@@ -111,24 +111,25 @@ const AllAppliedScholarships = () => {
                 <td>{application.universityName}</td>
                 <td>{application.degree}</td>
                 <td>{application.scholarshipCategory}</td>
+               
                 <td>
-					<select
-						value={application.status} // Current status of the application
-						onChange={(e) => handleStatusChange(application._id, e.target.value)} // Handle changes
-						className={`select select-bordered select-sm ${
-						application.status === "pending"
-							? "select-warning"
-							: application.status === "processing"
-							? "select-info"
-							: "select-success"
-						}`}
-					>
-						<option value="pending">Pending</option>
-						<option value="processing">Processing</option>
-						<option value="completed">Completed</option>
-					</select>
-				</td>
-
+                  <select
+                    value={application.status} // Current status of the application
+                    onChange={(e) => handleStatusChange(application._id, e.target.value)} // Handle changes
+                    disabled={application.status === "completed"} // Disable if status is "completed"
+                    className={`select select-bordered select-sm ${
+                      application.status === "pending"
+                        ? "select-warning"
+                        : application.status === "processing"
+                        ? "select-info"
+                        : "select-success"
+                    }`}
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </td>
                 <td className="flex gap-2">
                   {/* Details Button */}
                   <button
