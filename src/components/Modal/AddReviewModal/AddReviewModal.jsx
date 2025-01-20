@@ -5,7 +5,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
 const AddReviewModal = ({ selectedApplication, onClose, refetch }) => {
-  const { universityName, scholarshipCategory,  student: { scholarshipId }, } = selectedApplication;
+  
+  
+  const { universityName, scholarshipCategory, subjectCategory,  student: { scholarshipId }, } = selectedApplication;
+  
   console.log(selectedApplication);
   const { user } = useAuth();
   console.log(user);
@@ -38,6 +41,7 @@ const AddReviewModal = ({ selectedApplication, onClose, refetch }) => {
       rating,
       comment,
       reviewDate,
+      subjectCategory,
     };
 
     console.log(reviewData);
