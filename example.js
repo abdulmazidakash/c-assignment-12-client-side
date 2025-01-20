@@ -133,3 +133,61 @@ app.delete("/reviews/:id", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+//   const fetchAnalyticsData = async () => {
+// 	const token = localStorage.getItem("token"); // Replace with your token logic
+// 	const response = await axios.get("http://localhost:5000/admin-stats", {
+// 	  headers: {
+// 		Authorization: `Bearer ${token}`,
+// 	  },
+// 	});
+// 	return response.data;
+//   };
+
+
+app.get('/admin-stats', async (req, res) => {
+  try {
+    // Count documents in different collections
+    const users = await usersCollection.estimatedDocumentCount();
+    const applications = await applyScholarshipCollection.estimatedDocumentCount();
+    const scholarships = await scholarshipCollection.estimatedDocumentCount();
+    const reviews = await reviewCollection.estimatedDocumentCount();
+
+    // // Aggregate scholarship categories
+    // const categoriesAggregation = await scholarshipCollection.aggregate([
+    // 	{ $match: { category: { $exists: true, $ne: null } } },
+    // 	{ $group: { _id: "$category", count: { $sum: 1 } } },
+    // 	{ $project: { _id: 0, category: "$_id", count: 1 } }
+    // ]).toArray();
+
+    // Aggregate subject categories (e.g., Agriculture, Engineering, etc.)
+    const subjectCategoriesAggregation = await scholarshipCollection.aggregate([
+      { $match: { subjectCategory: { $exists: true, $ne: null } } }, // Only consider valid subject categories
+      { $group: { _id: "$subjectCategory", count: { $sum: 1 } } },
+      { $project: { _id: 0, subjectCategory: "$_id", count: 1 } }
+    ]).toArray();
+
+    // Convert the aggregations into objects with category names as keys
+    // const categories = categoriesAggregation.reduce((acc, curr) => {
+    // 	acc[curr.category] = curr.count;
+    // 	return acc;
+    // }, {});
+
+    const subjectCategories = subjectCategoriesAggregation.reduce((acc, curr) => {
+      acc[curr.subjectCategory] = curr.count;
+      return acc;
+    }, {});
+
+    res.send({
+      users,
+      applications,
+      scholarships,
+      reviews,          // Scholarship categories object
+      subjectCategories    // Subject categories object (Agriculture, Engineering, etc.)
+    });
+  } catch (error) {
+    console.error('Error fetching admin stats:', error);
+    res.status(500).send({ error: 'Failed to fetch admin stats' });
+  }
+});
