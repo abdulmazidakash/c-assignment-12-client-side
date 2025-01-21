@@ -35,6 +35,7 @@ const Sidebar = () => {
 
   return (
     <>
+
       {/* Small Screen Navbar */}
       <div className="bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg flex justify-between md:hidden">
         <div className="p-4 font-bold">
@@ -59,7 +60,7 @@ const Sidebar = () => {
         } md:translate-x-0 transition duration-300 ease-in-out shadow-2xl`}
       >
         <div>
-          <div className="md:flex items-center justify-center mb-6">
+          <div className="md:flex items-center justify-center mb-4">
 		  <div className="flex-1">
               <Link to={'/'} className="btn btn-outline text-white normal-case text-xl font-bold"><FaGoogleScholar />
               ScholarShipHub</Link>
@@ -79,11 +80,7 @@ const Sidebar = () => {
 
         <div>
           <hr className="border-blue-300" />
-          {/* <MenuItem
-            icon={FcSettings}
-            label='Profile'
-            address='/dashboard/profile'
-          /> */}
+        
           <button
             onClick={handleSignOUt} 
             className="flex w-full items-center px-4 py-2 mt-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition duration-300"

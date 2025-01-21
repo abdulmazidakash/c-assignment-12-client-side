@@ -14,6 +14,7 @@ import {
 } from "chart.js";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 // Register ChartJS components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -80,6 +81,10 @@ const AnalyticsChart = () => {
   };
 
   return (
+   <>
+   <Helmet>
+    <title>Admin Stats | ScholarshipHub</title>
+   </Helmet>
     <div className="p-4">
       <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center text-indigo-600">
         Admin Analytics
@@ -122,6 +127,7 @@ const AnalyticsChart = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 

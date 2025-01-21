@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const getRandomColor = (role) => {
   const colors = {
@@ -104,6 +105,10 @@ const ManageUsers = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Manage Users | ScholarshipHub</title>
+    </Helmet>
     <div className="p-4 lg:p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl lg:text-4xl font-bold text-gray-800 flex items-center gap-2">
@@ -197,6 +202,7 @@ const ManageUsers = () => {
         </table>
       </div>
     </div>
+    </>
   );
 };
 

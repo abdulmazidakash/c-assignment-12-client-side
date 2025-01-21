@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import useScholarship from '../../../hooks/useScholarship';
 import LoadingSpinner from '../../../shared/LoadingSpinner';
 import useRole from '../../../hooks/useRole';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
   const {user} = useAuth();
@@ -14,6 +15,10 @@ const Profile = () => {
   // console.log(scholarship);
 
   return (
+    <>
+    <Helmet>
+      <title>My Profile | ScholarshipHub</title>
+    </Helmet>
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-12">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl p-8">
         {/* Profile Header */}
@@ -74,6 +79,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

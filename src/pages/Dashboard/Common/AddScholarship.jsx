@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { BiImageAdd } from 'react-icons/bi';
-import { format, parseISO } from 'date-fns';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
-import DatePicker from 'react-datepicker';
 import { imageUpload, shortImageName } from '../../../utilities/utilities';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
 
 const AddScholarship = () => {
  
@@ -88,28 +86,6 @@ const AddScholarship = () => {
 
     console.table(scholarshipData);
 
-    
-    
-    
-    // // 3. offered deadline is within sellers deadline validation
-    // if (compareAsc(new Date(startDate), new Date(deadline)) === 1)
-    //   return toast.error('Offer a date within deadline')
-
-    // 1. Deadline crossed validation
-    // if (compareAsc(new Date(), new Date(deadline)) === 1)
-    //   return toast.error('Deadline Crossed, Bidding Forbidden!')
-    
-    // 2. Price within maximum price range validation
-    // if (price > max_price)
-    //   return toast.error('Offer less or at least equal to maximum price!')
-    
-    
-    // 0. Check bid permissions validation
-    // if (user?.email === buyer?.email)
-    //   return toast.error('Action not permitted!');
-
-
-
 
 		if (
 		  !scholarshipName ||
@@ -151,6 +127,10 @@ const AddScholarship = () => {
 	  
 
   return (
+  <>
+  <Helmet>
+    <title>Add Scholarship | ScholarshipHub</title>
+  </Helmet>
     <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6 my-10">
       <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 flex items-center justify-center">
         <MdOutlineAddCircleOutline className="text-blue-600 text-4xl mr-2" /> Add Scholarship
@@ -352,30 +332,18 @@ const AddScholarship = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Application Deadline *</label>
-            {/* Date Picker Input Field */}
-            {/* <DatePicker
-                className='border p-2 rounded-md'
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-              /> */}
-
+           
             <input
               type="date"
               name="applicationDeadline"
-            
+              defaultValue={new Date()}
+              // selected={startDate}
+              // onChange={date => setStartDate(date)}
               className="input input-bordered w-full"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Scholarship Post Date *</label>
-
-              {/* Date Picker Input Field */}
-              {/* <DatePicker
-                className='border p-2 rounded-md'
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-              /> */}
-
 
             <input
               type="date"
@@ -411,19 +379,9 @@ const AddScholarship = () => {
             <MdOutlineAddCircleOutline className="text-xl mr-2" /> Add Scholarship
           </button>
         </div>
-
-        {/* Submit Button */}
-        {/* <div className="mt-8">
-          <button
-            type="submit"
-            className="btn btn-primary w-full flex items-center justify-center"
-            disabled={loading}
-          >
-            {loading ? 'Submitting...' : <><MdOutlineAddCircleOutline className="text-xl mr-2" /> Add Scholarship</>}
-          </button>
-        </div> */}
       </form>
     </div>
+  </>
   );
 };
 

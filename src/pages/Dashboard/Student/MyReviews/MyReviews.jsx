@@ -5,6 +5,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyReviews = () => {
   const [editReview, setEditReview] = useState(null);
@@ -87,6 +88,10 @@ const MyReviews = () => {
   const reviewList = Array.isArray(reviews) ? reviews : [];
 
   return (
+    <>
+    <Helmet>
+      <title>My Reviews | ScholarshipHub</title>
+    </Helmet>
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">My Reviews</h1>
       <div className="overflow-x-auto">
@@ -196,6 +201,7 @@ const MyReviews = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

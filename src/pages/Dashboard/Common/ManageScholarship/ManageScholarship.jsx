@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
 import UpdateScholarshipModal from "../../../../components/Modal/UpdateScholarshipModal/UpdateScholarshipModal";
+import { Helmet } from "react-helmet-async";
 
 const ManageScholarships = () => {
   const axiosSecure = useAxiosSecure();
@@ -92,6 +93,10 @@ const ManageScholarships = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
+    <>
+    <Helmet>
+      <title>Manage Scholarships | ScholarshipHub</title>
+    </Helmet>
     <div className="p-4 lg:p-8">
       <h1 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6">
         Manage Scholarships: {scholarships.length}
@@ -177,6 +182,7 @@ const ManageScholarships = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

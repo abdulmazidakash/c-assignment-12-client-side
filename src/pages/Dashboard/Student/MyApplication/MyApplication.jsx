@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import AddReviewModal from "../../../../components/Modal/AddReviewModal/AddReviewModal";
+import { Helmet } from "react-helmet-async";
 
 const MyApplication = () => {
   const axiosSecure = useAxiosSecure();
@@ -69,6 +70,10 @@ const MyApplication = () => {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>My Applications | ScholarshipHub</title>
+    </Helmet>
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
         My Applications: {myApplications.length}
@@ -170,6 +175,7 @@ const MyApplication = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const AllReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -48,6 +49,10 @@ const AllReviews = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
+   <>
+   <Helmet>
+    <title>All Reviews | ScholarshipHub</title>
+   </Helmet>
     <div className="container mx-auto py-6 px-4">
       <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
         All Reviews ({reviews.length})
@@ -106,6 +111,7 @@ const AllReviews = () => {
         ))}
       </div>
     </div>
+   </>
   );
 };
 

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { FaEye, FaCommentDots, FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const AllAppliedScholarships = () => {
   const axiosSecure = useAxiosSecure();
@@ -85,6 +86,10 @@ const AllAppliedScholarships = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
+    <>
+    <Helmet>
+      <title>All Applied Scholarships | ScholarshipHub</title>
+    </Helmet>
     <div className="p-4 lg:p-8">
       <h1 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6">
         All Applied Scholarships: {applications.length}
@@ -224,6 +229,7 @@ const AllAppliedScholarships = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

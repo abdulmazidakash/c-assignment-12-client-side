@@ -2,7 +2,6 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import img1 from '../../../assets/home/04.webp';
@@ -33,13 +32,23 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full h-[500px] rounded-lg bg-gradient-to-b from-gray-900 via-black to-gray-900 text-gray-300 mt-4 mb-8 ">
+    <div className="w-full h-[500px] rounded-lg bg-gradient-to-b from-gray-900 via-black to-gray-900 text-gray-300 mt-4 mb-8">
       <Swiper
         modules={[Pagination, Autoplay]}
-    
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         loop
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 1,
+          },
+        }}
         className="h-full"
       >
         {slides.map((slide, index) => (
@@ -63,7 +72,7 @@ const Banner = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="rounded-lg shadow-lg w-full h-auto"
+                  className="rounded-lg shadow-lg w-full h-auto object-cover"
                 />
               </div>
             </div>
