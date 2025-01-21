@@ -7,7 +7,7 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 ## 🌐 Live Demo
 
-🔗 **[https://second-solosphere-akash.netlify.app/])**
+🔗 **[https://scholarship-hub-akash.netlify.app/])**
 
 ---
 
