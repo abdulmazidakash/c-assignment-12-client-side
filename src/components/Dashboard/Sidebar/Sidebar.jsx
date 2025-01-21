@@ -11,6 +11,8 @@ import AdminMenu from './Menu/AdminMenu';
 import MenuItem from './Menu/MenuItem';
 import toast from 'react-hot-toast';
 import useRole from '../../../hooks/useRole';
+import { FaGoogleScholar } from "react-icons/fa6";
+
 
 const Sidebar = () => {
   const { user, logOut} = useAuth();
@@ -34,10 +36,11 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white flex justify-between md:hidden shadow-lg">
+      <div className="bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg flex justify-between md:hidden">
         <div className="p-4 font-bold">
           <Link to='/'>
-            <button className='font-bold text-2xl btn btn-outline'>ScholarShipHub</button>
+            <button className='font-bold text-2xl btn btn-outline text-white'><FaGoogleScholar />
+            ScholarShipHub</button>
           </Link>
         </div>
 
@@ -51,15 +54,16 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gradient-to-b from-purple-500 to-blue-500 text-white w-72 space-y-6 px-4 py-6 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg  w-72 space-y-6 px-4 py-6 absolute inset-y-0 left-0 transform ${
           isActive && '-translate-x-full'
         } md:translate-x-0 transition duration-300 ease-in-out shadow-2xl`}
       >
         <div>
           <div className="md:flex items-center justify-center mb-6">
-		  <Link to='/'>
-            <button className='font-bold text-2xl btn btn-outline'>ScholarShipHub</button>
-          </Link>
+		  <div className="flex-1">
+              <Link to={'/'} className="btn btn-outline text-white normal-case text-xl font-bold"><FaGoogleScholar />
+              ScholarShipHub</Link>
+            </div>
           </div>
 
           <nav className="flex flex-col space-y-4">

@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaGoogleScholar } from "react-icons/fa6";
+
 
 const Footer = () => {
   return (
@@ -9,7 +11,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and About */}
           <div>
-            <h1 className="text-2xl font-bold text-primary">ScholarShipHub</h1>
+            <h1 className="text-2xl font-bold text-primary flex gap-2 items-center"><FaGoogleScholar className='text-white' />
+            ScholarShipHub</h1>
             <p className="mt-4 text-gray-300">
               Empowering education through opportunities. Find scholarships and achieve your academic dreams.
             </p>

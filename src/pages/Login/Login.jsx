@@ -6,6 +6,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 import LoadingSpinner from "../../shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
@@ -66,7 +67,13 @@ const handleForgetPassword = () => {
 
 
 
+
   return (
+    
+ <>
+ <Helmet>
+  <title>Login | ScholarshipHub</title>
+</Helmet>
     <div
       className="p-6 flex items-center justify-center bg-gradient-to-tr from-teal-800 via-slate-800 to-cyan-800 rounded-lg  container mx-auto my-8"
     >
@@ -135,6 +142,7 @@ const handleForgetPassword = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

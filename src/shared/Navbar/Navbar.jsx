@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { FaUserCircle, FaUserGraduate } from "react-icons/fa";
+import { FaGoogleScholar } from "react-icons/fa6";
+
 
 const Navbar = () => {
 	const {user, logOut} = useContext(AuthContext);
@@ -21,7 +23,8 @@ const Navbar = () => {
    <div className="navbar fixed top-0 left-0 right-0 z-50 bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg ">
      <div className="container mx-auto">
       <div className="flex-1">
-        <Link to={'/'} className="btn btn-outline text-white normal-case text-xl font-bold">ScholarShipHub</Link>
+        <Link to={'/'} className="btn btn-outline text-white normal-case text-xl font-bold"><FaGoogleScholar />
+        ScholarShipHub</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

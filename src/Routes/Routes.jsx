@@ -22,6 +22,8 @@ import AllAppliedScholarships from "../pages/Dashboard/Common/AllAppliedScholars
 import MyReviews from "../pages/Dashboard/Student/MyReviews/MyReviews";
 import AllReviews from "../pages/Dashboard/Common/AllReviews/AllReviews";
 import AnalyticsChart from "../pages/Dashboard/Admin/AnalyticsChart/AnalyticsChart";
+import AdminRoute from "./AdminRoute";
+import CombinedRoute from "./CombinedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -46,19 +48,26 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+
+      // user related route 
       { index: true, element: <Statistics/>},
-      { path: "add-scholarship", element: <AddScholarship /> },
       { path: "profile", element: <Profile /> },
       { path: "payment/:id", element: <Payment/> },
       { path: "applyScholarship/:id", element: <ApplyScholarship/> },
       { path: "my-application", element: <MyApplication/> },
       { path: "edit-my-application/:id", element: <EditMyApplication/> },
-      { path: "manage-users", element: <ManageUsers/> },
-      { path: "manage-scholarship", element: <ManageScholarships/> },
-      { path: "all-applied-scholarship", element: <AllAppliedScholarships/> },
       { path: "my-reviews", element: <MyReviews/> },
-      { path: "all-reviews", element: <AllReviews/> },
-      { path: "analytics", element: <AnalyticsChart/> },
+
+      
+      // admin and moderator related route 
+      { path: "add-scholarship", element: <CombinedRoute><AddScholarship /></CombinedRoute> },
+      { path: "manage-scholarship", element: <CombinedRoute><ManageScholarships/></CombinedRoute> },
+      { path: "all-applied-scholarship", element: <CombinedRoute><AllAppliedScholarships/></CombinedRoute> },
+      { path: "all-reviews", element: <CombinedRoute><AllReviews/></CombinedRoute> },
+     
+      // only admin related route
+      { path: "manage-users", element: <AdminRoute><ManageUsers/></AdminRoute> },
+      { path: "analytics", element: <AdminRoute><AnalyticsChart/></AdminRoute> },
     ],
   },
   
