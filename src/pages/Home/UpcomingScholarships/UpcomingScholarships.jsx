@@ -80,7 +80,7 @@ const UpcomingScholarships = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-4">{scholarship.description}</p>
-              <button className="btn btn-primary btn-sm flex items-center gap-2">
+              <button className="bg-gradient-to-tr from-sky-900 to-slate-800 text-white font-semibold btn btn-sm flex items-center gap-2">
                 Learn More <FaArrowRight />
               </button>
             </div>

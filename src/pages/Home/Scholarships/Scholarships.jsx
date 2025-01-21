@@ -3,6 +3,7 @@ import React from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import LoadingSpinner from '../../../shared/LoadingSpinner';
 import ScholarshipCard from '../../../components/ScholarshipCard';
+import { Link } from 'react-router-dom';
 
 const Scholarships = () => {
 
@@ -31,9 +32,16 @@ const Scholarships = () => {
         	</h2>
 
 			 {scholarships && scholarships.length > 0 ? 
-			<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+			<div>
+				<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 				{scholarships.map(scholarship => <ScholarshipCard key={scholarship._id} scholarship={scholarship} />)}
+				
 			</div>
+			<div className='text-center'>
+				<Link to={'/allScholarship'} className='bg-gradient-to-tr from-sky-900 to-slate-800 text-white font-semibold btn my-4' >View All Scholarships</Link>
+			</div>
+			</div>
+			
 			: 
 	 		 (<p>No data available</p>)}
 		</div>

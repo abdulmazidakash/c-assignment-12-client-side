@@ -12,7 +12,9 @@ const Main = () => {
 			<div className='pt-20'>
 			<Outlet/>
 			</div>
+			<div className='w-full'>
 			<Footer/>
+			</div>
 		</div>
 	);
 };

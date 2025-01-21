@@ -71,7 +71,7 @@ const ScholarshipCard = ({scholarship}) => {
 
         {/* Details Button */}
         <div className="card-actions justify-end">
-          <Link to={`/scholarships/${_id}`} className="btn btn-primary w-full">View Details</Link>
+          <Link to={`/scholarships/${_id}`} className="bg-gradient-to-tr from-sky-900 to-slate-800 text-white font-semibold btn w-full">View Details</Link>
         </div>
       </div>
     </div>
