@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import LoadingSpinner from "../../../../shared/LoadingSpinner";
 
 const MyReviews = () => {
   const [editReview, setEditReview] = useState(null);
@@ -81,7 +82,7 @@ const MyReviews = () => {
   };
 
   // Loader or Error handling
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div>Error loading reviews.</div>;
 
   // Ensure reviews is always an array

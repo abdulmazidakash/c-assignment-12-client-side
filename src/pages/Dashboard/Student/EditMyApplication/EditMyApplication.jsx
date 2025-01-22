@@ -73,12 +73,14 @@ const EditMyApplication = () => {
 		  }
 		} else {
 		  toast.error(response.data.message);
+      navigate(`/dashboard/my-application`);
 		}
 	  } 
 	  catch (error) {
 		console.error('Update failed:', error);
 		console.log(error);
 		toast.error('Failed to update the application. Please try again later.');
+    navigate(`/dashboard/my-application`);
 	  }
 	  
   };
