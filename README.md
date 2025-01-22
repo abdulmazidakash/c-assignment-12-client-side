@@ -99,11 +99,8 @@ Moderator Features:
 - Communicate with applicants for additional information.
 
 ---
-<<<<<<< HEAD
 ---
 
-=======
->>>>>>> 44597eda48187826d5ffe239457b80da08c0102f
 ## Technologies Used
 
 - **Frontend**: React.js, Tailwind CSS, DaisyUI
@@ -111,9 +108,5 @@ Moderator Features:
 - **Database**: MongoDB
 - **Authentication**: Firebase Authentication
 - **Styling Framework**: Tailwind CSS with DaisyUI components
-<<<<<<< HEAD
 - **Notifications**: SweetAlert2 and react-hot-toast for user-friendly alerts
 ---
-=======
-- **Notifications**: SweetAlert2 for user-friendly alerts
->>>>>>> 44597eda48187826d5ffe239457b80da08c0102f
