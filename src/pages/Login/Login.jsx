@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
-  const { signInUser, forgetPasswordUser, loading, user} = useContext(AuthContext);
+  const { signInUser, forgetPasswordUser, loading, user, setLoading} = useContext(AuthContext);
   const emailRef = useRef();
   // console.log(location);
   const navigate = useNavigate()
@@ -41,6 +41,7 @@ const handleSignInUser = e =>{
   })
   .catch(err =>{
     toast.error(`please use valid email and password. ${err?.message}`)
+    setLoading(false)
     // console.log(err.message)
   })
  
@@ -64,7 +65,6 @@ const handleForgetPassword = () => {
       toast.error(`Failed to send reset email: ${err.message}`);
     });
 };
-
 
 
 
