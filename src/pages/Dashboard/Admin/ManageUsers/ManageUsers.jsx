@@ -131,7 +131,7 @@ const ManageUsers = () => {
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
-          <thead>
+          <thead className="bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg">
             <tr>
               <th className="text-left">#</th>
               <th>Image</th>
@@ -171,12 +171,12 @@ const ManageUsers = () => {
                     </label>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content z-50 menu p-2 shadow-lg bg-white rounded-lg w-36"
+                      className="dropdown-content z-50 menu p-2 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg font-semibold rounded-lg w-36"
                     >
                       {["student", "moderator", "admin"]
                         .filter((role) => role !== user.role)
                         .map((role) => (
-                          <li key={role}>
+                          <li key={role} >
                             <button
                               onClick={() => handleRoleChange(user.email, role)}
                               className="hover:bg-gray-100 rounded-md px-4 py-2 text-black"
