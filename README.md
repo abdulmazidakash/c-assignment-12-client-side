@@ -1,11 +1,15 @@
+<!--1. project banner image -->
+## 🌟 ScholarshipHub Banner 🚀
 
 ![App Screenshot](https://i.ibb.co.com/KpypCWf0/sholarship-Hub-banner.jpg)
- 
-# 🌟 ScholarshipHub 🚀
+
+<!--2. project overview -->
 
 ScholarshipHub is a comprehensive Scholarship Management System designed to assist students in searching for suitable universities and scholarships. It also facilitates the application process, allowing students to apply for scholarships directly through the platform. The system supports three types of users: default users, administrators, and moderators. Upon registration, a user is assigned the 'user' role by default. Administrators have the capability to change user roles as needed.
 
 ---
+
+<!--3. live project links and other relevant resources -->
 
 ## 🌐 Live Demo
 
@@ -18,6 +22,43 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 
 ---
+
+<!--4. main technologies used list -->
+
+## Technologies Used
+
+- **Frontend**: React.js, Tailwind CSS, DaisyUI
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Authentication**: Firebase Authentication
+- **Styling Framework**: Tailwind CSS with DaisyUI components
+- **Notifications**: SweetAlert2 and react-hot-toast for user-friendly alerts
+---
+
+<!--5. core features of the project -->
+
+## ✨ Key Features
+
+Studend Features:
+- Search for universities and available scholarships.
+- Apply for scholarships directly through the platform.
+- Track application status and receive notifications.
+
+
+Administrator Features:
+- Manage user roles and permissions.
+- Oversee scholarship listings and applications.
+- Generate reports on application statistics and outcomes.
+
+
+Moderator Features:
+- Review and approve or reject scholarship applications.
+- Communicate with applicants for additional information.
+
+---
+
+
+
 
 ## 📦 NPM Packages Frontend
 
@@ -72,39 +113,8 @@ This project uses the following NPM packages:
 
 
 ---
-## ✨ Key Features
----
-Studend Features:
-- Search for universities and available scholarships.
-- Apply for scholarships directly through the platform.
-- Track application status and receive notifications.
 
 
----
-
-Administrator Features:
-- Manage user roles and permissions.
-- Oversee scholarship listings and applications.
-- Generate reports on application statistics and outcomes.
-
----
-
-Moderator Features:
-- Review and approve or reject scholarship applications.
-- Communicate with applicants for additional information.
-
----
-
-
-## Technologies Used
-
-- **Frontend**: React.js, Tailwind CSS, DaisyUI
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Authentication**: Firebase Authentication
-- **Styling Framework**: Tailwind CSS with DaisyUI components
-- **Notifications**: SweetAlert2 and react-hot-toast for user-friendly alerts
----
 
 ### **Development Dependencies**
 These packages assist in development but are not included in production builds:  
