@@ -1,5 +1,5 @@
 <!--1. project banner image -->
-## 🌟 ScholarshipHub Banner 🚀
+## 🌟 ScholarshipHub 🚀
 
 ![App Screenshot](https://i.ibb.co.com/KpypCWf0/sholarship-Hub-banner.jpg)
 
@@ -25,7 +25,7 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 <!--4. main technologies used list -->
 
-## Technologies Used
+## ‍💻 Technologies Used
 
 - **Frontend**: React.js, Tailwind CSS, DaisyUI
 - **Backend**: Node.js, Express.js
@@ -39,19 +39,19 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 ## ✨ Key Features
 
-Studend Features:
+#### Student Features:
 - Search for universities and available scholarships.
 - Apply for scholarships directly through the platform.
 - Track application status and receive notifications.
 
 
-Administrator Features:
+#### Administrator Features:
 - Manage user roles and permissions.
 - Oversee scholarship listings and applications.
 - Generate reports on application statistics and outcomes.
 
 
-Moderator Features:
+#### Moderator Features:
 - Review and approve or reject scholarship applications.
 - Communicate with applicants for additional information.
 
