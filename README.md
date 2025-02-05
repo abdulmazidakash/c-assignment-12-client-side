@@ -12,11 +12,9 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 Netlify Live Link:
 🔗 **[https://scholarship-hub-akash.netlify.app/])**
 
----
 Firebase Live Link:
 🔗 **[https://assignment-12-23.web.app/])**
 
----
 Vercel Link:
 🔗 **[https://assignment-12-server-side-black.vercel.app/])**
 
