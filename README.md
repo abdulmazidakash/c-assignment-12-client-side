@@ -6,7 +6,6 @@
 ScholarshipHub is a comprehensive Scholarship Management System designed to assist students in searching for suitable universities and scholarships. It also facilitates the application process, allowing students to apply for scholarships directly through the platform. The system supports three types of users: default users, administrators, and moderators. Upon registration, a user is assigned the 'user' role by default. Administrators have the capability to change user roles as needed.
 
 ---
----
 
 ## 🌐 Live Demo
 --
@@ -14,16 +13,13 @@ Netlify Live Link:
 🔗 **[https://scholarship-hub-akash.netlify.app/])**
 
 ---
---
 Firebase Live Link:
 🔗 **[https://assignment-12-23.web.app/])**
 
 ---
---
 Vercel Link:
 🔗 **[https://assignment-12-server-side-black.vercel.app/])**
 
----
 
 ---
 
@@ -62,7 +58,7 @@ This project uses the following NPM packages:
 -
 
 ---
----
+
 
 ## 📦 NPM Packages Backend
 
@@ -89,20 +85,20 @@ Studend Features:
 
 
 ---
----
+
 Administrator Features:
 - Manage user roles and permissions.
 - Oversee scholarship listings and applications.
 - Generate reports on application statistics and outcomes.
 
 ---
----
+
 Moderator Features:
 - Review and approve or reject scholarship applications.
 - Communicate with applicants for additional information.
 
 ---
----
+
 
 ## Technologies Used
 
