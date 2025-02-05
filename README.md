@@ -148,7 +148,7 @@ The frontend is built using **React** and **Vite**, utilizing these dependencies
 
 ---
 
-## 🚀 Setting Up the Project Locally  
+## ⚙️ Setting Up the Project Locally  
 
 ### **1️⃣ Prerequisites**  
 Ensure you have the following installed:  
