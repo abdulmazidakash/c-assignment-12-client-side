@@ -1,4 +1,4 @@
-- Banner Image
+
 ![App Screenshot](https://i.ibb.co.com/KpypCWf0/sholarship-Hub-banner.jpg)
  
 # 🌟 ScholarshipHub 🚀
