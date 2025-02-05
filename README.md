@@ -160,7 +160,7 @@ Ensure you have the following installed:
 
 ### **2️⃣ Clone the Backend Repository**  
 ```sh
-git clone <backend_repository_url>
+git clone <https://github.com/abdulmazidakash/c-assignment-12-server-side.git>
 cd <backend_project_folder>
 ```
 
@@ -198,7 +198,7 @@ http://localhost:5000
 
 ### **6️⃣ Clone the Frontend Repository**  
 ```sh
-git clone <frontend_repository_url>
+git clone <https://github.com/abdulmazidakash/c-assignment-12-client-side.git>
 cd <frontend_project_folder>
 ```
 
