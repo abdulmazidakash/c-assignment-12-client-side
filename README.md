@@ -57,7 +57,10 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 ---
 
-<!--6. mention the dependencies used list -->
+<!--
+6. mention the dependencies used list &
+7. step by step guide on how to run the project locally
+ -->
 
 # 🚀 Full Stack Project Setup Guide  
 
@@ -160,8 +163,8 @@ Ensure you have the following installed:
 
 ### **2️⃣ Clone the Backend Repository**  
 ```sh
-git clone <https://github.com/abdulmazidakash/c-assignment-12-server-side.git>
-cd <backend_project_folder>
+git clone https://github.com/abdulmazidakash/c-assignment-12-server-side.git
+cd c-assignment-12-server-side
 ```
 
 ### **3️⃣ Install Dependencies**  
@@ -198,8 +201,8 @@ http://localhost:5000
 
 ### **6️⃣ Clone the Frontend Repository**  
 ```sh
-git clone <https://github.com/abdulmazidakash/c-assignment-12-client-side.git>
-cd <frontend_project_folder>
+git clone https://github.com/abdulmazidakash/c-assignment-12-client-side.git
+cd c-assignment-12-client-side
 ```
 
 ### **7️⃣ Install Dependencies**  
