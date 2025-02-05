@@ -57,149 +57,176 @@ ScholarshipHub is a comprehensive Scholarship Management System designed to assi
 
 ---
 
+<!--6. mention the dependencies used list -->
 
+# 🚀 Full Stack Project Setup Guide  
 
-
-## 📦 NPM Packages Frontend
-
-This project uses the following NPM packages:
-
-| 📦 Package             | 📋 Description                       |
-|------------------------|---------------------------------------|
-| **Tailwind CSS**       | Modern and responsive CSS framework  |
-| **DaisyUI**            | Predefined UI components             |
-| **React Router DOM**   | Routing and navigation               |
-| **React Hot Toast**    | Interactive toast notifications      |
-| **React Icons**        | Sleek and modern icons               |
-| **React Helmet**       | Manage dynamic page titles           |
-| **React Helmet**       | Manage dynamic page payment           |
-| **@stripe/react-stripe-js**       | payment            |
-| **@tanstack/react-queryt**       | fetch data            |
-| **axios**       | fetch data            |
-| **chart.js**       | --            |
-| **date-fns**       | --            |
-| **localforage**       | --            |
-| **firebase**       | --            |
-| **match-sorter**       | --            |
-| **react**       | --            |
-| **react-chartjs-2**       | --            |
-| **react-datepicker**       | --            |
-| **react-dom**       | --            |
-| **react-fast-marquee**       | --            |
-| **react-hot-toast**       | --            |
-| **react-responsive-carousel**       | --            |
-| **react-slick**       | --            |
-| **slick-carousel**       | --            |
-| **sweetalert2**       | --            |
-| **swiper**       | --            |
--
+This guide will help you set up and run both the **frontend** and **backend** of your project locally using **npm**.  
 
 ---
 
+## 📦 Dependencies  
 
-## 📦 NPM Packages Backend
+### **Backend Dependencies**  
+The backend is built using **Node.js** and **Express** with the following dependencies:  
 
-This project uses the following NPM packages:
+| Package       | Version  | Description |
+|--------------|----------|-------------|
+| `cors`       | ^2.8.5   | Enables cross-origin requests |
+| `dotenv`     | ^16.4.7  | Manages environment variables |
+| `express`    | ^4.21.2  | Web framework for Node.js |
+| `jsonwebtoken` | ^9.0.2 | Handles JWT authentication |
+| `mongodb`    | ^6.12.0  | MongoDB database driver |
+| `morgan`     | ^1.10.0  | HTTP request logger |
+| `stripe`     | ^17.5.0  | Payment processing with Stripe |
 
-| 📦 Package             | 📋 Version                       |
-|------------------------|---------------------------------------|
-| **cors**       | 2.8.5  |
-| **dotenv**            | 16.4.7          |
-| **express**   | 4.21.2|
-| **jsonwebtoken**   | 9.0.2|
-| **mongodb**   | 6.12.0|
-| **morgan**   | 1.10.0|
-| **stripe**   | 17.5.0|
+### **Frontend Dependencies**  
+The frontend is built using **React** and **Vite**, utilizing these dependencies:  
 
+#### **Core Libraries**  
+| Package               | Version  | Description |
+|-----------------------|----------|-------------|
+| `react`              | ^18.3.1  | Core React library |
+| `react-dom`          | ^18.3.1  | React DOM rendering |
+| `react-router-dom`   | ^7.1.1   | Client-side routing |
+
+#### **State Management & API Handling**  
+| Package                   | Version  | Description |
+|---------------------------|----------|-------------|
+| `@tanstack/react-query`  | ^5.64.1  | Data fetching and caching |
+| `axios`                  | ^1.7.9   | HTTP client for API requests |
+
+#### **UI & Styling**  
+| Package               | Version  | Description |
+|-----------------------|----------|-------------|
+| `@headlessui/react`  | ^2.2.0   | Accessible UI components |
+| `daisyui`            | ^4.12.23 | UI components for Tailwind CSS |
+| `tailwindcss`        | ^3.4.17  | Utility-first CSS framework |
+| `postcss`            | ^8.5.1   | CSS processing tool |
+| `autoprefixer`       | ^10.4.20 | Vendor prefixing for CSS |
+| `react-icons`        | ^5.4.0   | Icon library for React |
+
+#### **Charts & Data Visualization**  
+| Package             | Version  | Description |
+|---------------------|----------|-------------|
+| `chart.js`         | ^4.4.7   | Chart rendering library |
+| `react-chartjs-2`  | ^5.3.0   | React wrapper for Chart.js |
+| `react-datepicker`  | ^7.6.0   | Date picker component |
+
+#### **Performance & UX Enhancements**  
+| Package                      | Version  | Description |
+|------------------------------|----------|-------------|
+| `react-fast-marquee`        | ^1.6.5   | Marquee scrolling effect |
+| `react-helmet-async`        | ^2.0.5   | SEO metadata management |
+| `react-hot-toast`           | ^2.5.1   | Notifications and toast messages |
+| `react-responsive-carousel` | ^3.2.23  | Carousel component |
+| `react-slick`               | ^0.30.3  | Slick carousel for React |
+| `slick-carousel`            | ^1.8.1   | Carousel slider styles |
+| `swiper`                    | ^11.2.1  | Swiping and carousel functionality |
+| `sweetalert2`               | ^11.15.10 | Alert and modal popups |
+| `match-sorter`              | ^8.0.0   | Sorting and filtering utilities |
+| `sort-by`                   | ^1.2.0   | Sorting utility |
+| `localforage`               | ^1.10.0  | Local storage handling |
+| `date-fns`                  | ^4.1.0   | Date manipulation |
+
+### **Development Dependencies**  
+| Package                     | Version  | Description |
+|-----------------------------|----------|-------------|
+| `@eslint/js`               | ^9.17.0  | ESLint core |
+| `eslint`                   | ^9.17.0  | Linter for JavaScript |
+| `eslint-plugin-react`       | ^7.37.2  | React-specific linting rules |
+| `eslint-plugin-react-hooks` | ^5.0.0   | Hooks-specific linting rules |
+| `eslint-plugin-react-refresh` | ^0.4.16 | Linting for React Refresh |
+| `@types/react`             | ^18.3.18 | TypeScript definitions for React |
+| `@types/react-dom`         | ^18.3.5  | TypeScript definitions for React DOM |
+| `@vitejs/plugin-react`     | ^4.3.4   | React plugin for Vite |
+| `vite`                     | ^6.0.5   | Build tool and development server |
+| `globals`                  | ^15.14.0 | Shared global variables |
 
 ---
 
-
-
-### **Development Dependencies**
-These packages assist in development but are not included in production builds:  
-
-- `@eslint/js`, `eslint`, `eslint-plugin-react`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` - Linting and code quality  
-- `@types/react`, `@types/react-dom` - TypeScript support for React  
-- `@vitejs/plugin-react` - React plugin for Vite  
-- `autoprefixer`, `postcss`, `tailwindcss`, `daisyui` - CSS utilities and framework  
-- `vite` - Build tool and development server  
-- `globals` - Shared global variables  
-
----
-
-## ⚙️ **Setting Up the Project Locally**  
-
-Follow these steps to set up and run the project on your local machine.  
+## 🚀 Setting Up the Project Locally  
 
 ### **1️⃣ Prerequisites**  
 Ensure you have the following installed:  
 - **Node.js** (Latest LTS version recommended) - [Download Here](https://nodejs.org/)  
-- **Package Manager** (npm or yarn)  
+- **npm** (Comes with Node.js)  
+- **MongoDB** (If running the backend locally) - [Download Here](https://www.mongodb.com/)  
 - **Git** (Optional, for cloning the repository)  
 
-### **2️⃣ Clone the Repository**  
-If you haven't cloned the project yet, run:  
+---
+
+## 🖥️ Backend Setup  
+
+### **2️⃣ Clone the Backend Repository**  
 ```sh
-git clone <repository_url>
-cd <project_folder>
+git clone <backend_repository_url>
+cd <backend_project_folder>
 ```
 
 ### **3️⃣ Install Dependencies**  
-Run the following command to install all required packages:  
 ```sh
 npm install
 ```
-or  
-```sh
-yarn install
-```
 
 ### **4️⃣ Configure Environment Variables**  
-Create a `.env` file in the root directory and add the necessary environment variables. These might include:  
+Create a `.env` file in the backend root directory and add the required environment variables. Example:  
 ```
-REACT_APP_API_KEY=your_api_key_here
-REACT_APP_FIREBASE_CONFIG=your_firebase_config_here
-REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_key_here
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret_key
 ```
-📌 *Ensure you get the correct values from your Firebase, Stripe, or API providers.*  
+📌 *Ensure you use the correct credentials for MongoDB and Stripe.*  
 
-### **5️⃣ Start the Development Server**  
-Run the following command to start the local development server:  
+### **5️⃣ Start the Backend Server**  
+```sh
+npm start
+```
+or  
+```sh
+npm run dev  # If using nodemon
+```
+The backend will run at:  
+```
+http://localhost:5000
+```
+
+---
+
+## 💻 Frontend Setup  
+
+### **6️⃣ Clone the Frontend Repository**  
+```sh
+git clone <frontend_repository_url>
+cd <frontend_project_folder>
+```
+
+### **7️⃣ Install Dependencies**  
+```sh
+npm install
+```
+
+### **8️⃣ Configure Environment Variables**  
+Create a `.env` file in the frontend root directory and add necessary variables. Example:  
+```
+VITE_API_BASE_URL=http://localhost:5000
+VITE_FIREBASE_CONFIG=your_firebase_config_here
+VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key_here
+```
+📌 *Ensure the API base URL matches the backend server's URL.*  
+
+### **9️⃣ Start the Frontend Server**  
 ```sh
 npm run dev
 ```
-or  
-```sh
-yarn dev
-```
-
-This will start the Vite development server, and you should see the project running at:  
+The frontend will be available at:  
 ```
 http://localhost:5173
-```
-
-### **6️⃣ Build for Production (Optional)**  
-To create an optimized production build, run:  
-```sh
-npm run build
-```
-or  
-```sh
-yarn build
-```
-
-### **7️⃣ Run the Production Build Locally (Optional)**  
-To preview the production build locally:  
-```sh
-npm run preview
-```
-or  
-```sh
-yarn preview
 ```
 
 ---
 
 ## 🎯 **You're All Set!**  
-Now you can start developing and testing the project locally. 🚀  
+Now both the **backend** and **frontend** should be running successfully. 🚀  
+If you run into any issues, check the troubleshooting section or consult the project's documentation.  
