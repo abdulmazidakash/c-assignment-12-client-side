@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -8,8 +8,11 @@ import img1 from '../../../assets/home/04.webp';
 import img2 from '../../../assets/home/02.jpg';
 import img3 from '../../../assets/home/03.jpg';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Banner = () => {
+  const { darkMode } = useContext(ThemeContext); // Get darkMode from context
+
   const slides = [
     {
       image: img1,
@@ -32,7 +35,11 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full h-[500px] rounded-lg bg-gradient-to-b from-gray-900 via-black to-gray-900 text-gray-300 mt-4 mb-8">
+    <div
+      className={`w-full h-[500px] bg-gradient-to-b ${
+        darkMode ? 'from-gray-900 via-black to-gray-900' : 'from-white via-gray-200 to-white'
+      } text-gray-300 mt-4 mb-8`}
+    >
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -55,14 +62,33 @@ const Banner = () => {
           <SwiperSlide key={index}>
             <div className="flex flex-col-reverse lg:flex-row items-center justify-between h-full px-6 md:px-20 py-10">
               {/* Left Content */}
-              <div className="text-center lg:text-left lg:w-1/2 lg:pr-10">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+              <div
+                className={`text-center lg:text-left lg:w-1/2 lg:pr-10 ${
+                  darkMode ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                <h1
+                  className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${
+                    darkMode ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
                   {slide.title}
                 </h1>
-                <p className="text-lg md:text-xl text-gray-400 mb-6 leading-relaxed">
+                <p
+                  className={`text-lg md:text-xl mb-6 leading-relaxed ${
+                    darkMode ? 'text-gray-400' : 'text-gray-800'
+                  }`}
+                >
                   {slide.description}
                 </p>
-                <Link to={'/allScholarship'} className="px-6 font-semibold py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                <Link
+                  to={'/allScholarship'}
+                  className={`px-6 font-semibold py-3 rounded-md transition ${
+                    darkMode
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-blue-500 text-white hover:bg-blue-600'
+                  }`}
+                >
                   {slide.buttonText}
                 </Link>
               </div>

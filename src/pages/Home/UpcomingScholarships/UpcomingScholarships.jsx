@@ -39,7 +39,7 @@ const UpcomingScholarships = () => {
 
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 py-16">
+    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 py-16 container mx-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">

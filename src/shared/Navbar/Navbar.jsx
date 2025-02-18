@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
-import { FaUserCircle, FaUserGraduate } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserCircle, FaUserGraduate } from "react-icons/fa";
 import { FaGoogleScholar } from "react-icons/fa6";
+import { ThemeContext } from "../../context/ThemeContext";
 
 
 const Navbar = () => {
 	const {user, logOut} = useContext(AuthContext);
+  const { darkMode, setDarkMode } = useContext(ThemeContext); // Use Theme Context
 
 	const handleSignOUt = ()=>{
 		logOut()
@@ -49,6 +51,13 @@ const Navbar = () => {
         <NavLink to={'/login'} className="hover:bg-green-600 rounded-lg p-2">Login</NavLink>
       </li>
     )}
+     {/* Dark Mode Toggle */}
+     <button
+            className="p-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition dark:bg-gray-200 dark:text-black"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
+          </button>
   </ul>
 </div>
 
@@ -90,7 +99,13 @@ const Navbar = () => {
               <Link to={'/login'} className="hover:bg-green-600 rounded-lg">Login</Link>
             </li></>}
             
-            
+             {/* Dark Mode Toggle */}
+            <button
+              className="p-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition dark:bg-gray-200 dark:text-black"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
           </ul>
         </div>
       </div>

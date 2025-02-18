@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../shared/Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../shared/Footer/Footer';
+import Banner from '../pages/Home/Banner/Banner';
 
 const Main = () => {
 	return (
@@ -9,10 +10,10 @@ const Main = () => {
 			<div className='w-full'>
 			<Navbar/>
 			</div>
-			<div className='pt-20'>
+			<div className='container mx-auto pt-20'>
 			<Outlet/>
 			</div>
-			<div className='w-full'>
+			<div className=''>
 			<Footer/>
 			</div>
 		</div>
