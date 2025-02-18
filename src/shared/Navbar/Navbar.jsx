@@ -40,6 +40,11 @@ const Navbar = () => {
       </NavLink>
     </li>
     <li>
+      <NavLink to={'/terms-and-conditions'} className="hover:bg-sky-700 rounded-lg p-2">
+        Terms & Conditions
+      </NavLink>
+    </li>
+    <li>
       <NavLink to={'/dashboard'} className="hover:bg-sky-700 rounded-lg p-2">Dashboard</NavLink>
     </li>
     {user ? (
