@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Logo and About */}
           <div>
             <h1 className="text-2xl font-bold flex gap-2 items-center">
-              <FaGoogleScholar className='text-primary' /> ScholarShipHub
+              <FaGoogleScholar className='text-blue-500' /> ScholarShipHub
             </h1>
             <p className="mt-4 dark:text-gray-400 text-gray-600">
               Empowering education through opportunities. Find scholarships and achieve your academic dreams.

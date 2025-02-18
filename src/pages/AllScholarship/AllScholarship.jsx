@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { FaSearch, FaCircle, FaExclamationTriangle } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,6 +11,7 @@ import { ThemeContext } from '../../context/ThemeContext'; // Assuming ThemeCont
 const AllScholarship = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activePage, setActivePage] = useState(0);
+  const [sortOption, setSortOption] = useState('ascending'); // Sort option state
   const swiperRef = useRef(null);
   const axiosPublic = useAxiosPublic();
   const { darkMode } = useContext(ThemeContext); // Get darkMode from context
@@ -31,6 +32,20 @@ const AllScholarship = () => {
     scholarship.subjectCategory.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Sort scholarships based on application fee (ascending or descending)
+  const [sortedScholarships, setSortedScholarships] = useState(filteredScholarships);
+
+  useEffect(() => {
+    const sorted = [...filteredScholarships].sort((a, b) => {
+      if (sortOption === 'ascending') {
+        return a.applicationFees - b.applicationFees;
+      } else {
+        return b.applicationFees - a.applicationFees;
+      }
+    });
+    setSortedScholarships(sorted);
+  }, [filteredScholarships, sortOption]);
+
   // Handle pagination controls
   const handleBulletClick = (index) => {
     if (swiperRef.current) {
@@ -44,10 +59,10 @@ const AllScholarship = () => {
   };
 
   // Create paginated slides (3 scholarships per slide)
-  const slides = Array.from({ length: Math.ceil(filteredScholarships.length / 6) }, (_, index) => (
+  const slides = Array.from({ length: Math.ceil(sortedScholarships.length / 6) }, (_, index) => (
     <SwiperSlide key={index}>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 gap-6 pr-8">
-        {filteredScholarships.slice(index * 6, index * 6 + 6).map((scholarship) => (
+        {sortedScholarships.slice(index * 6, index * 6 + 6).map((scholarship) => (
           <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
         ))}
       </div>
@@ -72,14 +87,29 @@ const AllScholarship = () => {
           }`}
         />
         <button
-          className={`btn ml-4 flex items-center gap-2 ${
-            darkMode ? 'btn-dark' : 'btn-primary'
-          }`}
+          className={`bg-gradient-to-tr ${
+            darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'
+          } text-white font-semibold btn ml-4 flex items-center gap-2`}
         >
           <FaSearch />
           Search
         </button>
       </div>
+
+      {/* Sorting Options */}
+      <div className="flex justify-center items-center gap-4 mb-6">
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className={`select select-bordered max-w-xs ${
+            darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-800 border-gray-300'
+          }`}
+        >
+          <option value="ascending">Sort by Application Fee (Low to High)</option>
+          <option value="descending">Sort by Application Fee (High to Low)</option>
+        </select>
+      </div>
+
 
       {/* Loading and Error States */}
       {isLoading && <LoadingSpinner />}
@@ -88,7 +118,7 @@ const AllScholarship = () => {
       )}
 
       {/* Scholarship Cards with Swiper Pagination */}
-      {!isLoading && filteredScholarships.length > 0 ? (
+      {!isLoading && sortedScholarships.length > 0 ? (
         <div>
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
