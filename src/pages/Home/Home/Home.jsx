@@ -8,6 +8,7 @@ import FeaturedUniversities from '../FeaturedUniversities/FeaturedUniversities';
 import Testimonials from '../Testimonials/Testimonials';
 import HowItWorks from '../HowItWorks/HowItWorks';
 import Newsletter from '../NewsLetter/NewsLetter';
+import ContactUs from '../ContactUs/ContactUs';
 
 const Home = () => {
 	return (
@@ -23,6 +24,7 @@ const Home = () => {
 			<Testimonials/>
 			<HowItWorks/>
 			<Newsletter/>
+			<ContactUs/>
 		</div>
 	);
 };
