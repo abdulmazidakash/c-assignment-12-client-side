@@ -23,18 +23,24 @@ const Scholarships = () => {
 
   return (
     <div
-      className={`container mx-auto my-8 p-4 rounded-lg ${
+      className={`container mx-auto my-8 py-12 rounded-lg shadow-md ${
         darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'
       }`}
     >
       {/* Section Header */}
-      <h2
-        className={`text-4xl font-extrabold text-center mb-12 ${
-          darkMode ? 'text-white' : 'text-gray-800'
-        }`}
-      >
-        🚀 Top Scholarships
-      </h2>
+      <div className="text-center">
+        <h2
+          className={`text-4xl font-extrabold mb-3 ${
+            darkMode ? 'text-white' : 'text-gray-800'
+          }`}
+        >
+          🚀 Top Scholarships
+        </h2>
+        {/* Subtitle Added */}
+        <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+          Find the best scholarships available for your education. Apply now and secure your future!
+        </p>
+      </div>
 
       {scholarships && scholarships.length > 0 ? (
         <div>
@@ -47,7 +53,7 @@ const Scholarships = () => {
             <Link
               to={'/allScholarship'}
               className={`bg-gradient-to-tr ${
-                darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-500 to-slate-400'
+                darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'
               } text-white font-semibold btn my-4`}
             >
               View All Scholarships
@@ -55,7 +61,7 @@ const Scholarships = () => {
           </div>
         </div>
       ) : (
-        <p>No data available</p>
+        <p className="text-center">No data available</p>
       )}
     </div>
   );

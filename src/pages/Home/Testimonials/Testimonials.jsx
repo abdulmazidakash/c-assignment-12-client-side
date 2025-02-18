@@ -29,10 +29,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="container mx-auto my-8 rounded-lg py-16 bg-base-100 dark:bg-gray-900">
+    <section className="container mx-auto my-8 rounded-lg py-12 bg-base-100 dark:bg-gray-900">
       <div className="container mx-auto text-center px-4">
         {/* Section Title */}
-        <h2 className="text-3xl font-semibold mb-4 text-gray-900 dark:text-white">
+        <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-white">
           What Students Say
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-10">

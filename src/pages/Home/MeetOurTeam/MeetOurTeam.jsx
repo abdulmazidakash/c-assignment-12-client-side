@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function MeetOurTeam() {
   return (
-    <div className='container mx-auto my-8 p-4 md:p-12 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white'>
+    <div className='container mx-auto my-8 py-12 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white'>
       {/* Team Section */}
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold">Meet Our Team</h2>
+        <h2 className="text-4xl font-bold">Meet Our Team</h2>
         <p className="text-gray-600 dark:text-gray-300 mt-4">
           A passionate group of individuals dedicated to student success.
         </p>

@@ -14,7 +14,7 @@ const ScholarshipDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
 
-  const { data: scholarship= {}, isLoading } = useQuery({
+  const { data: scholarship = {}, isLoading } = useQuery({
     queryKey: ['scholarship', id],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/scholarships/${id}`);
@@ -28,10 +28,9 @@ const ScholarshipDetails = () => {
         const { data } = await axiosSecure.get(`/reviews/${id}`);
         return data;
     },
-});
+  });
 
-console.log(reviews);
-
+  console.log(reviews);
 
   const {
     universityName,
@@ -49,13 +48,13 @@ console.log(reviews);
   } = scholarship || {};
 
   if (isLoading) {
-    return <LoadingSpinner/> ;
+    return <LoadingSpinner />;
   }
 
   return (
     <div className="max-w-5xl mx-auto p-5">
       {/* Header Section */}
-      <div className="w-full h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg border">
+      <div className="w-full h-80 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg border">
         <img
           src={image || 'https://via.placeholder.com/1200x300'}
           alt="Scholarship Banner"
@@ -65,7 +64,7 @@ console.log(reviews);
 
       {/* Title and Apply Button */}
       <div className="w-full flex items-center justify-between p-5 mt-4">
-        <h1 className="text-2xl font-bold flex items-center gap-2">
+        <h1 className="text-2xl font-bold flex items-center gap-2 text-gray-900 dark:text-white">
           <FaUniversity className="text-[#13405E]" />
           {universityName || 'Unknown University'}
         </h1>
@@ -81,13 +80,13 @@ console.log(reviews);
       {/* Scholarship Details */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Section */}
-        <div className="md:col-span-2 bg-white shadow-lg rounded-lg p-6 border">
-          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+        <div className="md:col-span-2 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6 border dark:border-gray-700">
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
             <FaGraduationCap className="text-[#13405E]" />
             Scholarship Details:
           </h2>
-          <p className="text-gray-600 mb-4">{description || 'No description available.'}</p>
-          <ul className="text-gray-600 space-y-2">
+          <p className="text-gray-600 dark:text-gray-300 mb-4">{description || 'No description available.'}</p>
+          <ul className="text-gray-600 dark:text-gray-300 space-y-2">
             <li className="flex items-center gap-2">
               <MdDateRange />
               <strong>Application Deadline:</strong> {applicationDeadline || 'N/A'}
@@ -97,7 +96,7 @@ console.log(reviews);
               <MdDateRange />
               <strong>Post Date:</strong> {postDate || 'N/A'}
             </li>
-			<li className="flex items-center gap-2">
+            <li className="flex items-center gap-2">
               <MdAttachMoney />
               <strong>Stipend:</strong> {stipend || 'Not Available'}
             </li>
@@ -113,80 +112,77 @@ console.log(reviews);
         </div>
 
         {/* Right Section */}
-        <div className="bg-white shadow-lg rounded-lg p-6 border">
-			<h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-				<FaUniversity className="text-[#13405E]" />
-				University Information
-			</h3>
+        <div className="bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6 border dark:border-gray-700">
+          <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+            <FaUniversity className="text-[#13405E]" />
+            University Information
+          </h3>
 
-			<div className="text-sm text-gray-600 space-y-2">
-				{/* Location */}
-				<div className="flex items-center gap-2">
-					<MdLocationOn /> 
-					{/* <strong>Location:</strong> */}
-					<span>
-					{universityCity || 'Unknown City'}, {universityCountry || 'Unknown Country'}
-					</span>
-				</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+            {/* Location */}
+            <div className="flex items-center gap-2">
+              <MdLocationOn />
+              <span>
+                {universityCity || 'Unknown City'}, {universityCountry || 'Unknown Country'}
+              </span>
+            </div>
 
-				{/* Scholarship Category */}
-				<div className="flex items-center gap-2">
-					<FaGraduationCap />
-					<strong>Scholarship Category:</strong>
-					<span>{scholarshipCategory || 'N/A'}</span>
-				</div>
+            {/* Scholarship Category */}
+            <div className="flex items-center gap-2">
+              <FaGraduationCap />
+              <strong>Scholarship Category:</strong>
+              <span>{scholarshipCategory || 'N/A'}</span>
+            </div>
 
-				{/* Subject Category */}
-				<div className="flex items-center gap-2">
-					<FaBook />
-					<strong>Subject Category:</strong>
-					<span>{subjectCategory || 'N/A'}</span>
-				</div>
-			</div>
-
+            {/* Subject Category */}
+            <div className="flex items-center gap-2">
+              <FaBook />
+              <strong>Subject Category:</strong>
+              <span>{subjectCategory || 'N/A'}</span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Reviews Section */}
       <div className="my-12">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
           <FaRegCommentDots className="text-[#13405E]" />
           Scholarship Reviews
         </h2>
 
         {reviews.length > 0 ? (
-            <Swiper
-                modules={[Pagination]}
-                spaceBetween={20}
-                slidesPerView={1}
-                pagination={{ clickable: true }}
-            >
-                {reviews.map((review, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="bg-white shadow-lg rounded-lg p-6 border flex items-start gap-4">
-                            <img
-                                src={review.userImage || 'https://via.placeholder.com/64'}
-                                alt={review.userName}
-                                className="w-16 h-16 rounded-full"
-                            />
-                            <div>
-                                <h3 className="text-lg font-bold">{review.userName}</h3>
-                                <p className="text-sm text-gray-500">{review.reviewDate}</p>
-                                <div className="flex items-center text-yellow-500 mb-2">
-                                    {Array.from({ length: review.rating }).map((_, i) => (
-                                        <FaStar key={i} />
-                                    ))}
-                                </div>
-                                <p>{review.comment}</p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+          <Swiper
+            modules={[Pagination]}
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+          >
+            {reviews.map((review, index) => (
+              <SwiperSlide key={index}>
+                <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 border flex items-start gap-4">
+                  <img
+                    src={review.userImage || 'https://via.placeholder.com/64'}
+                    alt={review.userName}
+                    className="w-16 h-16 rounded-full"
+                  />
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">{review.userName}</h3>
+                    <p className="text-sm text-gray-500">{review.reviewDate}</p>
+                    <div className="flex items-center text-yellow-500 mb-2">
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <FaStar key={i} />
+                      ))}
+                    </div>
+                    <p>{review.comment}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         ) : (
-            <p>No reviews available for this scholarship.</p>
+          <p className="text-gray-600 dark:text-gray-300">No reviews available for this scholarship.</p>
         )}
-
       </div>
     </div>
   );

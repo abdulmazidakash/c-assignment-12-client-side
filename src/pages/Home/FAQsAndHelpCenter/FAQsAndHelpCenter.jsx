@@ -42,17 +42,29 @@ const FAQsAndHelpCenter = () => {
     <div
       className={`container mx-auto rounded-lg ${
         darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"
-      } py-16 my-8`}
+      } py-12 my-8`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-          className={`text-4xl font-bold text-center ${
-            darkMode ? "text-white" : "text-gray-800"
-          } mb-12`}
-        >
-          FAQs & Help Center
-        </h2>
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2
+            className={`text-4xl font-bold ${
+              darkMode ? "text-white" : "text-gray-800"
+            }`}
+          >
+            FAQs & Help Center
+          </h2>
+          {/* Subtitle Added */}
+          <p
+            className={`text-lg mt-3 ${
+              darkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
+            Find answers to the most frequently asked questions and get the help you need.
+          </p>
+        </div>
 
+        {/* FAQ List */}
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <div

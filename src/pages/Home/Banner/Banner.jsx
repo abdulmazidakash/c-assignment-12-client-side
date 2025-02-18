@@ -36,9 +36,9 @@ const Banner = () => {
 
   return (
     <div
-      className={`w-full h-[500px] bg-gradient-to-b ${
+      className={`w-full my h-[500px] bg-gradient-to-b ${
         darkMode ? 'from-gray-900 via-black to-gray-900' : 'from-white via-gray-200 to-white'
-      } text-gray-300 mt-4 mb-8`}
+      } text-gray-300 my-8 rounded-lg`}
     >
       <Swiper
         modules={[Pagination, Autoplay]}

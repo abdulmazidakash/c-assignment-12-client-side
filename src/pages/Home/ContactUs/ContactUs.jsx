@@ -2,9 +2,9 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUs = () => {
   return (
-    <section className="container mx-auto my-8 rounded-lg py-16 px-4 bg-base-100 dark:bg-gray-900">
+    <section className="container mx-auto my-8 rounded-lg py-12 px-4 bg-base-100 dark:bg-gray-900">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Contact Us
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">

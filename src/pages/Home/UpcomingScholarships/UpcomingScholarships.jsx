@@ -42,7 +42,7 @@ const UpcomingScholarships = () => {
 
   return (
     <div
-      className={`py-16 container mx-auto rounded-lg ${
+      className={`py-12 container mx-auto rounded-lg ${
         darkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-br from-blue-50 via-white to-blue-50 text-gray-800'
       }`}
     >
@@ -114,13 +114,13 @@ const UpcomingScholarships = () => {
               >
                 {scholarship.description}
               </p>
-              <button
+              {/* <button
                 className={`bg-gradient-to-tr ${
                   darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'
                 } text-white font-semibold btn btn-sm flex items-center gap-2`}
               >
                 Learn More <FaArrowRight />
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
