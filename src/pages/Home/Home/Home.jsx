@@ -5,6 +5,7 @@ import FAQsAndHelpCenter from '../FAQsAndHelpCenter/FAQsAndHelpCenter';
 import Scholarships from '../Scholarships/Scholarships';
 import { Helmet } from 'react-helmet-async';
 import FeaturedUniversities from '../FeaturedUniversities/FeaturedUniversities';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
 	return (
@@ -17,6 +18,7 @@ const Home = () => {
 			<UpcomingScholarships/>
 			<FAQsAndHelpCenter/>
 			<FeaturedUniversities/>
+			<Testimonials/>
 		</div>
 	);
 };
