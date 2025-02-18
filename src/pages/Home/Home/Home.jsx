@@ -4,11 +4,10 @@ import UpcomingScholarships from '../UpcomingScholarships/UpcomingScholarships';
 import FAQsAndHelpCenter from '../FAQsAndHelpCenter/FAQsAndHelpCenter';
 import Scholarships from '../Scholarships/Scholarships';
 import { Helmet } from 'react-helmet-async';
-import FeaturedUniversities from '../FeaturedUniversities/FeaturedUniversities';
 import Testimonials from '../Testimonials/Testimonials';
-import HowItWorks from '../HowItWorks/HowItWorks';
 import Newsletter from '../NewsLetter/NewsLetter';
 import ContactUs from '../ContactUs/ContactUs';
+import MeetOurTeam from '../MeetOurTeam/MeetOurTeam';
 
 const Home = () => {
 	return (
@@ -19,10 +18,9 @@ const Home = () => {
 			<Banner/>
 			<Scholarships/>
 			<UpcomingScholarships/>
-			<FAQsAndHelpCenter/>
-			<FeaturedUniversities/>
+			<MeetOurTeam/>
 			<Testimonials/>
-			<HowItWorks/>
+			<FAQsAndHelpCenter/>
 			<Newsletter/>
 			<ContactUs/>
 		</div>

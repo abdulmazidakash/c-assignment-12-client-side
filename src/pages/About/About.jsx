@@ -47,48 +47,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Team Section */}
-      <div className="max-w-4xl mx-auto text-center mt-16">
-        <h2 className="text-3xl font-bold text-primary">Meet Our Team</h2>
-        <p className="text-gray-600 dark:text-gray-300 mt-4">
-          A passionate group of individuals dedicated to student success.
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mt-10">
-        {/* Team Member 1 */}
-        <div className="card bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg text-center">
-          <img
-            src="https://i.pravatar.cc/150?img=4"
-            alt="Team Member"
-            className="rounded-full mx-auto w-24 h-24"
-          />
-          <h3 className="text-lg font-semibold mt-4">John Doe</h3>
-          <p className="text-gray-600 dark:text-gray-300">Founder & CEO</p>
-        </div>
-
-        {/* Team Member 2 */}
-        <div className="card bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg text-center">
-          <img
-            src="https://i.pravatar.cc/150?img=5"
-            alt="Team Member"
-            className="rounded-full mx-auto w-24 h-24"
-          />
-          <h3 className="text-lg font-semibold mt-4">Jane Smith</h3>
-          <p className="text-gray-600 dark:text-gray-300">CTO & Developer</p>
-        </div>
-
-        {/* Team Member 3 */}
-        <div className="card bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg text-center">
-          <img
-            src="https://i.pravatar.cc/150?img=6"
-            alt="Team Member"
-            className="rounded-full mx-auto w-24 h-24"
-          />
-          <h3 className="text-lg font-semibold mt-4">Emily White</h3>
-          <p className="text-gray-600 dark:text-gray-300">Marketing & Partnerships</p>
-        </div>
-      </div>
     </div>
   );
 };
