@@ -39,11 +39,20 @@ const Navbar = () => {
         All Scholarship
       </NavLink>
     </li>
+    {user && 
+    <>
     <li>
       <NavLink to={'/terms-and-conditions'} className="hover:bg-sky-700 rounded-lg p-2">
         Terms & Conditions
       </NavLink>
     </li>
+    <li>
+      <NavLink to={'/about'} className="hover:bg-sky-700 rounded-lg p-2">
+        About Us
+      </NavLink>
+    </li>
+    </>
+    }
     <li>
       <NavLink to={'/dashboard'} className="hover:bg-sky-700 rounded-lg p-2">Dashboard</NavLink>
     </li>
@@ -94,6 +103,20 @@ const Navbar = () => {
                 All Scholarship
               </Link>
             </li>
+           {user &&
+           <>
+            <li>
+              <Link to={'/terms-and-conditions'} className="hover:bg-sky-700 rounded-lg">
+                Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link to={'/about'} className="hover:bg-sky-700 rounded-lg">
+                About Us
+              </Link>
+            </li>
+           </>
+           }
             <li>
               <Link to={'/dashboard'} className="hover:bg-sky-700 rounded-lg">Dashboard</Link>
             </li>
@@ -106,7 +129,7 @@ const Navbar = () => {
             
              {/* Dark Mode Toggle */}
             <button
-              className="p-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition dark:bg-gray-200 dark:text-black"
+              className="mt-2 p-1 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition dark:bg-gray-200 dark:text-black"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}

@@ -25,6 +25,7 @@ import AnalyticsChart from "../pages/Dashboard/Admin/AnalyticsChart/AnalyticsCha
 import AdminRoute from "./AdminRoute";
 import CombinedRoute from "./CombinedRoute";
 import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
+import AboutUs from "../pages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/allScholarship", element: <AllScholarship/> },
       { path: "/terms-and-conditions", element: <TermsAndConditions/> },
+      { path: "/about", element: <AboutUs/> },
       { path: "/scholarships/:id", element: ( <PrivateRoute><ScholarshipDetails /></PrivateRoute>),},
     ],
   },
