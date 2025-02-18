@@ -16,7 +16,6 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../shared/LoadingSpinner";
 import { Helmet } from "react-helmet-async";
 
-// Register ChartJS components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const AnalyticsChart = () => {
@@ -29,8 +28,6 @@ const AnalyticsChart = () => {
       return response.data;
     },
   });
-
-  console.log(adminStats);
 
   if (isLoading) {
     return <LoadingSpinner/>;
@@ -66,7 +63,6 @@ const AnalyticsChart = () => {
     ],
   };
 
-  // Chart responsiveness options
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -85,16 +81,13 @@ const AnalyticsChart = () => {
    <Helmet>
     <title>Admin Stats | ScholarshipHub</title>
    </Helmet>
-    <div className="p-4">
-      <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center text-indigo-600">
+    <div className="p-4 dark:bg-gray-900">
+      <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center text-indigo-600 dark:text-indigo-400">
         Admin Analytics
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-
-        {/* Bar Chart for Subject Categories */}
-        <div className="bg-white shadow-md rounded-lg p-4 border border-indigo-200">
-          <h2 className="text-lg md:text-2xl font-semibold flex items-center gap-3 mb-4 text-green-500">
+        <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 border border-indigo-200 dark:border-gray-700">
+          <h2 className="text-lg md:text-2xl font-semibold flex items-center gap-3 mb-4 text-green-500 dark:text-green-400">
             <FaChartBar /> Subject Categories
           </h2>
           <div className="relative h-64 md:h-80">
@@ -102,26 +95,25 @@ const AnalyticsChart = () => {
           </div>
         </div>
 
-        {/* Pie Chart */}
-        <div className="bg-white shadow-md rounded-lg p-4 border border-indigo-200">
-          <h2 className="text-lg md:text-2xl font-semibold flex items-center gap-3 mb-4 text-purple-500">
+        <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 border border-indigo-200 dark:border-gray-700">
+          <h2 className="text-lg md:text-2xl font-semibold flex items-center gap-3 mb-4 text-purple-500 dark:text-purple-400">
             <FaChartPie /> Overall Analytics
           </h2>
           <div className="relative h-64 md:h-80">
             <Pie data={pieData} options={chartOptions} />
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-2 text-gray-600">
+          <div className="mt-4 grid grid-cols-2 gap-2 text-gray-600 dark:text-gray-300">
             <div className="flex items-center gap-2">
-              <FaUsers className="text-green-500" /> <span>Users</span>
+              <FaUsers className="text-green-500 dark:text-green-400" /> <span>Users</span>
             </div>
             <div className="flex items-center gap-2">
-              <FaClipboardList className="text-orange-500" /> <span>Applications</span>
+              <FaClipboardList className="text-orange-500 dark:text-orange-400" /> <span>Applications</span>
             </div>
             <div className="flex items-center gap-2">
-              <FaAward className="text-blue-500" /> <span>Scholarships</span>
+              <FaAward className="text-blue-500 dark:text-blue-400" /> <span>Scholarships</span>
             </div>
             <div className="flex items-center gap-2">
-              <FaStar className="text-purple-500" /> <span>Reviews</span>
+              <FaStar className="text-purple-500 dark:text-purple-400" /> <span>Reviews</span>
             </div>
           </div>
         </div>

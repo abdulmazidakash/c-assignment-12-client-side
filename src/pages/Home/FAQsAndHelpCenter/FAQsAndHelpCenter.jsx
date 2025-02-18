@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const FAQsAndHelpCenter = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const { darkMode } = useContext(ThemeContext); // Get darkMode from context
 
   const faqs = [
     {
@@ -37,9 +39,17 @@ const FAQsAndHelpCenter = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-16 my-8">
+    <div
+      className={`container mx-auto rounded-lg ${
+        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"
+      } py-16 my-8`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+        <h2
+          className={`text-4xl font-bold text-center ${
+            darkMode ? "text-white" : "text-gray-800"
+          } mb-12`}
+        >
           FAQs & Help Center
         </h2>
 
@@ -47,26 +57,50 @@ const FAQsAndHelpCenter = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-lg overflow-hidden"
+              className={`${
+                darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"
+              } shadow-md rounded-lg overflow-hidden`}
             >
               <div
                 className="flex justify-between items-center px-6 py-4 cursor-pointer"
                 onClick={() => toggleFAQ(index)}
               >
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3
+                  className={`text-lg font-semibold ${
+                    darkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   {faq.question}
                 </h3>
                 <div>
                   {openIndex === index ? (
-                    <FaChevronUp className="text-gray-600 text-xl" />
+                    <FaChevronUp
+                      className={`${
+                        darkMode ? "text-white" : "text-gray-600"
+                      } text-xl`}
+                    />
                   ) : (
-                    <FaChevronDown className="text-gray-600 text-xl" />
+                    <FaChevronDown
+                      className={`${
+                        darkMode ? "text-white" : "text-gray-600"
+                      } text-xl`}
+                    />
                   )}
                 </div>
               </div>
               {openIndex === index && (
-                <div className="px-6 py-4 bg-gray-50">
-                  <p className="text-gray-700">{faq.answer}</p>
+                <div
+                  className={`${
+                    darkMode ? "bg-gray-700" : "bg-gray-50"
+                  } px-6 py-4`}
+                >
+                  <p
+                    className={`${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {faq.answer}
+                  </p>
                 </div>
               )}
             </div>

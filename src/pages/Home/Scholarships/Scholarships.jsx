@@ -1,53 +1,64 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import LoadingSpinner from '../../../shared/LoadingSpinner';
 import ScholarshipCard from '../../../components/ScholarshipCard';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Scholarships = () => {
+  const axiosPublic = useAxiosPublic();
+  const { darkMode } = useContext(ThemeContext); // Get darkMode from context
 
-	const axiosPublic = useAxiosPublic();
+  const { data: scholarships, isLoading } = useQuery({
+    queryKey: ['top-scholarships'],
+    queryFn: async () => {
+      // Fetch scholarships
+      const { data } = await axiosPublic.get(`/top-scholarships`);
+      return data;
+    },
+  });
 
-	const { data: scholarships, isLoading} = useQuery({
-		queryKey: ['top-scholarships'],
-		queryFn: async() =>{
-			//fetch
-			const {data} = await axiosPublic.get(`/top-scholarships`);
-			return data;
+  if (isLoading) return <LoadingSpinner />;
 
-		},
-	});
+  return (
+    <div
+      className={`container mx-auto my-8 p-4 rounded-lg ${
+        darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'
+      }`}
+    >
+      {/* Section Header */}
+      <h2
+        className={`text-4xl font-extrabold text-center mb-12 ${
+          darkMode ? 'text-white' : 'text-gray-800'
+        }`}
+      >
+        🚀 Top Scholarships
+      </h2>
 
-	console.log(scholarships);
-
-	if(isLoading) return <LoadingSpinner/>
-
-	return (
-		<div className='container mx-auto '>
-
-			 {/* Section Header */}
-			 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-12">
-          		🚀 Top Scholarships
-        	</h2>
-
-			 {scholarships && scholarships.length > 0 ? 
-			<div>
-				<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-				{scholarships.map(scholarship => <ScholarshipCard key={scholarship._id} scholarship={scholarship} />)}
-				
-			</div>
-			<div className='text-center'>
-				<Link to={'/allScholarship'} className='bg-gradient-to-tr from-sky-900 to-slate-800 text-white font-semibold btn my-4' >View All Scholarships</Link>
-			</div>
-			</div>
-			
-			: 
-	 		 (<p>No data available</p>)}
-		</div>
-	);
+      {scholarships && scholarships.length > 0 ? (
+        <div>
+          <div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {scholarships.map((scholarship) => (
+              <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              to={'/allScholarship'}
+              className={`bg-gradient-to-tr ${
+                darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-500 to-slate-400'
+              } text-white font-semibold btn my-4`}
+            >
+              View All Scholarships
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <p>No data available</p>
+      )}
+    </div>
+  );
 };
 
 export default Scholarships;
-
-{/* <div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'> */}
