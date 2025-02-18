@@ -83,11 +83,7 @@ const Banner = () => {
                 </p>
                 <Link
                   to={'/allScholarship'}
-                  className={`px-6 font-semibold py-3 rounded-md transition ${
-                    darkMode
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-blue-500 text-white hover:bg-blue-600'
-                  }`}
+                  className={`bg-gradient-to-tr ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn`}
                 >
                   {slide.buttonText}
                 </Link>

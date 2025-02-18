@@ -1,6 +1,10 @@
 import { FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import { ThemeContext } from "../../../context/ThemeContext";
+import { useContext } from "react";
 
 const Newsletter = () => {
+  
+    const { darkMode } = useContext(ThemeContext); // Get darkMode from context
   return (
     <section className="container mx-auto my-8 rounded-lg py-16 px-4 bg-base-100 dark:bg-gray-900">
       <div className="container mx-auto text-center">
@@ -26,7 +30,9 @@ const Newsletter = () => {
             </div>
 
             {/* Subscribe Button */}
-            <button className="btn btn-primary w-full md:w-auto flex items-center justify-center px-6 py-3">
+            <button 
+            className={`bg-gradient-to-tr btn btn-primary w-full md:w-auto flex items-center justify-center px-6 py-3 ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn w-full`}
+            >
               Subscribe <FaPaperPlane className="ml-2" />
             </button>
           </form>
