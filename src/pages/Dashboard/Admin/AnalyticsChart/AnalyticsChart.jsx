@@ -85,6 +85,44 @@ const AnalyticsChart = () => {
       <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center text-indigo-600 dark:text-indigo-400">
         Admin Analytics
       </h1>
+       {/* New Card Section (Page Top) */}
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          {/* Users Card */}
+          <div className="bg-green-500 text-white rounded-lg shadow-md p-4 flex items-center gap-4">
+            <FaUsers className="text-3xl" />
+            <div>
+              <p className="text-lg font-semibold">Users</p>
+              <p className="text-2xl font-bold">{adminStats.users}</p>
+            </div>
+          </div>
+
+          {/* Applications Card */}
+          <div className="bg-orange-500 text-white rounded-lg shadow-md p-4 flex items-center gap-4">
+            <FaClipboardList className="text-3xl" />
+            <div>
+              <p className="text-lg font-semibold">Applications</p>
+              <p className="text-2xl font-bold">{adminStats.applications}</p>
+            </div>
+          </div>
+
+          {/* Scholarships Card */}
+          <div className="bg-blue-500 text-white rounded-lg shadow-md p-4 flex items-center gap-4">
+            <FaAward className="text-3xl" />
+            <div>
+              <p className="text-lg font-semibold">Scholarships</p>
+              <p className="text-2xl font-bold">{adminStats.scholarships}</p>
+            </div>
+          </div>
+
+          {/* Reviews Card */}
+          <div className="bg-purple-500 text-white rounded-lg shadow-md p-4 flex items-center gap-4">
+            <FaStar className="text-3xl" />
+            <div>
+              <p className="text-lg font-semibold">Reviews</p>
+              <p className="text-2xl font-bold">{adminStats.reviews}</p>
+            </div>
+          </div>
+        </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 border border-indigo-200 dark:border-gray-700">
           <h2 className="text-lg md:text-2xl font-semibold flex items-center gap-3 mb-4 text-green-500 dark:text-green-400">
