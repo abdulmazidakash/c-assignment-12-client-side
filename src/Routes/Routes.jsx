@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
       { path: "/allScholarship", element: <AllScholarship/> },
       { path: "/terms-and-conditions", element: <TermsAndConditions/> },
       { path: "/about", element: <AboutUs/> },
-      { path: "/scholarships/:id", element: ( <PrivateRoute><ScholarshipDetails /></PrivateRoute>),},
+      { path: "/scholarships/:id", element:  <ScholarshipDetails />},
     ],
   },
 
