@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar fixed top-0 left-0 right-0 z-50 bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg">
+    <div className="navbar fixed top-0 left-0 right-0 z-50 bg-opacity-30 bg-gradient-to-tr from-sky-900 to-slate-800 backdrop-blur-md text-white shadow-lg dark:bg-gray-800">
       <div className="container mx-auto">
         <div className="flex-1">
           <Link to={"/"} className="btn btn-outline text-white normal-case text-xl font-bold">
@@ -46,14 +46,15 @@ const Navbar = () => {
                     Terms & Conditions
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to={"/about"} className="hover:text-sky-400 rounded-lg p-2">About Us</NavLink>
-                </li>
+               
               </>
             )}
-            <li>
+             <li>
+                  <NavLink to={"/about"} className="hover:text-sky-400 rounded-lg p-2">About Us</NavLink>
+                </li>
+            {user && <li>
               <NavLink to={"/dashboard"} className="hover:text-sky-400 rounded-lg p-2">Dashboard</NavLink>
-            </li>
+            </li>}
             {user ? (
               <li>
                 <button onClick={handleSignOut} className="hover:text-red-400 rounded-lg p-2">Logout</button>
@@ -108,14 +109,15 @@ const Navbar = () => {
                       Terms & Conditions
                     </Link>
                   </li>
-                  <li>
-                    <Link to={"/about"} className="hover:text-sky-400 rounded-lg">About Us</Link>
-                  </li>
+                  
                 </>
               )}
               <li>
+                    <Link to={"/about"} className="hover:text-sky-400 rounded-lg">About Us</Link>
+                  </li>
+              {user && <li>
                 <Link to={"/dashboard"} className="hover:text-sky-400 rounded-lg">Dashboard</Link>
-              </li>
+              </li>}
 
               {user ? (
                 <li>

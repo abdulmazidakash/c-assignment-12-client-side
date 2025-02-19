@@ -6,7 +6,7 @@ const AboutUs = () => {
     <div className="container mx-auto my-8 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-6 md:p-12">
       {/* Header Section */}
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-bold text-black">About Us</h1>
+        <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white">About Us</h1>
         <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
           Empowering students worldwide by connecting them with the best scholarship opportunities.
         </p>

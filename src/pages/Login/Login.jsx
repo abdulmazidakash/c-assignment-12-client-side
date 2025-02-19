@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Login = () => {
   const { signInUser, forgetPasswordUser, loading, user, setLoading } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
+  const { darkMode } = useContext(ThemeContext);
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
@@ -69,37 +71,22 @@ const Login = () => {
         <div className="bg-white/10 backdrop-blur-sm p-10 rounded-lg shadow-lg text-white max-w-md w-full">
           <h2 className="text-3xl font-bold text-center mb-6">Login Form</h2>
 
-{/* Role Selection Dropdown */}
-<div className="mb-4">
-  <label className="block mb-2">Select Role</label>
-  <select
-    className="w-full p-2 rounded transition-colors duration-300
-               bg-white text-black dark:bg-gray-800 dark:text-white 
-               border border-gray-300 dark:border-gray-600 outline-none"
-    onChange={(e) => handleRoleSelect(e.target.value)}
-  >
-    <option value="">Select a role</option>
-    <option value="admin">Admin</option>
-    <option value="moderator">Moderator</option>
-    <option value="student">Student</option>
-  </select>
-</div>
+          {/* Role Selection Dropdown */}
+          <div className="mb-4">
+            <label className="block mb-2">Select Role</label>
+            <select
+              className="w-full p-2 rounded transition-colors duration-300
+                        bg-white text-black dark:bg-gray-800 dark:text-white 
+                        border border-gray-300 dark:border-gray-600 outline-none"
+              onChange={(e) => handleRoleSelect(e.target.value)}
+            >
+              <option value="">Select a role</option>
+              <option value="admin">Admin</option>
+              <option value="moderator">Moderator</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
 
-          {/* <div className="mb-4">
-          <label className="block mb-2">Select Role</label>
-              <div className="flex items-center bg-white/20 p-2 rounded">
-                <FaUser className="mr-2" />
-                <input
-                  type="email"
-                  name="email"
-                  ref={emailRef}
-                  value={credentials.email}
-                  onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-                  placeholder="Your email"
-                  className="bg-transparent outline-none w-full text-white"
-                />
-              </div>
-            </div> */}
 
           <form onSubmit={handleSignInUser}>
             <div className="mb-4">
@@ -140,7 +127,12 @@ const Login = () => {
                 Forgot password?
               </a>
             </div>
-            <button className="btn btn-info w-full mb-4">Log In</button>
+            
+            <button 
+            className={`bg-gradient-to-tr ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn w-full mb-4 border-none`}
+            // className="btn btn-info w-full mb-4"
+            >Log In
+            </button>
           </form>
 
           {/* Social Login */}

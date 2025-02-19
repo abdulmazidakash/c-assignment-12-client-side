@@ -6,10 +6,12 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin";
 import { imageUpload, saveUser } from "../../utilities/utilities";
 import { BsFileEarmarkImageFill } from "react-icons/bs";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -113,7 +115,10 @@ const Register = () => {
               />
             </div>
           </div>
-          <button className="btn btn-accent w-full mb-4">Register</button>
+          <button 
+          className={`bg-gradient-to-tr ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn w-full mb-4 border-none`}
+          // className="btn btn-accent w-full mb-4"
+          >Register</button>
         </form>
 
         {/* social login component */}

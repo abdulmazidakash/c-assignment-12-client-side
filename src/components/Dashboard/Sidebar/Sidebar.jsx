@@ -78,7 +78,7 @@ const Sidebar = () => {
           </nav>
         </div>
 
-        <div>
+        {/* <div>
           <hr className="border-blue-300" />
         
           <button
@@ -88,7 +88,7 @@ const Sidebar = () => {
             <GrLogout className='w-5 h-5' />
             <span className='mx-4 font-medium'>Logout</span>
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );
