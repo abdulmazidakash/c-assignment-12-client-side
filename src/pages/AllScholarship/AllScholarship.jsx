@@ -7,6 +7,8 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import ScholarshipCard from '../../components/ScholarshipCard';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import { ThemeContext } from '../../context/ThemeContext'; // Assuming ThemeContext is set up
+import { useMemo } from 'react';
+
 
 const AllScholarship = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,26 +27,22 @@ const AllScholarship = () => {
     },
   });
 
-  // Filter scholarships based on the search query
-  const filteredScholarships = scholarships.filter((scholarship) =>
+const filteredScholarships = useMemo(() => {
+  return scholarships.filter((scholarship) =>
     scholarship.universityName.toLowerCase().includes(searchQuery.toLowerCase()) ||
     scholarship.scholarshipCategory.toLowerCase().includes(searchQuery.toLowerCase()) ||
     scholarship.subjectCategory.toLowerCase().includes(searchQuery.toLowerCase())
   );
+}, [scholarships, searchQuery]); // ✅solve this error
 
-  // Sort scholarships based on application fee (ascending or descending)
-  const [sortedScholarships, setSortedScholarships] = useState(filteredScholarships);
+const sortedScholarships = useMemo(() => {
+  return [...filteredScholarships].sort((a, b) => {
+    return sortOption === 'ascending'
+      ? a.applicationFees - b.applicationFees
+      : b.applicationFees - a.applicationFees;
+  });
+}, [filteredScholarships, sortOption]); // ✅ solve this error
 
-  useEffect(() => {
-    const sorted = [...filteredScholarships].sort((a, b) => {
-      if (sortOption === 'ascending') {
-        return a.applicationFees - b.applicationFees;
-      } else {
-        return b.applicationFees - a.applicationFees;
-      }
-    });
-    setSortedScholarships(sorted);
-  }, [filteredScholarships, sortOption]);
 
   // Handle pagination controls
   const handleBulletClick = (index) => {
