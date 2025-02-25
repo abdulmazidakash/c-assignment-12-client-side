@@ -123,9 +123,9 @@ const ManageUsers = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="table  w-full bg-gray-800 dark:bg-gray-700 text-white rounded-lg">
+          <table className="table  w-full dark:bg-gray-800 dark:text-white rounded-lg">
             {/* ✅ Table Header Fix */}
-            <thead className="bg-gray-800 dark:bg-gray-700 text-white">
+            <thead className=" dark:bg-gray-800 dark:text-white rounded-lg">
               <tr>
                 <th className="text-left">#</th>
                 <th>Image</th>

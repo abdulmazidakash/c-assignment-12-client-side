@@ -270,7 +270,7 @@ const AddScholarship = () => {
                     accept="image/*"
                     hidden
                   />
-                  <div className="bg-blue-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-blue-500 dark:bg-blue-700 dark:border-blue-500">
+                  <div className="bg-[#13405E] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3">
                     {shortImageName(uploadImage?.image)}
                   </div>
                 </label>
@@ -323,7 +323,7 @@ const AddScholarship = () => {
           <div className="mt-8">
             <button
               type="submit"
-              className="btn btn-primary w-full flex items-center justify-center dark:bg-blue-700 dark:hover:bg-blue-800"
+              className="btn w-full flex items-center justify-center bg-[#13405E] text-white"
             >
               <MdOutlineAddCircleOutline className="mr-2" />
               {loading ? 'Adding Scholarship...' : 'Add Scholarship'}

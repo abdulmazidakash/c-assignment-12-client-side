@@ -81,10 +81,10 @@ const ApplyScholarship = () => {
       </div>
       <form
         onSubmit={handleApplicationSubmit}
-        className="max-w-2xl mx-auto bg-white shadow-md p-6 rounded-lg border border-gray-200 space-y-4"
+        className="max-w-2xl mx-auto bg-white shadow-md p-6 rounded-lg border border-gray-200 space-y-4 dark:bg-gray-900"
       >
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Phone Number
           </label>
           <input
@@ -92,21 +92,21 @@ const ApplyScholarship = () => {
             name="phone"
             type="text"
             placeholder="Phone Number"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="photo" className="block text-sm font-medium text-gray-700  dark:text-gray-300">
             Photo
           </label>
-          <input id="photo" name="photo" type="file" className="file-input w-full" required />
+          <input id="photo" name="photo" type="file" className="file-input w-full dark:bg-gray-700 dark:text-white" required />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="village" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="village" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Village
             </label>
             <input
@@ -114,12 +114,12 @@ const ApplyScholarship = () => {
               name="village"
               type="text"
               placeholder="Village"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
           <div>
-            <label htmlFor="district" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="district" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               District
             </label>
             <input
@@ -127,12 +127,12 @@ const ApplyScholarship = () => {
               name="district"
               type="text"
               placeholder="District"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
           <div>
-            <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="country" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Country
             </label>
             <input
@@ -140,17 +140,17 @@ const ApplyScholarship = () => {
               name="country"
               type="text"
               placeholder="Country"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="gender" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="gender" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Gender
           </label>
-          <select id="gender" name="gender" className="select select-bordered w-full" required>
+          <select id="gender" name="gender" className="select select-bordered w-full dark:bg-gray-700 dark:text-white" required>
             <option value="" disabled>
               Select Gender
             </option>
@@ -161,10 +161,10 @@ const ApplyScholarship = () => {
         </div>
 
         <div>
-          <label htmlFor="degree" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="degree" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Degree
           </label>
-          <select id="degree" name="degree" className="select select-bordered w-full" required>
+          <select id="degree" name="degree" className="select select-bordered w-full dark:bg-gray-700 dark:text-white" required>
             <option value="" disabled>
               Select Degree
             </option>
@@ -175,7 +175,7 @@ const ApplyScholarship = () => {
         </div>
 
         <div>
-          <label htmlFor="sscResult" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="sscResult" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             SSC Result
           </label>
           <input
@@ -183,13 +183,13 @@ const ApplyScholarship = () => {
             name="sscResult"
             type="text"
             placeholder="SSC Result"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="hscResult" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="hscResult" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             HSC Result
           </label>
           <input
@@ -197,16 +197,16 @@ const ApplyScholarship = () => {
             name="hscResult"
             type="text"
             placeholder="HSC Result"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="studyGap" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="studyGap" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Study Gap (if any)
           </label>
-          <select id="studyGap" name="studyGap" className="select select-bordered w-full">
+          <select id="studyGap" name="studyGap" className="select select-bordered w-full dark:bg-gray-700 dark:text-white">
             <option value="" disabled>
               Select Study Gap
             </option>
@@ -218,7 +218,7 @@ const ApplyScholarship = () => {
         </div>
 
         <div>
-          <label htmlFor="universityName" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="universityName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             University Name
           </label>
           <input
@@ -226,13 +226,13 @@ const ApplyScholarship = () => {
             name="universityName"
             type="text"
             defaultValue={scholarship.universityName}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="scholarshipCategory" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="scholarshipCategory" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Scholarship Category
           </label>
           <input
@@ -240,13 +240,13 @@ const ApplyScholarship = () => {
             name="scholarshipCategory"
             type="text"
             defaultValue={scholarship.scholarshipCategory}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="subjectCategory" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="subjectCategory" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Subject Category
           </label>
           <input
@@ -254,12 +254,12 @@ const ApplyScholarship = () => {
             name="subjectCategory"
             type="text"
             defaultValue={scholarship.subjectCategory}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             readOnly
           />
         </div>
-
-        <button type="submit" className="btn btn-success w-full">
+        
+        <button type="submit" className="btn w-full bg-[#13405E] text-white">
           Submit Application
         </button>
       </form>

@@ -137,7 +137,7 @@ const sortedScholarships = useMemo(() => {
                 key={index}
                 onClick={() => handleBulletClick(index)}
                 className={`text-lg hover:text-blue-700 btn btn-sm btn-circle btn-outline mb-8 border-t-4 ${
-                  activePage === index ? 'btn-info' : 'text-orange-500'
+                  activePage === index ? 'dark:text-white bg-[#13405E]' : 'dark:text-white'
                 }`}
               >
                 <FaCircle />

@@ -31,7 +31,7 @@ const Newsletter = () => {
 
             {/* Subscribe Button */}
             <button 
-            className={`bg-gradient-to-tr btn btn-primary w-full md:w-auto flex items-center justify-center px-6 py-3 ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn w-full`}
+            className={`bg-gradient-to-tr btn  w-full md:w-auto flex items-center justify-center px-6 py-3 ${darkMode ? 'from-sky-700 to-slate-800' : 'from-sky-900 to-slate-800'} text-white font-semibold btn w-full`}
             >
               Subscribe <FaPaperPlane className="ml-2" />
             </button>

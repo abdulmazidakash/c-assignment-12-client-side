@@ -57,10 +57,10 @@ const handleSubmit = async (e) => {
  
 
   return (
-    <div className="modal modal-open">
-      <div className="modal-box">
+    <div className="modal modal-open ">
+      <div className="modal-box dark:bg-gray-900 dark:text-white shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Edit Scholarship</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 ">
           {/* Scholarship Name */}
           <div>
             <label className="block font-medium mb-1">Scholarship Name</label>
@@ -68,7 +68,7 @@ const handleSubmit = async (e) => {
               type="text"
               name="scholarshipName"
               defaultValue={selectedScholarship.scholarshipName}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -80,7 +80,7 @@ const handleSubmit = async (e) => {
               type="text"
               name="universityName"
               defaultValue={selectedScholarship.universityName}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -92,7 +92,7 @@ const handleSubmit = async (e) => {
               type="text"
               name="universityCountry"
               defaultValue={selectedScholarship.universityCountry}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -104,7 +104,7 @@ const handleSubmit = async (e) => {
               type="text"
               name="universityCity"
               defaultValue={selectedScholarship.universityCity}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -116,7 +116,7 @@ const handleSubmit = async (e) => {
               type="number"
               name="universityRank"
               defaultValue={selectedScholarship.universityRank}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -129,7 +129,7 @@ const handleSubmit = async (e) => {
               step="0.01"
               name="tuitionFees"
               defaultValue={selectedScholarship.tuitionFees}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -142,7 +142,7 @@ const handleSubmit = async (e) => {
               step="0.01"
               name="applicationFees"
               defaultValue={selectedScholarship.applicationFees}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -155,7 +155,7 @@ const handleSubmit = async (e) => {
               step="0.01"
               name="serviceCharge"
               defaultValue={selectedScholarship.serviceCharge}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -167,7 +167,7 @@ const handleSubmit = async (e) => {
               type="date"
               name="applicationDeadline"
               defaultValue={selectedScholarship.applicationDeadline}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -179,7 +179,7 @@ const handleSubmit = async (e) => {
               type="date"
               name="postDate"
               defaultValue={selectedScholarship.postDate}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
@@ -187,12 +187,12 @@ const handleSubmit = async (e) => {
            {/* Dropdowns */}
         <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Subject Category</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-white">Subject Category</label>
             <select
               name="subjectCategory"
               defaultValue={selectedScholarship.subjectCategory}
           
-              className="select select-bordered w-full"
+              className="select select-bordered w-full dark:bg-gray-700 dark:text-white"
             >
               <option>Agriculture</option>
               <option>Engineering</option>
@@ -200,11 +200,11 @@ const handleSubmit = async (e) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Scholarship Category</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-white">Scholarship Category</label>
             <select
               name="scholarshipCategory"
               defaultValue={selectedScholarship.scholarshipCategory}
-              className="select select-bordered w-full"
+              className="select select-bordered w-full dark:bg-gray-700 dark:text-white"
             >
               <option>Full fund</option>
               <option>Partial</option>
@@ -212,11 +212,11 @@ const handleSubmit = async (e) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-white">Degree</label>
             <select
               name="degreeCategory"
               defaultValue={selectedScholarship.degreeCategory}
-              className="select select-bordered w-full"
+              className="select select-bordered w-full dark:bg-gray-700 dark:text-white"
             >
               <option>Diploma</option>
               <option>Bachelor</option>
@@ -226,11 +226,11 @@ const handleSubmit = async (e) => {
         </div>
 
           <div className="form-control mb-4">
-          <label className="label">Upload Image</label>
+          <label className="label font-semibold">Upload Image</label>
          <input
          type="file"
          name="image"
-         className="file-input file-input-bordered"
+         className="file-input file-input-bordered dark:bg-gray-700 dark:text-white"
          />
         
          <img
@@ -243,14 +243,14 @@ const handleSubmit = async (e) => {
 
           {/* User Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Posted User Email *</label>
+          <label className="block text-sm font-medium dark:text-white mb-2">Posted User Email *</label>
           <input
             type="email"
             name="postedUserEmail"
 			defaultValue={user?.email}
 			readOnly
             
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
             placeholder="Enter email"
           />
         </div>
