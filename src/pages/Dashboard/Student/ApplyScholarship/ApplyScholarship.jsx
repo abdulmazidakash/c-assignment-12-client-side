@@ -73,7 +73,7 @@ const ApplyScholarship = () => {
   return (
     <div>
       <div className="text-center mb-8">
-        <h1 className="text-3xl lg:text-5xl font-bold text-gray-800 flex items-center justify-center gap-2">
+        <h1 className="text-3xl lg:text-5xl font-bold text-gray-800 dark:text-white flex items-center justify-center gap-2">
           <FaCheckCircle className="text-green-600" />
           Application Form
         </h1>
