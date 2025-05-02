@@ -32,37 +32,16 @@ const DashboardLayout = () => {
       <div className="flex-1 md:ml-64">
         {/* Navbar */}
         <nav className="bg-white dark:bg-gray-800 shadow-md px-6 py-3 flex justify-end items-center">
-          {/* Left Section: Logo & Toggle Button */}
-          {/* <div className="flex items-center space-x-4">
-            <button className="text-gray-700 dark:text-white text-2xl">
-              <img src="https://via.placeholder.com/120x40" alt="Logo" className="h-10" />
-            </button>
-          </div> */}
-
-          {/* Middle Section: Search Bar */}
-          {/* <div className="hidden md:flex pl-4 items-center bg-gray-100 dark:bg-gray-700 rounded-full px-4 py-2">
-            <FaSearch className="text-gray-500 dark:text-gray-300" />
-            <input 
-              type="text" 
-              placeholder="Search something..." 
-              className="bg-transparent focus:outline-none px-2 text-gray-900 dark:text-white"
-            />
-          </div> */}
 
           {/* Right Section: Icons & Profile */}
           <div className="flex items-center space-x-6">
-            {/* <FaBell className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" /> */}
-            {/* <FaCog className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" /> */}
            <button
             onClick={handleSignOUt} 
             className="flex  items-center   text-white rounded-lg transition duration-300"
           >
             <RiLogoutCircleFill  className='w-6 h-6 text-gray-500 dark:text-gray-300 text-xl cursor-pointer' />
           </button>
-            {/* <button onClick={toggleDarkMode}>
-              {darkMode ? <FaSun className="text-yellow-400 text-xl" /> : <FaMoon className="text-gray-600 text-xl" />}
-            </button> */}
-            {/* Dark Mode Toggle */}
+         
             <button
               className="p-2 rounded-full hover:text-yellow-400 transition"
               onClick={() => setDarkMode(!darkMode)}
