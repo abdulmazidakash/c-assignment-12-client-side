@@ -72,23 +72,8 @@ const Sidebar = () => {
            {role === 'moderator' &&  <ModeratorMenu />}
            {role === 'admin' &&  <AdminMenu />}
 
-           {/* <StudentMenu />
-            <ModeratorMenu />
-            <AdminMenu /> */}
           </nav>
         </div>
-
-        {/* <div>
-          <hr className="border-blue-300" />
-        
-          <button
-            onClick={handleSignOUt} 
-            className="flex w-full items-center px-4 py-2 mt-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition duration-300"
-          >
-            <GrLogout className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Logout</span>
-          </button>
-        </div> */}
       </div>
     </>
   );
