@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
-import { FaMoon, FaSun, FaSearch, FaUserCircle, FaBell, FaCog } from 'react-icons/fa';
+import { FaMoon, FaSun, FaUserCircle } from 'react-icons/fa';
 import { ThemeContext } from '../context/ThemeContext';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
