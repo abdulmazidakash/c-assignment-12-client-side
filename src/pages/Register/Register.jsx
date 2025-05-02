@@ -50,9 +50,9 @@ const Register = () => {
     console.log('update user profile', updateUser);
 
     //save the user info in db if the user in new
-    navigate('/')
-   await saveUser({...result?.user, displayName: name, photoURL})
+    await saveUser({...result?.user, displayName: name, photoURL})
     toast.success(`SignUp Successful ${name}`)
+    navigate('/')
   } catch (err) {
     console.log(err)
     toast.error(err?.message)

@@ -1,25 +1,3 @@
-// import { Outlet } from 'react-router-dom';
-// import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
-
-// const DashboardLayout = () => {
-//   return (
-//     <div className="relative min-h-screen md:flex bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300">
-//       {/* Left Side: Sidebar Component */}
-//       <Sidebar />
-      
-//       {/* Right Side: Dashboard Dynamic Content */}
-//       <div className="flex-1 md:ml-64">
-//         <div className="p-5">
-//           {/* Outlet for dynamic contents */}
-//           <Outlet />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DashboardLayout;
-
 import { Link, Outlet } from 'react-router-dom';
 import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
 import { FaMoon, FaSun, FaSearch, FaUserCircle, FaBell, FaCog } from 'react-icons/fa';
@@ -27,6 +5,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { RiLogoutCircleFill  } from "react-icons/ri";
+import toast from 'react-hot-toast';
 
 
 const DashboardLayout = () => {
