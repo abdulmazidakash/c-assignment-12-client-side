@@ -159,7 +159,7 @@ const ManageUsers = () => {
                       {/* ✅ Dropdown Fix */}
                       <ul
                         tabIndex={0}
-                        className="dropdown-content z-50 menu p-2 bg-white dark:bg-gray-800 dark:text-white shadow-lg font-semibold rounded-lg w-36"
+                        className="dropdown-content z-50 menu p-2 bg-white dark:bg-gray-800 dark:text-white shadow-lg font-semibold rounded-lg w-36 border border-gray-600 dark:border-gray-600"
                       >
                         {["student", "moderator", "admin"]
                           .filter((role) => role !== user.role)
