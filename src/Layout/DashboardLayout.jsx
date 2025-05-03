@@ -37,6 +37,7 @@ const DashboardLayout = () => {
           <div className="flex items-center space-x-6">
            <button
             onClick={handleSignOUt} 
+            title='Logout'
             className="flex  items-center   text-white rounded-lg transition duration-300"
           >
             <RiLogoutCircleFill  className='w-6 h-6 text-gray-500 dark:text-gray-300 text-xl cursor-pointer' />
@@ -51,7 +52,7 @@ const DashboardLayout = () => {
                       
             
             <Link to={'/dashboard/profile'}>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2" title={user?.displayName}>
               {user ? <img className='w-6 rounded-full border-white' src={user?.photoURL} referrerPolicy='no-referrer' /> : <FaUserCircle className="text-gray-500 dark:text-gray-300 text-2xl" />}
               <span className="text-sm font-medium">{user?.displayName}</span>
             </div>

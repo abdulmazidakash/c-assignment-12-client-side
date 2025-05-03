@@ -87,7 +87,7 @@ const Register = () => {
               id='image'
               name='image'
               accept='image/*'
-                className="bg-transparent outline-none w-full text-white"
+                className="  w-full"
               />
             </div>
           </div>
