@@ -110,7 +110,7 @@ const ManageUsers = () => {
           <div className="flex items-center gap-2">
             <label className="text-gray-600 dark:text-gray-300 font-medium">Filter by Role:</label>
             <select
-              className="select select-bordered select-info bg-white dark:bg-gray-800 dark:text-white border-gray-300 dark:border-gray-600"
+              className="select select-bordered select-info bg-white dark:bg-gray-800 dark:text-white border-gray-300 dark:border-gray-600 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
               value={filterRole}
               onChange={(e) => setFilterRole(e.target.value)}
             >
