@@ -76,7 +76,7 @@ const Login = () => {
             <label className="block mb-2">Select Role</label>
             <select
               className="w-full p-2 rounded transition-colors duration-300
-                        bg-white text-black dark:bg-gray-800 dark:text-white 
+                        bg-gray-800 text-white dark:bg-gray-800 dark:text-white 
                         border border-gray-300 dark:border-gray-600 outline-none"
               onChange={(e) => handleRoleSelect(e.target.value)}
             >
